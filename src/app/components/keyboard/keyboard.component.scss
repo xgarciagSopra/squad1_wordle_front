@@ -1,0 +1,36 @@
+$customLightGrey: #D3D3D3;
+$customLightGreyHover: #b2b2b2;
+$customColorTextGrey: rgba(97, 96, 96, 0.749);
+$customGreyBorder: grey;
+
+
+.keyboard{
+    margin: 5% auto;
+}
+
+.key{
+    margin: 5px 0;
+    width: 9%;
+    height: 50px;
+    background-color: $customLightGrey;
+    border-radius: 10px;
+    cursor: pointer;
+    
+    p{
+        font-size: 15px;
+        line-height: 3em;
+        font-weight: bold;
+        text-decoration: none;
+        color: $customColorTextGrey;
+    }
+    &:hover{
+        transition: 0.3s;
+        background-color: $customLightGreyHover;
+        border: 1px solid $customGreyBorder;
+        p{
+            color: white;
+        }
+        
+    }
+    
+}
