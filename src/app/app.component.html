@@ -1,2 +1,2 @@
-<app-result-box></app-result-box>
-<app-keyboard></app-keyboard>
+<app-result-box [word]="word"></app-result-box>
+<app-keyboard (writeInResultBox)="writeWord($event)"></app-keyboard>

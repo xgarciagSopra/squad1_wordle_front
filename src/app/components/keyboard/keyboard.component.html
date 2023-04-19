@@ -1,17 +1,17 @@
 <div class="keyboard">
     <div class="container w-50">
         <div class="row justify-content-between text-center">
-            <div class="col-1 key " *ngFor="let key of firstKeyBoardRow">
+            <div class="col-1 key " *ngFor="let key of firstKeyBoardRow" (click)="writeResultBox(key)">
                 <p>{{key}}</p>
             </div>
         </div>
         <div class="row justify-content-between text-center">
-            <div class="col-1 key" *ngFor="let key of secondKeyBoardRow">
+            <div class="col-1 key" *ngFor="let key of secondKeyBoardRow" (click)="writeResultBox(key)">
                 <p>{{key}}</p>
             </div>
         </div>
         <div class="row justify-content-between text-center">
-            <div class="col-1 key" *ngFor="let key of thirdKeyBoardRow">
+            <div class="col-1 key" *ngFor="let key of thirdKeyBoardRow" (click)="writeResultBox(key)">
                 <p>{{key}}</p>
             </div>
         </div>

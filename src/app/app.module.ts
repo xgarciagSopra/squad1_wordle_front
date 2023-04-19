@@ -12,4 +12,6 @@ import { ResultBoxComponent } from './components/result-box/result-box.component
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+}
