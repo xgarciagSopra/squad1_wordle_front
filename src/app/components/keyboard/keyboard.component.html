@@ -11,9 +11,18 @@
             </button>
         </div>
         <div class="row justify-content-between text-center">
-            <button class=" col-1 key" *ngFor="let key of thirdKeyBoardRow" (click)="pressKeyValue(key)" >
-                <p>{{key}}</p>
-            </button>
+            <ng-container *ngFor="let key of thirdKeyBoardRow">
+                <ng-container *ngIf="key==='➜' && word.length <= 5; else unDisabledButton">
+                    <button class=" col-1 key" (click)="pressKeyValue(key)" disabled>
+                        <p>{{key}}</p>
+                    </button>
+                </ng-container>
+                <ng-template #unDisabledButton>
+                    <button class=" col-1 key" (click)="pressKeyValue(key)">
+                        <p>{{key}}</p>
+                    </button>
+                </ng-template>
+            </ng-container>
         </div>
     </div>
 </div>
