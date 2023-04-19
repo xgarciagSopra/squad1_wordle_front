@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class GuessWordService {
   constructor(private http: HttpClient) {}
 
-  baseURL: string = '';
+  baseURL = '';
 
   checkWord(word: string): Observable<boolean> {
     return this.http.post<boolean>(this.baseURL, word);
