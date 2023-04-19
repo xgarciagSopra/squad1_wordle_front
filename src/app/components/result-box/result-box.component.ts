@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./result-box.component.scss']
 })
 export class ResultBoxComponent {
-  @Input() word: string = ''
+  @Input() word = ''
 }
