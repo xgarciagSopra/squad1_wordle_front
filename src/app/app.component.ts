@@ -6,10 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  word: string = '';
   title = 'squad1_wordle';
-
-  writeWord(word: string) {
-    this.word = word;
-  }
 }
