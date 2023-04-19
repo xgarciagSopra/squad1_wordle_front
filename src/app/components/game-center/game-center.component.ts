@@ -13,20 +13,31 @@ export class GameCenterComponent {
     this.letterPressed(letter)
   }
 
-  deleteLetter(){}
+  deleteLetter(){
+    // TODO (Xavi): deleteLetter in the resultbox
+  }
 
   letterPressed(letter: string){
-    let deleteKey = letter === '⌫';
-    let sendKey = letter === '➜';
-    if (deleteKey) {
-      this.deleteLetter();
-    } else if (sendKey) {
-      this.sendWord(this.word);
-    } else {
-      this.word += letter;
+    const deleteKey = '⌫';
+    const sendKey = '➜';
+    switch (letter) {
+      case deleteKey: {
+        this.deleteLetter();
+        break;
+      }
+      case sendKey: {
+        this.sendWord(this.word);
+        break;
+      }
+      default: {
+        this.word += letter;
+        break;
+      }
     }
   }
 
-  sendWord(word: string){}
+  sendWord(word: string){
+    // TODO (Xavi): add integration with server
+  }
 
 }
