@@ -1,6 +1,13 @@
 
 import keys from '../fixtures/keyboard.json'
 
+Cypress.Commands.add('getHeader',() => {
+    return cy.get('app-header .header')
+})
+Cypress.Commands.add('checkHeaderText',(text) => {
+    cy.getHeader().should('have.text',text).should('be.visible')
+})
+
 Cypress.Commands.add('getLeter', (leter) => {
     return cy.get('app-keyboard > .keyboard button').contains(leter)
 })
@@ -37,10 +44,13 @@ Cypress.Commands.add('typeWord',(word) => {
     });
 })
 
-Cypress.Commands.add('getResultBoxText',() => {
+Cypress.Commands.add('getResultBox',() => {
     return cy.get('#box')
+})
+Cypress.Commands.add('checkResultBoxIsVisible',() => {
+    cy.getResultBox().should('be.visible')
 })
 
 Cypress.Commands.add('checkResultBoxText',(word) => {
-    cy.getResultBoxText().should('have.text',word).should('be.visible')
+    cy.getResultBox().should('have.text',word).should('be.visible')
 })
