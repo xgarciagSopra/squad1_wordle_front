@@ -2,9 +2,13 @@
     "header": "BIENVENIDO A: ADIVINA LA PALABRA",
     "enviar": "➜",
     "queso": "QUESO",
+    "hola": "HOLA",
+    "qwert": "QWERT",
     "teclado": "QWERTYUIOPASDFGHJKLÑZXCVBNM⌫➜",
     "borrar": "⌫",
     "enabled": "be.enabled",
     "disabled": "be.disabled",
-    "hola": "HOLA"
+    "valid": "rgb(0, 255, 0)",
+    "invalid": "rgb(255, 0, 0)"
+    
 }

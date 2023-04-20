@@ -44,13 +44,19 @@ Cypress.Commands.add('typeWord',(word) => {
     });
 })
 
-Cypress.Commands.add('getResultBox',() => {
+Cypress.Commands.add('getResultBoxText',() => {
     return cy.get('#box')
 })
+Cypress.Commands.add('getResultBox',() => {
+    return cy.get('.result-box')
+})
 Cypress.Commands.add('checkResultBoxIsVisible',() => {
-    cy.getResultBox().should('be.visible')
+    cy.getResultBoxText().should('be.visible')
 })
 
 Cypress.Commands.add('checkResultBoxText',(word) => {
-    cy.getResultBox().should('have.text',word).should('be.visible')
+    cy.getResultBoxText().should('have.text',word).should('be.visible')
+})
+Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
+    cy.getResultBox().should('have.css','border-color',color)
 })

@@ -44,7 +44,15 @@ describe('#2 Verify word exist', () => {
     cy.typeWord(keys.queso)
     cy.checkResultBoxText(keys.queso)
     cy.checkSendButtonState(keys.enabled)
+    cy.checkResultBoxBorderColor(keys.valid)
     cy.sendForm()
   });
   
+  it('Check invali word ', () => {
+    cy.typeWord(keys.qwert)
+    cy.checkResultBoxText(keys.qwert)
+    cy.checkSendButtonState(keys.enabled)
+    cy.checkResultBoxBorderColor(keys.invalid)
+    cy.sendForm()
+  });
 })
