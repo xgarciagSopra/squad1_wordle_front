@@ -1,2 +1,3 @@
 <app-result-box [word]="word"></app-result-box>
-<app-keyboard (pressedKeyValue)="writeWord($event)"></app-keyboard>
+<app-keyboard (pressedKeyValue)="writeWord($event)"
+                [word]="word"></app-keyboard>

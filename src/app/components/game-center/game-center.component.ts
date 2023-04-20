@@ -30,7 +30,8 @@ export class GameCenterComponent {
         break;
       }
       default: {
-        this.word += letter;
+        if(this.word.length < 5)
+          this.word += letter;
         break;
       }
     }
