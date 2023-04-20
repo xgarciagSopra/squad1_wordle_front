@@ -1,13 +1,16 @@
 /// <reference types="cypress" />
 import keys from '../fixtures/keyboard.json'
+import urls from '../fixtures/urls.json'
+
 describe('#2 Verify word exist', () => {
 
   beforeEach(() => {
-    cy.visitUrl('http://localhost:4200/')
+    cy.visitUrl(urls.localhost)
   })
 
   it('Check keyboard', () => {
-    cy.checkLeter(keys.queso.charAt(0))
+    cy.checkKeyboard(keys.teclado)
+    cy.checkSendButtonState(keys.disabled)
     cy.sendForm()
   });
 
@@ -16,9 +19,19 @@ describe('#2 Verify word exist', () => {
     cy.checkResultBoxText(keys.queso)
   });
 
-  it('Check validation word', () => {
+  it('Check a valid word', () => {
     cy.typeWord(keys.queso)
     cy.checkResultBoxText(keys.queso)
+    cy.checkSendButtonState(keys.enabled)
     cy.sendForm()
   });
+
+  it('Check a invalid word', () => {
+    cy.typeWord(keys.hola)
+    cy.checkResultBoxText(keys.hola)
+    cy.checkSendButtonState(keys.enabled)
+    cy.sendForm()
+  });
+
+  
 })

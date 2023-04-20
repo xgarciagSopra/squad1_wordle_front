@@ -1,15 +1,28 @@
+
 import keys from '../fixtures/keyboard.json'
 
 Cypress.Commands.add('getLeter', (leter) => {
-    return cy.get('app-keyboard > .keyboard p').contains(leter)
+    return cy.get('app-keyboard > .keyboard button').contains(leter)
 })
 
 Cypress.Commands.add('checkLeter',(leter) => {
     cy.getLeter(leter).should('have.text',leter).should('be.visible')
 })
 
+Cypress.Commands.add('checkKeyboard',(keyboard) => {
+    let leters =  keyboard.split('')
+
+    leters.forEach(leter =>{
+        cy.checkLeter(leter)
+    })
+})
+
 Cypress.Commands.add('clickLeter',(leter) => {
     cy.getLeter(leter).click()
+})
+
+Cypress.Commands.add('checkSendButtonState',(state) => {
+    cy.get(':nth-child(3) > :nth-child(9)').should(state)
 })
 
 Cypress.Commands.add('sendForm',() => {
@@ -17,11 +30,11 @@ Cypress.Commands.add('sendForm',() => {
 })
 
 Cypress.Commands.add('typeWord',(word) => {
-    cy.clickLeter(word.charAt(0))
-    cy.clickLeter(word.charAt(1))
-    cy.clickLeter(word.charAt(2))
-    cy.clickLeter(word.charAt(3))
-    cy.clickLeter(word.charAt(4))
+    let leters = word.split('')
+
+    leters.forEach(leter => {
+        cy.clickLeter(leter)
+    });
 })
 
 Cypress.Commands.add('getResultBoxText',() => {
