@@ -37,8 +37,11 @@ export class GameCenterComponent {
   }
 
   sendWord(word: string) {
-    return this.guessWord.checkWord(word)
-      ? console.log('si que esta')
-      : console.log('no esta');
+    return this.guessWord.checkWord(word).subscribe({
+      next: (response: any) => {
+        if (response.existWord) return;
+        console.log(response.exist);
+      }
+    })
   }
 }
