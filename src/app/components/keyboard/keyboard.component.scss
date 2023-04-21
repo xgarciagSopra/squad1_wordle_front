@@ -10,7 +10,6 @@
   height: 50px;
   background-color: $customLightGrey;
   border-radius: 10px;
-  cursor: pointer;
   outline: none;
   border: 0;
 
@@ -29,4 +28,24 @@
       color: white;
     }
   }
+}
+
+.keyDisabled{
+    margin: 5px 0;
+    width: 9%;
+    height: 50px;
+    background-color: $customGreyDisabledButton;
+    border-radius: 10px;
+    outline: none;
+    border: 0;
+    
+    p{
+        font-size: 15px;
+        line-height: 50px;
+        font-weight: bold;
+        text-decoration: none;
+        color: $customLightGreyHover;
+    }
+    
+    
 }

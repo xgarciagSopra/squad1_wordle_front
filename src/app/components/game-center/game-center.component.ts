@@ -18,6 +18,10 @@ export class GameCenterComponent {
     // TODO (Xavi): deleteLetter in the resultbox
   }
 
+  isMaxLengthWord(): boolean {
+    return this.word.length === 5;
+  }
+
   letterPressed(letter: string) {
     const deleteKey = '⌫';
     const sendKey = '➜';
@@ -29,7 +33,7 @@ export class GameCenterComponent {
       this.sendWord(this.word);
       return;
     }
-    this.word += letter;
+    if (this.word.length < 5) this.word += letter;
   }
 
   sendWord(word: string) {
