@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 })
 export class GameCenterComponent {
   word = '';
-  lenghtWord = this.word.length < 5;
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -15,6 +14,10 @@ export class GameCenterComponent {
 
   deleteLetter() {
     // TODO (Xavi): deleteLetter in the resultbox
+  }
+
+  isMaxLengthWord(): boolean {
+    return this.word.length === 5;
   }
 
   letterPressed(letter: string) {
@@ -31,7 +34,6 @@ export class GameCenterComponent {
       }
       default: {
         if (this.word.length < 5) this.word += letter;
-        this.lenghtWord = this.word.length < 5;
         break;
       }
     }
