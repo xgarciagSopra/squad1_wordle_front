@@ -9,7 +9,7 @@ import { GameCenterComponent } from './components/game-center/game-center.compon
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { ErrorRoundDialogComponent } from './components/error-round-dialog/error-round-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
     KeyboardComponent,
     ResultBoxComponent,
     GameCenterComponent,
-    DialogComponent,
+    ErrorRoundDialogComponent,
   ],
   imports: [
     BrowserModule,

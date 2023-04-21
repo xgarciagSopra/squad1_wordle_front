@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
+import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 
 
 
@@ -13,7 +13,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class GameCenterComponent implements OnInit {
 
   constructor(private dialog: MatDialog) {}
-  ngOnInit(): void {
+  ngOnInit(){
     this.openDialog();
   }
 
@@ -51,7 +51,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   openDialog(){
-     const dialogRef = this.dialog.open(DialogComponent, {
+     const dialogRef = this.dialog.open(ErrorRoundDialogComponent, {
        panelClass: 'custom-dialog-container',
      });
   }
