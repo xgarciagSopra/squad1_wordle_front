@@ -36,7 +36,7 @@ describe('#2 Verify word exist', () => {
   it('Check a invalid length word', () => {
     cy.typeWord(keys.hola)
     cy.checkResultBoxText(keys.hola)
-    cy.checkSendButtonState(keys.enabled)
+    cy.checkSendButtonState(keys.disabled)
     cy.sendForm()
   });
 
@@ -56,3 +56,17 @@ describe('#2 Verify word exist', () => {
     cy.sendForm()
   });
 })
+describe('#3 New game', () => {
+  beforeEach(() => {
+    cy.visitUrl(urls.localhost)
+  });
+
+  it('Game start correctly', () => {
+    
+  });
+  it('Game start error', () => {
+    
+  });
+
+
+});
