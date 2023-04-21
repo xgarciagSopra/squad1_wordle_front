@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { KeyboardComponent } from './components/keyboard/keyboard.component';
 import { ResultBoxComponent } from './components/result-box/result-box.component';
 import { GameCenterComponent } from './components/game-center/game-center.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -18,12 +21,15 @@ import { ErrorRoundDialogComponent } from './components/error-round-dialog/error
     ResultBoxComponent,
     GameCenterComponent,
     ErrorRoundDialogComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

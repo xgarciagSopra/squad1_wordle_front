@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
-
-
+import { GuessWordService } from 'src/app/services/guess-word.service';
 
 @Component({
   selector: 'app-game-center',
@@ -12,12 +10,13 @@ import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dia
 })
 export class GameCenterComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog, private guessWord: GuessWordService) {}
   ngOnInit(){
     this.openDialog();
   }
 
   word = '';
+
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -27,27 +26,28 @@ export class GameCenterComponent implements OnInit {
     // TODO (Xavi): deleteLetter in the resultbox
   }
 
+  isMaxLengthWord(): boolean {
+    return this.word.length === 5;
+  }
+
   letterPressed(letter: string) {
     const deleteKey = '⌫';
     const sendKey = '➜';
-    switch (letter) {
-      case deleteKey: {
-        this.deleteLetter();
-        break;
-      }
-      case sendKey: {
-        this.sendWord(this.word);
-        break;
-      }
-      default: {
-        this.word += letter;
-        break;
-      }
+    if (letter === deleteKey) {
+      this.deleteLetter();
+      return;
     }
+    if (letter === sendKey) {
+      this.sendWord(this.word);
+      return;
+    }
+    if (this.word.length < 5) this.word += letter;
   }
 
   sendWord(word: string) {
-    // TODO (Xavi): add integration with server
+    return this.guessWord.checkWord(word)
+      ? console.log('si que esta')
+      : console.log('no esta');
   }
 
   openDialog(){
@@ -55,4 +55,5 @@ export class GameCenterComponent implements OnInit {
        panelClass: 'custom-dialog-container',
      });
   }
+  
 }

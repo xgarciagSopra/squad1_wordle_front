@@ -28,4 +28,7 @@
     "strictTemplates": true
   },
   "exclude": ["./cypress.config.ts", "cypress", "**/*.cy.tsx"]
+  
 }
+
+

@@ -11,7 +11,7 @@
             </button>
         </div>
         <div class="row justify-content-between text-center">
-            <button class=" col-1 key" *ngFor="let key of thirdKeyBoardRow" (click)="pressKeyValue(key)" >
+            <button class="col-1" *ngFor="let key of thirdKeyBoardRow" (click)="pressKeyValue(key)" [disabled]="disableKey(key)" [ngClass]="keyStyles(key)" >
                 <p>{{key}}</p>
             </button>
         </div>
