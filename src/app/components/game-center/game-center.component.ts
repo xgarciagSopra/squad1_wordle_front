@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { GuessWordService } from 'src/app/services/guess-word.service';
+
 
 @Component({
   selector: 'app-game-center',
@@ -8,10 +10,22 @@ import { GuessWordService } from 'src/app/services/guess-word.service';
 })
 export class GameCenterComponent {
   word = '';
-  constructor(private guessWord: GuessWordService) {}
+  encontrado = false;
+  constructor(
+    private guessWord: GuessWordService,
+    private toastr: ToastrService
+  ) {}
 
   writeWord(letter: string) {
     this.letterPressed(letter);
+  }
+
+  dangerToast(){
+    this.toastr.warning('Palabra no encontrada');
+  }
+
+  notSearch() {
+    this.encontrado = false;
   }
 
   deleteLetter() {
@@ -30,6 +44,7 @@ export class GameCenterComponent {
       return;
     }
     if (letter === sendKey) {
+      this.notSearch();
       this.sendWord(this.word);
       return;
     }
@@ -40,11 +55,11 @@ export class GameCenterComponent {
     return this.guessWord.checkWord(word).subscribe({
       next: (response: any) => {
         if (response.wordExists) return;
-        console.log(response.wordExists);
+        this.dangerToast();
       },
       error: (error) => {
-        console.log(error);
-      }
-    })
+        this.dangerToast();
+      },
+    });
   }
 }
