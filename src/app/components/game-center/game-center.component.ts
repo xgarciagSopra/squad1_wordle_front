@@ -34,7 +34,7 @@ export class GameCenterComponent {
 
   sendWord(word: string) {
     return this.guessWord.checkWord(word)
-      ? alert('si que esta')
-      : alert('no esta');
+      ? console.log('si que esta')
+      : console.log('no esta');
   }
 }

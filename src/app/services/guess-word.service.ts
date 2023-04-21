@@ -11,8 +11,6 @@ export class GuessWordService {
   baseURL = 'http://10.102.30.94:8080';
 
   checkWord(word: string): Observable<boolean> {
-    return this.http.get<boolean>(
-      this.baseURL.concat('/words/exist?word=', word)
-    );
+    return this.http.get<boolean>(this.baseURL + '/words/exist?word=' + word);
   }
 }
