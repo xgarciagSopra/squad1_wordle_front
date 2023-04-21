@@ -1,3 +1,4 @@
 {
-    "newGame": "(llamada a la api)"
+    "newGame": "(llamada a la api)",
+    "wordValidation":"/words/exist?word="
 }

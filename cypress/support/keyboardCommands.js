@@ -1,5 +1,7 @@
 
 import keys from '../fixtures/keyboard.json'
+import api from '../fixtures/api.json'
+
 
 Cypress.Commands.add('getHeader',() => {
     return cy.get('app-header .header')
@@ -51,7 +53,7 @@ Cypress.Commands.add('getResultBox',() => {
     return cy.get('.result-box')
 })
 Cypress.Commands.add('checkResultBoxIsVisible',() => {
-    cy.getResultBoxText().should('be.visible')
+    cy.getResultBox().should('be.visible')
 })
 
 Cypress.Commands.add('checkResultBoxText',(word) => {
@@ -59,4 +61,8 @@ Cypress.Commands.add('checkResultBoxText',(word) => {
 })
 Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
     cy.getResultBox().should('have.css','border-color',color)
+})
+
+Cypress.Commands.add('interceptWord',(word) => {
+    return cy.intercept('GET',(api.wordValidation + word),false)
 })

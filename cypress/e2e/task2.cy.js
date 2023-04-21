@@ -7,6 +7,7 @@ describe('#2 Verify word exist', () => {
 
   beforeEach(() => {
     cy.visitUrl(urls.localhost)
+    cy.viewport(1920, 1080)
   })
 
   it('Check web structure', () => {
@@ -41,8 +42,10 @@ describe('#2 Verify word exist', () => {
   });
 
   it('Check correct validation word ', () => {
+    cy.interceptWord(keys.queso)
     cy.typeWord(keys.queso)
     cy.checkResultBoxText(keys.queso)
+    
     cy.checkSendButtonState(keys.enabled)
     cy.checkResultBoxBorderColor(keys.valid)
     cy.sendForm()
@@ -65,7 +68,7 @@ describe('#3 New game', () => {
     
   });
   it('Game start error', () => {
-    
+    cy.newGameFaild()
   });
 
 
