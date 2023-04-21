@@ -1,3 +1,5 @@
+<app-header></app-header>
 <app-result-box [word]="word"></app-result-box>
 <app-keyboard (pressedKeyValue)="writeWord($event)"
-                [word]="word"></app-keyboard>
+                [disableKeys]="isMaxLengthWord()"></app-keyboard>
+<app-footer></app-footer>
