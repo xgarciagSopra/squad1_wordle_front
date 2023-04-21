@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GuessWordService } from 'src/app/services/guess-word.service';
 
 @Component({
   selector: 'app-game-center',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class GameCenterComponent {
   word = '';
+  constructor(private guessWord: GuessWordService) {}
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -23,23 +25,20 @@ export class GameCenterComponent {
   letterPressed(letter: string) {
     const deleteKey = '⌫';
     const sendKey = '➜';
-    switch (letter) {
-      case deleteKey: {
-        this.deleteLetter();
-        break;
-      }
-      case sendKey: {
-        this.sendWord(this.word);
-        break;
-      }
-      default: {
-        if (this.word.length < 5) this.word += letter;
-        break;
-      }
+    if (letter === deleteKey) {
+      this.deleteLetter();
+      return;
     }
+    if (letter === sendKey) {
+      this.sendWord(this.word);
+      return;
+    }
+    if (this.word.length < 5) this.word += letter;
   }
 
   sendWord(word: string) {
-    // TODO (Xavi): add integration with server
+    return this.guessWord.checkWord(word)
+      ? console.log('si que esta')
+      : console.log('no esta');
   }
 }
