@@ -7,12 +7,25 @@ import { KeyboardComponent } from './components/keyboard/keyboard.component';
 import { ResultBoxComponent } from './components/result-box/result-box.component';
 import { GameCenterComponent } from './components/game-center/game-center.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogComponent } from './components/dialog/dialog.component';
+
 @NgModule({
-  declarations: [AppComponent, KeyboardComponent, ResultBoxComponent, GameCenterComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [
+    AppComponent,
+    KeyboardComponent,
+    ResultBoxComponent,
+    GameCenterComponent,
+    DialogComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {
-
-}
+export class AppModule {}

@@ -1,23 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
+
+
 
 @Component({
   selector: 'app-game-center',
   templateUrl: './game-center.component.html',
-  styleUrls: ['./game-center.component.scss']
+  styleUrls: ['./game-center.component.scss'],
 })
-export class GameCenterComponent {
+export class GameCenterComponent implements OnInit {
+
+  constructor(private dialog: MatDialog) {}
+  ngOnInit(): void {
+    this.openDialog();
+  }
 
   word = '';
 
-  writeWord(letter: string){
-    this.letterPressed(letter)
+  writeWord(letter: string) {
+    this.letterPressed(letter);
   }
 
-  deleteLetter(){
+  deleteLetter() {
     // TODO (Xavi): deleteLetter in the resultbox
   }
 
-  letterPressed(letter: string){
+  letterPressed(letter: string) {
     const deleteKey = '⌫';
     const sendKey = '➜';
     switch (letter) {
@@ -36,8 +46,13 @@ export class GameCenterComponent {
     }
   }
 
-  sendWord(word: string){
+  sendWord(word: string) {
     // TODO (Xavi): add integration with server
   }
 
+  openDialog(){
+     const dialogRef = this.dialog.open(DialogComponent, {
+       panelClass: 'custom-dialog-container',
+     });
+  }
 }
