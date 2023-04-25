@@ -15,6 +15,6 @@ export class GuessWordService {
   }
 
   newRound() {
-    return this.http.post(this.baseURL + '/rounds/new-round', {});
+    return this.http.post<number>(this.baseURL + '/rounds/new-round', {});
   }
 }
