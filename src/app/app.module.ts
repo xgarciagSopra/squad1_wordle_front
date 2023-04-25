@@ -12,7 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorRoundDialogComponent } from './components/error-round-dialog/error-round-dialog.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     KeyboardComponent,
     ResultBoxComponent,
     GameCenterComponent,
+    ErrorRoundDialogComponent,
     HeaderComponent,
     FooterComponent,
   ],
@@ -29,6 +32,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ToastrModule.forRoot(),
     NoopAnimationsModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

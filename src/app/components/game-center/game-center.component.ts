@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 
 
@@ -8,19 +10,26 @@ import { GuessWordService } from 'src/app/services/guess-word.service';
   templateUrl: './game-center.component.html',
   styleUrls: ['./game-center.component.scss'],
 })
-export class GameCenterComponent {
-  word = '';
-  encontrado = false;
+export class GameCenterComponent implements OnInit {
   constructor(
+    private dialog: MatDialog,
     private guessWord: GuessWordService,
     private toastr: ToastrService
   ) {}
+
+  ngOnInit() {
+    this.openDialog();
+  }
+
+  word = '';
+  encontrado = false;
+  
 
   writeWord(letter: string) {
     this.letterPressed(letter);
   }
 
-  dangerToast(){
+  dangerToast() {
     this.toastr.warning('Palabra no encontrada');
   }
 
@@ -28,7 +37,7 @@ export class GameCenterComponent {
     this.encontrado = false;
   }
 
-  setSearched(valor:boolean){
+  setSearched(valor: boolean) {
     this.encontrado = valor;
   }
 
@@ -58,7 +67,7 @@ export class GameCenterComponent {
   sendWord(word: string) {
     return this.guessWord.checkWord(word).subscribe({
       next: (response: any) => {
-        if (response.wordExists){
+        if (response.wordExists) {
           this.setSearched(true);
         }
         this.dangerToast();
@@ -68,6 +77,12 @@ export class GameCenterComponent {
         this.dangerToast();
         this.setSearched(false);
       },
+    });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(ErrorRoundDialogComponent, {
+      panelClass: 'custom-dialog-container',
     });
   }
 }
