@@ -23,7 +23,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   deleteLetter() {
-    // TODO (Xavi): deleteLetter in the resultbox
+    this.word = this.word.substring(0,this.word.length - 1);
   }
 
   isMaxLengthWord(): boolean {
@@ -45,9 +45,15 @@ export class GameCenterComponent implements OnInit {
   }
 
   sendWord(word: string) {
-    return this.guessWord.checkWord(word)
-      ? console.log('si que esta')
-      : console.log('no esta');
+    return this.guessWord.checkWord(word).subscribe({
+      next: (response: any) => {
+        if (response.wordExists) return;
+        console.log(response.wordExists);
+      },
+      error: (error) => {
+        console.log(error);
+      }
+    })
   }
 
   openDialog(){
