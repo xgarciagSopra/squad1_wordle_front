@@ -34,9 +34,7 @@ export class GameCenterComponent implements OnInit {
   }
 
 
-  isSearched(){
-    return this.found;
-  }
+  
 
   deleteLetter() {
     this.word = this.word.substring(0,this.word.length - 1);
