@@ -10,24 +10,24 @@ Cypress.Commands.add('checkHeaderText',(text) => {
     cy.getHeader().should('have.text',text).should('be.visible')
 })
 
-Cypress.Commands.add('getLeter', (leter) => {
-    return cy.get('app-keyboard > .keyboard button').contains(leter)
+Cypress.Commands.add('getLetter', (letter) => {
+    return cy.get('app-keyboard > .keyboard button').contains(letter)
 })
 
-Cypress.Commands.add('checkLeter',(leter) => {
-    cy.getLeter(leter).should('have.text',leter).should('be.visible')
+Cypress.Commands.add('checkLetter',(letter) => {
+    cy.getLetter(letter).should('have.text',letter).should('be.visible')
 })
 
 Cypress.Commands.add('checkKeyboard',(keyboard) => {
-    let leters =  keyboard.split('')
+    let letters =  keyboard.split('')
 
-    leters.forEach(leter =>{
-        cy.checkLeter(leter)
+    letters.forEach(letter =>{
+        cy.checkLetter(letter)
     })
 })
 
-Cypress.Commands.add('clickLeter',(leter) => {
-    cy.getLeter(leter).click()
+Cypress.Commands.add('clickLetter',(letter) => {
+    cy.getLetter(letter).click()
 })
 
 Cypress.Commands.add('checkSendButtonState',(state) => {
@@ -35,14 +35,14 @@ Cypress.Commands.add('checkSendButtonState',(state) => {
 })
 
 Cypress.Commands.add('sendForm',() => {
-    cy.getLeter(keys.enviar).click()
+    cy.getLetter(keys.enviar).click()
 })
 
 Cypress.Commands.add('typeWord',(word) => {
-    let leters = word.split('')
+    let letters = word.split('')
 
-    leters.forEach(leter => {
-        cy.clickLeter(leter)
+    letters.forEach(letter => {
+        cy.clickLetter(letter)
     });
 })
 
@@ -65,4 +65,16 @@ Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
 
 Cypress.Commands.add('interceptWord',(word) => {
     return cy.intercept('GET',(api.wordValidation + word))
+})
+
+Cypress.Commands.add('deleteLetter', () => {
+    cy.getLetter(keys.borrar).click()
+})
+
+Cypress.Commands.add('deleteWord', (word) => {
+    let letters = word.split('')
+
+    letters.forEach(letter => {
+        cy.deleteLetter()
+    });
 })
