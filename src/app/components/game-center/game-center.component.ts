@@ -86,7 +86,6 @@ export class GameCenterComponent implements OnInit {
       letterWordIndex++
     ) {
       fillArray.push(this.word.charAt(letterWordIndex));
-      console.log(fillArray);
     }
     while (fillArray.length < 5) {
       fillArray.push('');
