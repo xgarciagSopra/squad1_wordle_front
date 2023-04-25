@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 
 @Component({
@@ -6,9 +8,15 @@ import { GuessWordService } from 'src/app/services/guess-word.service';
   templateUrl: './game-center.component.html',
   styleUrls: ['./game-center.component.scss'],
 })
-export class GameCenterComponent {
+export class GameCenterComponent implements OnInit {
+
+  constructor(private dialog: MatDialog, private guessWord: GuessWordService) {}
+  ngOnInit(){
+    this.openDialog();
+  }
+
   word = '';
-  constructor(private guessWord: GuessWordService) {}
+
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -47,4 +55,11 @@ export class GameCenterComponent {
       }
     })
   }
+
+  openDialog(){
+     const dialogRef = this.dialog.open(ErrorRoundDialogComponent, {
+       panelClass: 'custom-dialog-container',
+     });
+  }
+  
 }
