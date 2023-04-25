@@ -7,6 +7,7 @@ describe('#2 Verify word exist', () => {
 
   beforeEach(() => {
     cy.visitUrl(urls.localhost)
+    cy.acceptNewGameErrorAlert()
   })
 
   it('Check web structure', () => {
@@ -26,16 +27,23 @@ describe('#2 Verify word exist', () => {
     cy.checkResultBoxText(keys.queso)
   });
 
-  it('Check a valid length word', () => {
+  it('Check a valid word length', () => {
     cy.typeWord(keys.queso)
     cy.checkResultBoxText(keys.queso)
     cy.checkSendButtonState(keys.enabled)
     cy.sendForm()
   });
 
-  it('Check a invalid length word', () => {
+  it('Check a invalid word length', () => {
     cy.typeWord(keys.hola)
     cy.checkResultBoxText(keys.hola)
+    cy.checkSendButtonState(keys.disabled)
+    cy.sendForm()
+  });
+
+  it('Check a invalid word length', () => {
+    cy.typeWord(keys.quesos)
+    cy.checkResultBoxText(keys.quesos)
     cy.checkSendButtonState(keys.disabled)
     cy.sendForm()
   });
@@ -50,7 +58,7 @@ describe('#2 Verify word exist', () => {
     cy.sendForm()
   });
   
-  it('Check invali word ', () => {
+  it('Check invalid word ', () => {
     cy.typeWord(keys.qwert)
     cy.checkResultBoxText(keys.qwert)
     cy.checkSendButtonState(keys.enabled)
