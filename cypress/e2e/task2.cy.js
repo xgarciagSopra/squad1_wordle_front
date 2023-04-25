@@ -7,7 +7,6 @@ describe('#2 Verify word exist', () => {
 
   beforeEach(() => {
     cy.visitUrl(urls.localhost)
-    cy.viewport(1920, 1080)
   })
 
   it('Check web structure', () => {
@@ -59,17 +58,3 @@ describe('#2 Verify word exist', () => {
     cy.sendForm()
   });
 })
-describe('#3 New game', () => {
-  beforeEach(() => {
-    cy.visitUrl(urls.localhost)
-  });
-
-  it('Game start correctly', () => {
-    
-  });
-  it('Game start error', () => {
-    cy.newGameFaild()
-  });
-
-
-});

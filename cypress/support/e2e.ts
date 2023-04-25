@@ -17,6 +17,7 @@
 import './commands'
 import './keyboardCommands'
 import './gameCommands'
+import './resultBoxCommands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
