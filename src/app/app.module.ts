@@ -10,16 +10,27 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ErrorRoundDialogComponent } from './components/error-round-dialog/error-round-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     KeyboardComponent,
     ResultBoxComponent,
     GameCenterComponent,
+    ErrorRoundDialogComponent,
     HeaderComponent,
     FooterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
