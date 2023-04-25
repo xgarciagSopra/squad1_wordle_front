@@ -22,7 +22,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   word = '';
-  encontrado = false;
+  found: boolean = false;
   
 
   writeWord(letter: string) {
@@ -33,12 +33,9 @@ export class GameCenterComponent implements OnInit {
     this.toastr.warning('Palabra no encontrada');
   }
 
-  notSearch() {
-    this.encontrado = false;
-  }
 
-  setSearched(valor: boolean) {
-    this.encontrado = valor;
+  isSearched(){
+    return this.found;
   }
 
   deleteLetter() {
@@ -57,7 +54,7 @@ export class GameCenterComponent implements OnInit {
       return;
     }
     if (letter === sendKey) {
-      this.notSearch();
+      this.found = false;
       this.sendWord(this.word);
       return;
     }
@@ -68,14 +65,15 @@ export class GameCenterComponent implements OnInit {
     return this.guessWord.checkWord(word).subscribe({
       next: (response: any) => {
         if (response.wordExists) {
-          this.setSearched(true);
+          this.found = true;
+          return;
         }
         this.dangerToast();
-        this.setSearched(false);
+        this.found = false;
       },
       error: (error) => {
         this.dangerToast();
-        this.setSearched(false);
+        this.found = false;
       },
     });
   }
