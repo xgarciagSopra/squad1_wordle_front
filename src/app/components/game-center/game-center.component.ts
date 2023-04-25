@@ -28,6 +28,10 @@ export class GameCenterComponent {
     this.encontrado = false;
   }
 
+  setSearched(valor:boolean){
+    this.encontrado = valor;
+  }
+
   deleteLetter() {
     // TODO (Xavi): deleteLetter in the resultbox
   }
@@ -54,11 +58,15 @@ export class GameCenterComponent {
   sendWord(word: string) {
     return this.guessWord.checkWord(word).subscribe({
       next: (response: any) => {
-        if (response.wordExists) return;
+        if (response.wordExists){
+          this.setSearched(true);
+        }
         this.dangerToast();
+        this.setSearched(false);
       },
       error: (error) => {
         this.dangerToast();
+        this.setSearched(false);
       },
     });
   }
