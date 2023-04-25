@@ -8,11 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ResultBoxComponent {
   @Input() word = ''
   @Input() splitWord: String[] = [];
-  @Input() borderResultStyles = false;
+  @Input() borderResultStyles!: boolean;
 
   borderStyles(): String{
+    if (this.borderResultStyles === undefined) return '';
     return this.borderResultStyles
-      ? 'border border-success border-3'
-      : 'border border-danger border-3';
+      ? 'border-success'
+      : 'border-danger';
   }
 }

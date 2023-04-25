@@ -18,11 +18,12 @@ export class GameCenterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.openDialog();
+    this.fillSplitWord();
   }
 
   word = '';
-  found: boolean = false;
+  splittedWord: String[] = [];
+  found!: boolean;
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -32,10 +33,10 @@ export class GameCenterComponent implements OnInit {
     this.toastr.warning('Palabra no encontrada');
   }
 
-  
-
   deleteLetter() {
     this.word = this.word.substring(0, this.word.length - 1);
+    this.fillSplitWord();
+    console.log(this.splittedWord);
   }
 
   isMaxLengthWord(): boolean {
@@ -54,7 +55,11 @@ export class GameCenterComponent implements OnInit {
       this.sendWord(this.word);
       return;
     }
-    if (this.word.length < 5) this.word += letter;
+    if (this.word.length < 5){
+      this.word += letter;
+      this.fillSplitWord();
+      console.log(this.splittedWord);
+    }
   }
 
   sendWord(word: string) {
@@ -78,18 +83,17 @@ export class GameCenterComponent implements OnInit {
     });
   }
 
-  fillSplitWord(): String[] {
+  fillSplitWord() {
     let fillArray: String[] = [];
-    for (
-      let letterWordIndex = 0;
-      letterWordIndex < this.word.length;
-      letterWordIndex++
-    ) {
-      fillArray.push(this.word.charAt(letterWordIndex));
+
+    fillArray = this.word.split('');
+
+    if (fillArray.length < 5) {
+      fillArray.push(...new Array(5 - fillArray.length).fill(''));
     }
-    while (fillArray.length < 5) {
-      fillArray.push('');
-    }
-    return fillArray;
+    
+    this.splittedWord = fillArray; 
+
   }
+
 }
