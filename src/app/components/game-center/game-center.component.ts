@@ -23,7 +23,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   deleteLetter() {
-    // TODO (Xavi): deleteLetter in the resultbox
+    this.word = this.word.substring(0,this.word.length - 1);
   }
 
   isMaxLengthWord(): boolean {
