@@ -9,6 +9,8 @@ import { GameCenterComponent } from './components/game-center/game-center.compon
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -27,6 +29,9 @@ import { ErrorRoundDialogComponent } from './components/error-round-dialog/error
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    ToastrModule.forRoot(),
+    NoopAnimationsModule,
     BrowserAnimationsModule,
     MatDialogModule,
     HttpClientModule,

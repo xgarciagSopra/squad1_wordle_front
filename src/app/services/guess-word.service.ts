@@ -13,4 +13,8 @@ export class GuessWordService {
   checkWord(word: string): Observable<boolean> {
     return this.http.get<boolean>(this.baseURL + '/words/exist?word=' + word);
   }
+
+  newRound() {
+    return this.http.post(this.baseURL + '/rounds/new-round', {});
+  }
 }
