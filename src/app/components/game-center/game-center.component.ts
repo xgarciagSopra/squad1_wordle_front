@@ -4,7 +4,6 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 
-
 @Component({
   selector: 'app-game-center',
   templateUrl: './game-center.component.html',
@@ -18,7 +17,21 @@ export class GameCenterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.openDialog();
+    this.guessWord.newRound().subscribe({
+      next: (response: any) => {
+        if (!response) {
+          this.openDialog();
+          return;
+        }
+        if (response.id) {
+          console.log(response.id);
+          return;
+        }
+      },
+      error: (error) => {
+        this.openDialog();
+      },
+    });
   }
 
   word = '';
@@ -31,8 +44,6 @@ export class GameCenterComponent implements OnInit {
   dangerToast() {
     this.toastr.warning('Palabra no encontrada');
   }
-
-  
 
   deleteLetter() {
     this.word = this.word.substring(0, this.word.length - 1);
