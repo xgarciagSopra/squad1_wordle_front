@@ -9,21 +9,19 @@ import { GuessWordService } from 'src/app/services/guess-word.service';
   styleUrls: ['./game-center.component.scss'],
 })
 export class GameCenterComponent implements OnInit {
-
   constructor(private dialog: MatDialog, private guessWord: GuessWordService) {}
-  ngOnInit(){
+  ngOnInit() {
     this.openDialog();
   }
 
   word = '';
-
 
   writeWord(letter: string) {
     this.letterPressed(letter);
   }
 
   deleteLetter() {
-    this.word = this.word.substring(0,this.word.length - 1);
+    this.word = this.word.substring(0, this.word.length - 1);
   }
 
   isMaxLengthWord(): boolean {
@@ -52,14 +50,29 @@ export class GameCenterComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
-      }
-    })
+      },
+    });
   }
 
-  openDialog(){
-     const dialogRef = this.dialog.open(ErrorRoundDialogComponent, {
-       panelClass: 'custom-dialog-container',
-     });
+  openDialog() {
+    const dialogRef = this.dialog.open(ErrorRoundDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
   }
-  
+
+  fillSplitWord(): String[] {
+    let fillArray: String[] = [];
+    for (
+      let letterWordIndex = 0;
+      letterWordIndex < this.word.length;
+      letterWordIndex++
+    ) {
+      fillArray.push(this.word.charAt(letterWordIndex));
+      console.log(fillArray);
+    }
+    while (fillArray.length < 5) {
+      fillArray.push('');
+    }
+    return fillArray;
+  }
 }

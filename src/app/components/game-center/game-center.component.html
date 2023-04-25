@@ -1,5 +1,5 @@
 
-<app-result-box [word]="word"></app-result-box>
+<app-result-box [splitWord]="fillSplitWord()"></app-result-box>
 <app-keyboard (pressedKeyValue)="writeWord($event)"
                 [disableKeys]="isMaxLengthWord()"></app-keyboard>
 
