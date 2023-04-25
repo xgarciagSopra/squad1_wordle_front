@@ -23,7 +23,6 @@ export class GameCenterComponent implements OnInit {
 
   word = '';
   found: boolean = false;
-  
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -33,11 +32,10 @@ export class GameCenterComponent implements OnInit {
     this.toastr.warning('Palabra no encontrada');
   }
 
-
   
 
   deleteLetter() {
-    this.word = this.word.substring(0,this.word.length - 1);
+    this.word = this.word.substring(0, this.word.length - 1);
   }
 
   isMaxLengthWord(): boolean {
@@ -62,12 +60,10 @@ export class GameCenterComponent implements OnInit {
   sendWord(word: string) {
     return this.guessWord.checkWord(word).subscribe({
       next: (response: any) => {
-        if (response.wordExists) {
-          this.found = true;
-          return;
+        this.found = !!response.wordExists;
+        if (!this.found) {
+          this.dangerToast();
         }
-        this.dangerToast();
-        this.found = false;
       },
       error: (error) => {
         this.dangerToast();
