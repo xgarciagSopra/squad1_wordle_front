@@ -19,13 +19,8 @@ export class GameCenterComponent implements OnInit {
   ngOnInit() {
     this.guessWord.newRound().subscribe({
       next: (response: any) => {
-        if (!response) {
-          this.openDialog();
-          return;
-        }
-        if (response.id) {
+        if (response?.id) {
           console.log(response.id);
-          return;
         }
       },
       error: (error) => {
