@@ -64,5 +64,5 @@ Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
 })
 
 Cypress.Commands.add('interceptWord',(word) => {
-    return cy.intercept('GET',(api.wordValidation + word),false)
+    return cy.intercept('GET',(api.wordValidation + word))
 })

@@ -1,4 +1,4 @@
 {
-    "newGame": "(llamada a la api)",
+    "newGame": "/rounds/new-round",
     "wordValidation":"/words/exist?word="
 }
