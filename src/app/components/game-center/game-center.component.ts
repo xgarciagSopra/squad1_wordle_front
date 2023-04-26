@@ -24,6 +24,7 @@ export class GameCenterComponent implements OnInit {
   word = '';
   splittedWord: String[] = [];
   found!: boolean;
+  firstRound = false;
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -36,7 +37,6 @@ export class GameCenterComponent implements OnInit {
   deleteLetter() {
     this.word = this.word.substring(0, this.word.length - 1);
     this.fillSplitWord();
-    console.log(this.splittedWord);
   }
 
   isMaxLengthWord(): boolean {
@@ -52,13 +52,13 @@ export class GameCenterComponent implements OnInit {
     }
     if (letter === sendKey) {
       this.found = false;
+      this.firstRound = true;
       this.sendWord(this.word);
       return;
     }
     if (this.word.length < 5){
       this.word += letter;
       this.fillSplitWord();
-      console.log(this.splittedWord);
     }
   }
 
@@ -85,7 +85,6 @@ export class GameCenterComponent implements OnInit {
 
   fillSplitWord() {
     let fillArray: String[] = [];
-
     fillArray = this.word.split('');
 
     if (fillArray.length < 5) {

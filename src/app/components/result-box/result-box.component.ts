@@ -9,9 +9,10 @@ export class ResultBoxComponent {
   @Input() word = ''
   @Input() splitWord: String[] = [];
   @Input() borderResultStyles!: boolean;
+  @Input() firstRound = false;
 
   borderStyles(): String{
-    if (this.borderResultStyles === undefined) return '';
+    if (!this.firstRound) return '';
     return this.borderResultStyles
       ? 'border-success'
       : 'border-danger';
