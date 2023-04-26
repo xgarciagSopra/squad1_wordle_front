@@ -1,5 +1,10 @@
-<app-result-box [word]="word" [borderResultStyles]="found"></app-result-box>
-<app-keyboard
-  (pressedKeyValue)="writeWord($event)"
-  [disableKeys]="isMaxLengthWord()"
-></app-keyboard>
+
+<app-result-box [word]="word"
+                [splitWord]="splittedWord"
+                [firstRound]="firstRound"
+                [borderResultStyles]="found"
+                ></app-result-box>
+<app-keyboard (pressedKeyValue)="writeWord($event)"
+                [disableKeys]="isMaxLengthWord()"
+                [roundFound]="roundFound"></app-keyboard>
+

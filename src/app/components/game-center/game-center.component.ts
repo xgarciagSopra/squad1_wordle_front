@@ -20,6 +20,7 @@ export class GameCenterComponent implements OnInit {
     this.guessWord.newRound().subscribe({
       next: (response: any) => {
         if (response?.id) {
+          this.roundFound = true;
           console.log(response.id);
         }
       },
@@ -27,10 +28,14 @@ export class GameCenterComponent implements OnInit {
         this.openDialog();
       },
     });
+    this.fillSplitWord();
   }
 
   word = '';
-  found: boolean = false;
+  splittedWord: string[] = [];
+  found!: boolean;
+  firstRound = false;
+  roundFound = false;
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -42,6 +47,7 @@ export class GameCenterComponent implements OnInit {
 
   deleteLetter() {
     this.word = this.word.substring(0, this.word.length - 1);
+    this.fillSplitWord();
   }
 
   isMaxLengthWord(): boolean {
@@ -57,10 +63,14 @@ export class GameCenterComponent implements OnInit {
     }
     if (letter === sendKey) {
       this.found = false;
+      this.firstRound = true;
       this.sendWord(this.word);
       return;
     }
-    if (this.word.length < 5) this.word += letter;
+    if (this.word.length < 5){
+      this.word += letter;
+      this.fillSplitWord();
+    }
   }
 
   sendWord(word: string) {
@@ -83,4 +93,17 @@ export class GameCenterComponent implements OnInit {
       panelClass: 'custom-dialog-container',
     });
   }
+
+  fillSplitWord() {
+    let fillArray: string[] = [];
+    fillArray = this.word.split('');
+
+    if (fillArray.length < 5) {
+      fillArray.push(...new Array(5 - fillArray.length).fill(''));
+    }
+
+    this.splittedWord = fillArray; 
+
+  }
+
 }

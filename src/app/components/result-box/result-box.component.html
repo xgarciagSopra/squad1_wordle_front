@@ -1,5 +1,9 @@
-<div class="container w-50">
-  <div class="result-box" [ngClass]="borderStyles()">
-    <p class="text-center" id="box">{{word}}</p>
+<div class="container w-50 ">
+  <div class="row justify-content-between">
+    <div class="col-2 " *ngFor="let letter of splitWord">
+      <div class="result-box border border-3" [ngClass]="borderStyles()">
+        <p class="text-center" id="box">{{letter}}</p>
+      </div>
+    </div>
   </div>
 </div>

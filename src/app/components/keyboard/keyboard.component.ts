@@ -8,18 +8,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class KeyboardComponent {
   @Output() pressedKeyValue = new EventEmitter<string>();
   @Input() disableKeys = false;
+  @Input() roundFound = false;
 
   firstKeyBoardRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
   secondKeyBoardRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'];
-  thirdKeyBoardRow = ['⌫', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '➜'];
+  thirdKeyBoardRow = ['⌫', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+  sendKey = '➜';
 
-  disableKey(key: string): boolean {
-    return key === '➜' && !this.disableKeys;
-  }
-
-  keyStyles(key: string){
-    return key === '➜' && !this.disableKeys ? 'keyDisabled' : 'key';
-  }
 
   pressKeyValue(letter: string) {
     this.pressedKeyValue.emit(letter);

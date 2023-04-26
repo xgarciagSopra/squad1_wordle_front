@@ -28,9 +28,7 @@
       color: white;
     }
   }
-}
-
-.keyDisabled{
+  &:disabled{
     margin: 5px 0;
     width: 9%;
     height: 50px;
@@ -46,6 +44,6 @@
         text-decoration: none;
         color: $customLightGreyHover;
     }
-    
-    
+  }
 }
+

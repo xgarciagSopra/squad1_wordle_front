@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-result-box',
@@ -6,12 +6,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./result-box.component.scss'],
 })
 export class ResultBoxComponent {
-  @Input() word = '';
-  @Input() borderResultStyles = false;
+  @Input() word = ''
+  @Input() splitWord: string[] = [];
+  @Input() borderResultStyles!: boolean;
+  @Input() firstRound = false;
 
-  borderStyles(): String{
+  borderStyles(): string{
+    if (!this.firstRound) return '';
     return this.borderResultStyles
-      ? 'border border-success border-3'
-      : 'border border-danger border-3';
+      ? 'border-success'
+      : 'border-danger';
   }
 }
