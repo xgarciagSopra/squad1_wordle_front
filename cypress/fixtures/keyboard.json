@@ -9,7 +9,6 @@
     "borrar": "⌫",
     "enabled": "be.enabled",
     "disabled": "be.disabled",
-    "valid": "rgb(0, 255, 0)",
-    "invalid": "rgb(255, 0, 0)"
-    
+    "valid": "border-success",
+    "invalid": "border-danger"
 }

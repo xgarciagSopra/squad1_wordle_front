@@ -54,7 +54,7 @@ describe('#2 Verify word exist', () => {
     cy.checkResultBoxText(keys.queso)
     
     cy.checkSendButtonState(keys.enabled)
-    cy.checkResultBoxBorderColor(keys.valid)
+    cy.checkResultBoxBorderClass(keys.valid)
     cy.sendForm()
   });
   
@@ -62,7 +62,7 @@ describe('#2 Verify word exist', () => {
     cy.typeWord(keys.qwert)
     cy.checkResultBoxText(keys.qwert)
     cy.checkSendButtonState(keys.enabled)
-    cy.checkResultBoxBorderColor(keys.invalid)
+    cy.checkResultBoxBorderClass(keys.invalid)
     cy.sendForm()
   });
 })
