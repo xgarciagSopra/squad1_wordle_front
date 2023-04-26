@@ -1,7 +1,7 @@
 
 
 Cypress.Commands.add('getResultBoxText',() => {
-    return cy.get('#box')
+    return cy.get('app-result-box')
 })
 Cypress.Commands.add('getResultBox',() => {
     return cy.get('.result-box')
@@ -19,4 +19,8 @@ Cypress.Commands.add('checkResultBoxBorderClass',(clas) => {
 
 Cypress.Commands.add('checkFiveResultBoxes',() => {
     cy.getResultBox().should('have.length',5)
+})
+
+Cypress.Commands.add('clickResultBox',(box) => {
+    cy.get(':nth-child(' + box + ') > .result-box').click()
 })

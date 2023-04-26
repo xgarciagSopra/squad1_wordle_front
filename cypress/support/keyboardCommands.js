@@ -1,6 +1,7 @@
 
 import keys from '../fixtures/keyboard.json'
 import api from '../fixtures/api.json'
+import game from '../fixtures/newGameSuccessful.json'
 
 
 Cypress.Commands.add('getHeader',() => {
@@ -47,7 +48,7 @@ Cypress.Commands.add('typeWord',(word) => {
 })
 
 Cypress.Commands.add('interceptWord',(word) => {
-    return cy.intercept('GET',(api.wordValidation + word))
+    return cy.intercept('GET',(api.newGame + game.body.id + api.wordValidation + word))
 })
 
 Cypress.Commands.add('deleteLetter', () => {

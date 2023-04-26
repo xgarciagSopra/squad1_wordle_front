@@ -1,4 +1,4 @@
 {
-    "newGame": "/rounds/new-round",
+    "newGame": "/rounds",
     "wordValidation":"/words/exist?word="
 }

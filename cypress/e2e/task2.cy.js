@@ -6,8 +6,9 @@ import urls from '../fixtures/urls.json'
 describe('#2 Verify word exist', () => {
 
   beforeEach(() => {
+    cy.newGameSuccessful()
     cy.visitUrl(urls.localhost)
-    cy.acceptNewGameErrorAlert()
+    cy.wait('@gameSuccessful')
   })
 
   it('Check web structure', () => {

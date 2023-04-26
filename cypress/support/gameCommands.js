@@ -3,26 +3,31 @@ import api from '../fixtures/api.json'
 import messages from '../fixtures/gameMenssages.json'
 
 Cypress.Commands.add('newGameFaild', () => {
-    cy.intercept('POST',api.newGame,
-    {
-        "wordExists":false
-    }
+    cy.intercept('POST', api.newGame,
+        {
+            statusCode: 404,
+        }
     ).as('gameFail')
-    cy.wait('@gameFail')
+
 })
 Cypress.Commands.add('newGameSuccessful', () => {
-    cy.intercept('POST',api.newGame,
-    {
-        "wordExists":true
-    }
+    cy.intercept('POST', api.newGame).as('gameSuccessful')
+})
+Cypress.Commands.add('gameSuccessful', () => {
+    cy.intercept('POST', api.newGame,
+        {
+            statusCode: 200,
+            body: {
+                "id": 20
+            }
+        }
     ).as('gameSuccessful')
-    cy.wait('@gameSuccessful')
 })
 
 Cypress.Commands.add('checkNewGameErrorAlertIsVisible', () => {
     return cy.get('app-error-round-dialog .mat-mdc-dialog-content')
-                    .should('be.visible')
-                    .should('have.text',messages.newGameError)
+        .should('be.visible')
+        .should('have.text', messages.newGameError)
 })
 Cypress.Commands.add('clickAcceptAlertButton', () => {
     cy.get('app-error-round-dialog .btn-success').click()
@@ -33,9 +38,7 @@ Cypress.Commands.add('acceptNewGameErrorAlert', () => {
     })
 })
 
-Cypress.Commands.add('getAlertError', () => {
-    return cy.get('app-error-round-dialog .mat-mdc-dialog-content')
-})
 Cypress.Commands.add('checkNewGameStartCorrect', () => {
-    cy.getAlertError().should('not.be.visible')
+    cy.clickLetter('P')
+    cy.checkResultBoxText('P')
 })
