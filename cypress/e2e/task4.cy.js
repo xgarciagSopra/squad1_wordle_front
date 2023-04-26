@@ -10,7 +10,7 @@ describe('#4 Word validation', () => {
     });
   
     it('Check 5 letters boxes', () => {
-      
+      cy.checkFiveResultBoxes()
     });
 
     it('Check order of letters', () => {

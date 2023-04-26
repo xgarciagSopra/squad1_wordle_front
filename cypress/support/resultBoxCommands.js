@@ -16,3 +16,7 @@ Cypress.Commands.add('checkResultBoxText',(word) => {
 Cypress.Commands.add('checkResultBoxBorderClass',(clas) => {
     cy.getResultBox().should('have.class',clas)
 })
+
+Cypress.Commands.add('checkFiveResultBoxes',() => {
+    cy.getResultBox().should('have.length',5)
+})
