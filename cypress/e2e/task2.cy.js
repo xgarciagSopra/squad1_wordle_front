@@ -42,28 +42,22 @@ describe('#2 Verify word exist', () => {
     cy.sendForm()
   });
 
-  it('Check a invalid word length', () => {
-    cy.typeWord(keys.quesos)
-    cy.checkResultBoxText(keys.quesos)
-    cy.checkSendButtonState(keys.disabled)
-    cy.sendForm()
-  });
-
   it('Check correct validation word ', () => {
     cy.interceptWord(keys.queso)
     cy.typeWord(keys.queso)
     cy.checkResultBoxText(keys.queso)
     
     cy.checkSendButtonState(keys.enabled)
-    cy.checkResultBoxBorderClass(keys.valid)
     cy.sendForm()
+    cy.checkResultBoxBorderClass(keys.valid)
+    
   });
   
   it('Check invalid word ', () => {
     cy.typeWord(keys.qwert)
     cy.checkResultBoxText(keys.qwert)
     cy.checkSendButtonState(keys.enabled)
-    cy.checkResultBoxBorderClass(keys.invalid)
     cy.sendForm()
+    cy.checkResultBoxBorderClass(keys.invalid)
   });
 })

@@ -5,7 +5,7 @@ import urls from '../fixtures/urls.json'
 
 describe('#4 Word validation', () => {
     beforeEach(() => {
-        cy.gameSuccessful()
+        cy.newGameSuccessful()
         cy.visitUrl(urls.localhost)
         cy.wait('@gameSuccessful')
     });
@@ -35,7 +35,11 @@ describe('#4 Word validation', () => {
     });
 
     it('Check delete first letter', () => {
-        
+        cy.typeWord(keys.queso)
+        cy.checkResultBoxText(keys.queso)
+        cy.clickResultBox(1)
+        cy.deleteLetter()
+        cy.checkResultBoxText(keys.queso.substring(1))
     });
 
     it('Check letters correct', () => {
