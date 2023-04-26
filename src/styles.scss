@@ -16,5 +16,6 @@ body {
 
 
 $customGreyDisabledButton: rgb(226, 226, 226);
-$customRedBorder: red;
-$customGreenBorder: green;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
