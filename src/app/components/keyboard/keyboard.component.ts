@@ -23,11 +23,6 @@ export class KeyboardComponent {
     return this.roundFound === false;
   }
 
-  // comproveAllKeysToDisable(key: string){
-  //     return this.disableSendKey(key) || this.disableAllKeys
-
-  // }
-
   pressKeyValue(letter: string) {
     this.pressedKeyValue.emit(letter);
   }
