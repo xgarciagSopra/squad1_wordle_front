@@ -4,7 +4,6 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 
-
 @Component({
   selector: 'app-game-center',
   templateUrl: './game-center.component.html',
@@ -18,6 +17,16 @@ export class GameCenterComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.guessWord.newRound().subscribe({
+      next: (response: any) => {
+        if (response?.id) {
+          console.log(response.id);
+        }
+      },
+      error: (error) => {
+        this.openDialog();
+      },
+    });
     this.fillSplitWord();
   }
 
@@ -90,7 +99,7 @@ export class GameCenterComponent implements OnInit {
     if (fillArray.length < 5) {
       fillArray.push(...new Array(5 - fillArray.length).fill(''));
     }
-    
+
     this.splittedWord = fillArray; 
 
   }
