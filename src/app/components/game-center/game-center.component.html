@@ -2,7 +2,9 @@
 <app-result-box [word]="word"
                 [splitWord]="splittedWord"
                 [firstRound]="firstRound"
-                [borderResultStyles]="found"></app-result-box>
+                [borderResultStyles]="found"
+                ></app-result-box>
 <app-keyboard (pressedKeyValue)="writeWord($event)"
-                [disableKeys]="isMaxLengthWord()"></app-keyboard>
+                [disableKeys]="isMaxLengthWord()"
+                [roundFound]="roundFound"></app-keyboard>
 

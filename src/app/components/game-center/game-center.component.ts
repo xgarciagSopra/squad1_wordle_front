@@ -20,6 +20,7 @@ export class GameCenterComponent implements OnInit {
     this.guessWord.newRound().subscribe({
       next: (response: any) => {
         if (response?.id) {
+          this.roundFound = true;
           console.log(response.id);
         }
       },
@@ -31,9 +32,10 @@ export class GameCenterComponent implements OnInit {
   }
 
   word = '';
-  splittedWord: String[] = [];
+  splittedWord: string[] = [];
   found!: boolean;
   firstRound = false;
+  roundFound = false;
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -93,7 +95,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   fillSplitWord() {
-    let fillArray: String[] = [];
+    let fillArray: string[] = [];
     fillArray = this.word.split('');
 
     if (fillArray.length < 5) {

@@ -7,11 +7,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ResultBoxComponent {
   @Input() word = ''
-  @Input() splitWord: String[] = [];
+  @Input() splitWord: string[] = [];
   @Input() borderResultStyles!: boolean;
   @Input() firstRound = false;
 
-  borderStyles(): String{
+  borderStyles(): string{
     if (!this.firstRound) return '';
     return this.borderResultStyles
       ? 'border-success'
