@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-result-box',
@@ -6,15 +6,20 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./result-box.component.scss'],
 })
 export class ResultBoxComponent {
-  @Input() word = ''
+  @Input() word = '';
   @Input() splitWord: string[] = [];
   @Input() borderResultStyles!: boolean;
   @Input() firstRound = false;
+  @Input() selectedBox!: number;
+  @Output() selectResultBox = new EventEmitter<number>();
 
-  borderStyles(): string{
+  borderStyles(): string {
+    console.log('pruebas');
     if (!this.firstRound) return '';
-    return this.borderResultStyles
-      ? 'border-success'
-      : 'border-danger';
+    return this.borderResultStyles ? 'border-success' : 'border-danger';
+  }
+
+  selectedResultBox(boxIndex: number) {
+    this.selectResultBox.emit(boxIndex);
   }
 }

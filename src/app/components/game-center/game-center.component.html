@@ -3,6 +3,8 @@
   [splitWord]="splittedWord"
   [firstRound]="firstRound"
   [borderResultStyles]="found"
+  [selectedBox]="selectResultBox"
+  (selectResultBox)="selectedResultBox($event)"
 ></app-result-box>
 <app-keyboard
   (pressedKeyValue)="writeWord($event)"
