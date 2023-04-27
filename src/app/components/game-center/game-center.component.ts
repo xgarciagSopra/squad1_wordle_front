@@ -38,6 +38,7 @@ export class GameCenterComponent implements OnInit {
   found!: boolean;
   firstRound = false;
   roundFound = false;
+  selectResultBox!: number;
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -73,6 +74,7 @@ export class GameCenterComponent implements OnInit {
       this.word += letter;
       this.fillSplitWord();
     }
+    console.log('casilla: ' + this.selectResultBox);
   }
 
   sendWord(word: string) {
@@ -105,5 +107,10 @@ export class GameCenterComponent implements OnInit {
     }
 
     this.splittedWord = fillArray;
+  }
+
+  selectedResultBox(id: number) {
+    this.selectResultBox = id;
+    // console.log('casilla: ' + this.selectResultBox);
   }
 }
