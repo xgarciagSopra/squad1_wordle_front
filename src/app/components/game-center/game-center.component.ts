@@ -22,6 +22,7 @@ export class GameCenterComponent implements OnInit {
         if (response?.id) {
           this.roundFound = true;
           console.log(response.id);
+          this.idRound = response.id;
         }
       },
       error: (error) => {
@@ -31,6 +32,7 @@ export class GameCenterComponent implements OnInit {
     this.fillSplitWord();
   }
 
+  idRound!: number;
   word = '';
   splittedWord: string[] = [];
   found!: boolean;
@@ -67,14 +69,14 @@ export class GameCenterComponent implements OnInit {
       this.sendWord(this.word);
       return;
     }
-    if (this.word.length < 5){
+    if (this.word.length < 5) {
       this.word += letter;
       this.fillSplitWord();
     }
   }
 
   sendWord(word: string) {
-    return this.guessWord.checkWord(word).subscribe({
+    return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
         this.found = !!response.wordExists;
         if (!this.found) {
@@ -102,8 +104,6 @@ export class GameCenterComponent implements OnInit {
       fillArray.push(...new Array(5 - fillArray.length).fill(''));
     }
 
-    this.splittedWord = fillArray; 
-
+    this.splittedWord = fillArray;
   }
-
 }
