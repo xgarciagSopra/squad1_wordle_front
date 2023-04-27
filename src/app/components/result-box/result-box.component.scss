@@ -4,13 +4,32 @@
   margin-top: 100px;
   border-radius: 10px;
   background-color: $customLightGrey;
-  
-  
   height: 100px;
   p {
     color: $customGreyBorder;
     font-weight: bold;
     font-size: 32px;
     line-height: 99px;
+  }
+}
+
+.hit{
+  background-color: $hit;
+  p{
+    color: white;
+  }
+}
+
+.parcialHit{
+  background-color: $parcialHit;
+  p{
+    color: white;
+  }
+}
+
+.fail{
+  background-color: $fail;
+  p{
+    color: white;
   }
 }
