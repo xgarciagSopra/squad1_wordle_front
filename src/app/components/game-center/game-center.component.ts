@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 
@@ -25,7 +25,7 @@ export class GameCenterComponent implements OnInit {
           this.idRound = response.id;
         }
       },
-      error: (error) => {
+      error: () => {
         this.openDialog();
       },
     });
@@ -85,7 +85,7 @@ export class GameCenterComponent implements OnInit {
           this.dangerToast();
         }
       },
-      error: (error) => {
+      error: () => {
         this.dangerToast();
         this.found = false;
       },
@@ -93,7 +93,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ErrorRoundDialogComponent, {
+    this.dialog.open(ErrorRoundDialogComponent, {
       panelClass: 'custom-dialog-container',
     });
   }
@@ -111,6 +111,6 @@ export class GameCenterComponent implements OnInit {
 
   selectedResultBox(id: number) {
     this.selectResultBox = id;
-    // console.log('casilla: ' + this.selectResultBox);
+    console.log('casilla: ' + this.selectResultBox);
   }
 }
