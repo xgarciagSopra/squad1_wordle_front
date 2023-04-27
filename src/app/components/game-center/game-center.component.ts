@@ -74,7 +74,6 @@ export class GameCenterComponent implements OnInit {
       this.word += letter;
       this.fillSplitWord();
     }
-    console.log('casilla: ' + this.selectResultBox);
   }
 
   sendWord(word: string) {
@@ -111,6 +110,5 @@ export class GameCenterComponent implements OnInit {
 
   selectedResultBox(id: number) {
     this.selectResultBox = id;
-    console.log('casilla: ' + this.selectResultBox);
   }
 }
