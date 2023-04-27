@@ -6,31 +6,26 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./result-box.component.scss'],
 })
 export class ResultBoxComponent {
-  @Input() word = ''
+  @Input() word = '';
   @Input() splitWord: string[] = [];
   @Input() borderResultStyles!: boolean;
-  @Input() keyBoxStyle: string = '';
+  @Input() keyBoxStyle: string = 'fail';
   @Input() firstRound = false;
+  
 
-  boxStyles(): string{
+  boxStyles(): string {
     if (!this.firstRound) return '';
-    return this.borderResultStyles
-      ? 'hit'
-      : 'parcialHit';
+    return this.borderResultStyles ? 'hit' : 'parcialHit';
   }
 
-  newBoxStyles(): string{
-    switch(this.keyBoxStyle){
-      case (''):
-        return this.keyBoxStyle;
-      case ('hit'):
-        return this.keyBoxStyle;
-      case ('parcialHit'):
-        return this.keyBoxStyle;  
-      case ('fail'):
-        return this.keyBoxStyle;  
-      default:
-        return '';
-    }
+  newBoxStyles(letter: string, index: number) {
+    if (!this.firstRound) return '';
+    return {
+      'hit': this.keyBoxStyle === 'hit',
+      'parcialHit': this.keyBoxStyle === 'parcialHit',
+      'fail': this.keyBoxStyle === 'fail',
+      'border-primary': this.keyBoxStyle
+    };
   }
+
 }
