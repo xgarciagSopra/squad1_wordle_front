@@ -6,9 +6,9 @@ import { GameCenterComponent } from './components/game-center/game-center.compon
 import { FooterComponent } from './components/footer/footer.component';
 import { MatDialog } from '@angular/material/dialog';
 
-xdescribe('AppComponent', () => {
-let fixture: ComponentFixture<AppComponent>;
-let appComponent: AppComponent;
+describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>;
+  let appComponent: AppComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -28,17 +28,19 @@ let appComponent: AppComponent;
       });
   });
 
-  it('should create the app', () => {   
+  it('should create the app', () => {
     expect(appComponent).toBeTruthy();
   });
 
-  it(`should have as title 'squad1_wordle'`, () => {  
+  it(`should have as title 'squad1_wordle'`, () => {
     expect(appComponent.title).toEqual('squad1_wordle');
   });
 
   it('should render title', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('squad1_wordle app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain(
+      'squad1_wordle app is running!'
+    );
   });
 });

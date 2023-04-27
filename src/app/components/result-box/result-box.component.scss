@@ -16,21 +16,16 @@
 
 .hit {
   background-color: $hit;
-  p {
-    color: white;
-  }
+}
+
+.colorWhite {
+  color: white;
 }
 
 .parcialHit {
   background-color: $parcialHit;
-  p {
-    color: white;
-  }
 }
 
 .fail {
   background-color: $fail;
-  p {
-    color: white;
-  }
 }

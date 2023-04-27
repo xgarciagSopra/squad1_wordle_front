@@ -39,6 +39,7 @@ export class GameCenterComponent implements OnInit {
   firstRound = false;
   roundFound = false;
   selectResultBox!: number;
+  correctSyntaxWord = this.isSyntaxCorrect();
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -57,6 +58,21 @@ export class GameCenterComponent implements OnInit {
     return this.word.length === 5;
   }
 
+  writeInSelectedBox(letter: string) {
+    this.splittedWord[this.selectResultBox - 1] = letter;
+  }
+
+  rewriteWord() {
+    this.word = '';
+    this.splittedWord.forEach((letter) => {
+      this.word += letter;
+    });
+  }
+
+  isSyntaxCorrect(): boolean {
+    return this.splittedWord.includes(' ');
+  }
+
   letterPressed(letter: string) {
     const deleteKey = '⌫';
     const sendKey = '➜';
@@ -68,6 +84,14 @@ export class GameCenterComponent implements OnInit {
       this.found = false;
       this.firstRound = true;
       this.sendWord(this.word);
+      return;
+    }
+    if (this.selectResultBox) {
+      this.writeInSelectedBox(letter);
+      this.rewriteWord();
+      this.correctSyntaxWord = this.isSyntaxCorrect();
+      console.log(this.splittedWord);
+      console.log(this.word);
       return;
     }
     if (this.word.length < 5) {
@@ -102,7 +126,7 @@ export class GameCenterComponent implements OnInit {
     fillArray = this.word.split('');
 
     if (fillArray.length < 5) {
-      fillArray.push(...new Array(5 - fillArray.length).fill(''));
+      fillArray.push(...new Array(5 - fillArray.length).fill(' '));
     }
 
     this.splittedWord = fillArray;

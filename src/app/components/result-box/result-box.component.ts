@@ -9,7 +9,7 @@ export class ResultBoxComponent {
   @Input() word = '';
   @Input() splitWord: string[] = [];
   @Input() borderResultStyles!: boolean;
-  @Input() keyBoxStyle: string = '';
+  @Input() keyBoxStyle = '';
   @Input() firstRound = false;
   @Input() selectedBox!: number;
   @Output() selectResultBox = new EventEmitter<number>();
@@ -20,10 +20,9 @@ export class ResultBoxComponent {
 
   newBoxStyles(letter: string, index: number) {
     return {
-      '': !this.firstRound,
-      hit: this.keyBoxStyle === 'hit',
-      parcialHit: this.keyBoxStyle === 'parcialHit',
-      fail: this.keyBoxStyle === 'fail',
+      'hit colorWhite': this.keyBoxStyle === 'hit',
+      'parcialHit colorWhite': this.keyBoxStyle === 'parcialHit',
+      'fail colorWhite': this.keyBoxStyle === 'fail',
       'border-primary': this.selectedBox === index,
     };
   }
