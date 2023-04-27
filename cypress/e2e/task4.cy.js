@@ -23,7 +23,7 @@ describe('#4 Word validation', () => {
         cy.typeWord(keys.queso)
         cy.checkResultBoxText(keys.queso)
         cy.deleteWord(keys.queso)
-        cy.checkResultBoxText('')
+        cy.checkResultBoxText(keys.void)
     })
 
     it('Check delete letter selected', () => {

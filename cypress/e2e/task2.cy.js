@@ -4,11 +4,11 @@ import urls from '../fixtures/urls.json'
 
 
 describe('#2 Verify word exist', () => {
-
+  let id
   beforeEach(() => {
     cy.newGameSuccessful()
     cy.visitUrl(urls.localhost)
-    cy.wait('@gameSuccessful')
+    cy.waitGame()
   })
 
   it('Check web structure', () => {
@@ -33,6 +33,7 @@ describe('#2 Verify word exist', () => {
     cy.checkResultBoxText(keys.queso)
     cy.checkSendButtonState(keys.enabled)
     cy.sendForm()
+    
   });
 
   it('Check a invalid word length', () => {
@@ -46,7 +47,7 @@ describe('#2 Verify word exist', () => {
     cy.interceptWord(keys.queso)
     cy.typeWord(keys.queso)
     cy.checkResultBoxText(keys.queso)
-    
+    cy.wait('@interceptWord')
     cy.checkSendButtonState(keys.enabled)
     cy.sendForm()
     cy.checkResultBoxBorderClass(keys.valid)

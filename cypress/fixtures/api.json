@@ -1,4 +1,4 @@
 {
     "newGame": "/rounds",
-    "wordValidation":"/words/exist?word="
+    "wordValidation":"/check-word?word="
 }

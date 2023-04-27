@@ -1,6 +1,9 @@
 /// <reference types="cypress" />
 import api from '../fixtures/api.json'
 import messages from '../fixtures/gameMenssages.json'
+import game from '../fixtures/newGameSuccessful.json'
+
+let id
 
 Cypress.Commands.add('newGameFaild', () => {
     cy.intercept('POST', api.newGame,
@@ -23,7 +26,11 @@ Cypress.Commands.add('gameSuccessful', () => {
         }
     ).as('gameSuccessful')
 })
-
+Cypress.Commands.add('waitGame', () => {
+    cy.wait('@gameSuccessful').then((data) => {
+        id = data.response.body.id
+      })
+})
 Cypress.Commands.add('checkNewGameErrorAlertIsVisible', () => {
     return cy.get('app-error-round-dialog .mat-mdc-dialog-content')
         .should('be.visible')
@@ -41,4 +48,7 @@ Cypress.Commands.add('acceptNewGameErrorAlert', () => {
 Cypress.Commands.add('checkNewGameStartCorrect', () => {
     cy.clickLetter('P')
     cy.checkResultBoxText('P')
+})
+Cypress.Commands.add('interceptWord',(word) => {
+    cy.intercept('GET',(api.newGame +'/'+ id + api.wordValidation + word)).as('interceptWord')
 })
