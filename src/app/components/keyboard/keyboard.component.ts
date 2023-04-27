@@ -15,13 +15,6 @@ export class KeyboardComponent {
   thirdKeyBoardRow = ['⌫', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
   sendKey = '➜';
 
-  disableSendKey(): boolean {
-    return !this.disableKeys;
-  }
-
-  disableAllKeys(): boolean {
-    return this.roundFound === false;
-  }
 
   pressKeyValue(letter: string) {
     this.pressedKeyValue.emit(letter);
