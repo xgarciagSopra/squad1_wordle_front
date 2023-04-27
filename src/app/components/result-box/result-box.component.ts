@@ -14,11 +14,6 @@ export class ResultBoxComponent {
   @Input() selectedBox!: number;
   @Output() selectResultBox = new EventEmitter<number>();
 
-  borderStyles(): string {
-    if (!this.firstRound) return '';
-    return this.borderResultStyles ? 'hit' : 'parcialHit';
-  }
-
   selectedResultBox(boxIndex: number) {
     this.selectResultBox.emit(boxIndex);
   }
