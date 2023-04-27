@@ -14,7 +14,6 @@ export class ResultBoxComponent {
   @Output() selectResultBox = new EventEmitter<number>();
 
   borderStyles(): string {
-    console.log('pruebas');
     if (!this.firstRound) return '';
     return this.borderResultStyles ? 'border-success' : 'border-danger';
   }
