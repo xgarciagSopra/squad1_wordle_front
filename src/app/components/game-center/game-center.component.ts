@@ -65,8 +65,8 @@ export class GameCenterComponent implements OnInit {
 
   rewriteWord() {
     this.word = '';
-    this.splittedWord.forEach((letter) => {
-      this.word += letter.letter;
+    this.splittedWord.forEach((key) => {
+      this.word += key.letter;
     });
   }
 
