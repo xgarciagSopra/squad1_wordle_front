@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
+import { Letter } from 'src/app/interfaces/letter-status.interface';
 
 @Component({
   selector: 'app-game-center',
@@ -34,15 +35,14 @@ export class GameCenterComponent implements OnInit {
 
   idRound!: number;
   word = '';
-  splittedWord: string[] = [];
+  splittedWord: Letter[] = [];
   found!: boolean;
   firstRound = false;
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
-  positionOfWordList: any[] = [];
 
-  writeWord(letter: string) {
+  writeWord(letter: Letter) {
     this.letterPressed(letter);
   }
 
@@ -59,44 +59,42 @@ export class GameCenterComponent implements OnInit {
     return this.word.length === 5;
   }
 
-  writeInSelectedBox(letter: string) {
-    this.splittedWord[this.selectResultBox - 1] = letter;
+  writeInSelectedBox(letter: Letter) {
+    this.splittedWord[this.selectResultBox - 1].letter = letter.letter;
   }
 
   rewriteWord() {
     this.word = '';
     this.splittedWord.forEach((letter) => {
-      this.word += letter;
+      this.word += letter.letter;
     });
   }
 
   isSyntaxCorrect(): boolean {
-    return this.splittedWord.includes(' ');
+    return this.splittedWord.some((key: Letter) => key.letter === ' ');
   }
 
-  letterPressed(letter: string) {
+  letterPressed(key: Letter) {
     const deleteKey = '⌫';
     const sendKey = '➜';
-    if (letter === deleteKey) {
+    if (key.letter === deleteKey) {
       this.deleteLetter();
       return;
     }
-    if (letter === sendKey) {
+    if (key.letter === sendKey) {
       this.found = false;
       this.firstRound = true;
       this.sendWord(this.word);
       return;
     }
     if (this.selectResultBox) {
-      this.writeInSelectedBox(letter);
+      this.writeInSelectedBox(key);
       this.rewriteWord();
       this.correctSyntaxWord = this.isSyntaxCorrect();
-      console.log(this.splittedWord);
-      console.log(this.word);
       return;
     }
     if (this.word.length < 5) {
-      this.word += letter;
+      this.word += key.letter;
       this.fillSplitWord();
     }
   }
@@ -105,11 +103,12 @@ export class GameCenterComponent implements OnInit {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
         this.found = !!response.wordExists;
-        this.positionOfWordList = response.positionOfWordResponseList;
-        console.log(this.positionOfWordList);
         if (!this.found) {
           this.dangerToast();
+          return;
         }
+        this.splittedWord = response.positionOfWordResponseList;
+        console.log(this.splittedWord);
       },
       error: () => {
         this.dangerToast();
@@ -125,11 +124,13 @@ export class GameCenterComponent implements OnInit {
   }
 
   fillSplitWord() {
-    let fillArray: string[] = [];
-    fillArray = this.word.split('');
+    let fillArray: Letter[] = [];
 
-    if (fillArray.length < 5) {
-      fillArray.push(...new Array(5 - fillArray.length).fill(' '));
+    for (let letter = 0; letter < 5; letter++) {
+      fillArray[letter] = {
+        letter: this.word.charAt(letter) ?? ' ',
+        hitStatus: 'DEFAULT',
+      };
     }
 
     this.splittedWord = fillArray;

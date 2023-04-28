@@ -12,17 +12,19 @@ const guessWordService = jasmine.createSpyObj('GuessWordService', [
   'checkWord',
 ]);
 
-const toastrService = jasmine.createSpyObj('ToastrService', [
-  'warning',
-]);
+const toastrService = jasmine.createSpyObj('ToastrService', ['warning']);
 
 describe('GameCenterComponent', () => {
   let component: GameCenterComponent;
   let fixture: ComponentFixture<GameCenterComponent>;
-  
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GameCenterComponent, ResultBoxComponent, KeyboardComponent],
+      declarations: [
+        GameCenterComponent,
+        ResultBoxComponent,
+        KeyboardComponent,
+      ],
       providers: [
         { provide: MatDialog, useValue: {} },
         { provide: GuessWordService, useValue: guessWordService },
@@ -38,8 +40,4 @@ describe('GameCenterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  // it('should check', () => {
-  //   expect(component).toBeTruthy();
-  // });
 });
