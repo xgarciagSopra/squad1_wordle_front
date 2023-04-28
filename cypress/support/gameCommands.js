@@ -50,7 +50,10 @@ Cypress.Commands.add('checkNewGameStartCorrect', () => {
     cy.checkResultBoxText('P')
 })
 Cypress.Commands.add('interceptWord',(word) => {
-    cy.intercept('GET',(api.newGame +'/'+ id + api.wordValidation + word)).as('interceptWord')
+    cy.intercept('GET',(api.newGame +'/'+ id + api.wordValidation + word),(req) => {
+        expect(req.body.wordExists).to.include(true)
+      }
+      ).as('interceptWord')
 })
 
 Cypress.Commands.add('interceptLettersStatus',() => {
