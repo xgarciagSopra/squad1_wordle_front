@@ -1,5 +1,5 @@
-export const firstKeyBoardRow = [
-  { letter: 'Q', hitStatus: 'HIT' },
+export let firstKeyBoardRow = [
+  { letter: 'Q', hitStatus: 'DEFAULT' },
   { letter: 'W', hitStatus: 'DEFAULT' },
   { letter: 'E', hitStatus: 'DEFAULT' },
   { letter: 'R', hitStatus: 'DEFAULT' },
@@ -11,7 +11,7 @@ export const firstKeyBoardRow = [
   { letter: 'P', hitStatus: 'DEFAULT' },
 ];
 
-export const secondKeyBoardRow = [
+export let secondKeyBoardRow = [
   { letter: 'A', hitStatus: 'DEFAULT' },
   { letter: 'S', hitStatus: 'DEFAULT' },
   { letter: 'D', hitStatus: 'DEFAULT' },
@@ -24,7 +24,7 @@ export const secondKeyBoardRow = [
   { letter: 'Ñ', hitStatus: 'DEFAULT' },
 ];
 
-export const thirdKeyBoardRow = [
+export let thirdKeyBoardRow = [
   { letter: '⌫', hitStatus: 'DEFAULT' },
   { letter: 'Z', hitStatus: 'DEFAULT' },
   { letter: 'X', hitStatus: 'DEFAULT' },
@@ -35,4 +35,4 @@ export const thirdKeyBoardRow = [
   { letter: 'M', hitStatus: 'DEFAULT' },
 ];
 
-export const sendKey = { letter: '➜', hitStatus: 'DEFAULT' };
+export let sendKey = { letter: '➜', hitStatus: 'DEFAULT' };
