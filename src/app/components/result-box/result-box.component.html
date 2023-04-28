@@ -1,8 +1,13 @@
-<div class="container w-50 ">
+<div class="container w-50">
   <div class="row justify-content-between">
-    <div class="col-2 " *ngFor="let letter of splitWord">
-      <div class="result-box border border-3" [ngClass]="borderStyles()">
-        <p class="text-center" id="box">{{letter}}</p>
+    <div class="col-2" *ngFor="let letter of splitWord; let index = index">
+      <div
+        class="result-box border border-3"
+        [ngClass]="newBoxStyles(letter, index + 1)"
+        id="{{ index + 1 }}"
+        (click)="selectedResultBox(index + 1)"
+      >
+        <p class="text-center">{{ letter }}</p>
       </div>
     </div>
   </div>

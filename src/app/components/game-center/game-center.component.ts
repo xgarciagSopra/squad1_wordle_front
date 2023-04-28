@@ -1,6 +1,6 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 
@@ -25,7 +25,7 @@ export class GameCenterComponent implements OnInit {
           this.idRound = response.id;
         }
       },
-      error: (error) => {
+      error: () => {
         this.openDialog();
       },
     });
@@ -38,6 +38,9 @@ export class GameCenterComponent implements OnInit {
   found!: boolean;
   firstRound = false;
   roundFound = false;
+  selectResultBox!: number;
+  correctSyntaxWord = this.isSyntaxCorrect();
+  positionOfWordList: any[] = [];
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -56,6 +59,21 @@ export class GameCenterComponent implements OnInit {
     return this.word.length === 5;
   }
 
+  writeInSelectedBox(letter: string) {
+    this.splittedWord[this.selectResultBox - 1] = letter;
+  }
+
+  rewriteWord() {
+    this.word = '';
+    this.splittedWord.forEach((letter) => {
+      this.word += letter;
+    });
+  }
+
+  isSyntaxCorrect(): boolean {
+    return this.splittedWord.includes(' ');
+  }
+
   letterPressed(letter: string) {
     const deleteKey = '⌫';
     const sendKey = '➜';
@@ -69,6 +87,14 @@ export class GameCenterComponent implements OnInit {
       this.sendWord(this.word);
       return;
     }
+    if (this.selectResultBox) {
+      this.writeInSelectedBox(letter);
+      this.rewriteWord();
+      this.correctSyntaxWord = this.isSyntaxCorrect();
+      console.log(this.splittedWord);
+      console.log(this.word);
+      return;
+    }
     if (this.word.length < 5) {
       this.word += letter;
       this.fillSplitWord();
@@ -79,11 +105,13 @@ export class GameCenterComponent implements OnInit {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
         this.found = !!response.wordExists;
+        this.positionOfWordList = response.positionOfWordResponseList;
+        console.log(this.positionOfWordList);
         if (!this.found) {
           this.dangerToast();
         }
       },
-      error: (error) => {
+      error: () => {
         this.dangerToast();
         this.found = false;
       },
@@ -91,7 +119,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ErrorRoundDialogComponent, {
+    this.dialog.open(ErrorRoundDialogComponent, {
       panelClass: 'custom-dialog-container',
     });
   }
@@ -101,9 +129,13 @@ export class GameCenterComponent implements OnInit {
     fillArray = this.word.split('');
 
     if (fillArray.length < 5) {
-      fillArray.push(...new Array(5 - fillArray.length).fill(''));
+      fillArray.push(...new Array(5 - fillArray.length).fill(' '));
     }
 
     this.splittedWord = fillArray;
+  }
+
+  selectedResultBox(id: number) {
+    this.selectResultBox = id;
   }
 }

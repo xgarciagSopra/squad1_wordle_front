@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 export class GuessWordService {
   constructor(private http: HttpClient) {}
 
-  baseURL = 'http://10.102.30.94:8080';
+  baseURL = 'http://10.102.30.227:8080';
 
-  checkWord(word: string, idRound: number): Observable<boolean> {
-    return this.http.get<boolean>(
+  checkWord(word: string, idRound: number): Observable<any> {
+    return this.http.get<any>(
       this.baseURL + '/rounds/' + idRound + '/check-word?word=' + word
     );
   }
