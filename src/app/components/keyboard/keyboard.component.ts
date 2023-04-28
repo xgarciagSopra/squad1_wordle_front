@@ -31,9 +31,9 @@ export class KeyboardComponent {
 
   newBoxStyles(key: Letter) {
     return {
-      'hit colorWhite': key.hitStatus === 'HIT',
-      'partialHit colorWhite': key.hitStatus === 'PARTIAL_HIT',
-      'fail colorWhite': key.hitStatus === 'FAIL',
+      hit: key.hitStatus === 'HIT',
+      partialHit: key.hitStatus === 'PARTIAL_HIT',
+      fail: key.hitStatus === 'FAIL',
     };
   }
 }

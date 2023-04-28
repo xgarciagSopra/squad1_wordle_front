@@ -29,17 +29,22 @@ body {
 }
 
 .hit {
-  background-color: $hit;
-}
-
-.colorWhite {
-  color: white;
+  background-color: $hit !important;
+  p {
+    color: white !important;
+  }
 }
 
 .partialHit {
-  background-color: $parcialHit;
+  background-color: $parcialHit !important;
+  p {
+    color: white !important;
+  }
 }
 
 .fail {
-  background-color: $fail;
+  background-color: $fail !important;
+  p {
+    color: white !important;
+  }
 }
