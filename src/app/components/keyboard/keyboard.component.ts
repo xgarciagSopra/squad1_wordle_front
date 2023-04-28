@@ -10,6 +10,8 @@ export class KeyboardComponent {
   @Input() disableKeys = false;
   @Input() roundFound = false;
   @Input() correctSyntaxWord = false;
+  @Input() keyBoxStyle = '';
+  @Input() positionOfWordList: any[] = [];
 
   firstKeyBoardRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
   secondKeyBoardRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'];
@@ -18,5 +20,13 @@ export class KeyboardComponent {
 
   pressKeyValue(letter: string) {
     this.pressedKeyValue.emit(letter);
+  }
+
+  newBoxStyles(key: string) {
+    return {
+      'hit colorWhite': this.keyBoxStyle === 'hit',
+      'partialHit colorWhite': this.keyBoxStyle === 'partialHit',
+      'fail colorWhite': this.keyBoxStyle === 'fail',
+    };
   }
 }

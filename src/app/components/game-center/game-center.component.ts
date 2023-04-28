@@ -40,6 +40,7 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
+  positionOfWordList: any[] = [];
 
   writeWord(letter: string) {
     this.letterPressed(letter);
@@ -104,6 +105,8 @@ export class GameCenterComponent implements OnInit {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
         this.found = !!response.wordExists;
+        this.positionOfWordList = response.positionOfWordResponseList;
+        console.log(this.positionOfWordList);
         if (!this.found) {
           this.dangerToast();
         }
