@@ -18,28 +18,3 @@ body {
 }
 
 $customGreyDisabledButton: rgb(226, 226, 226);
-
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.hit {
-  background-color: $hit;
-}
-
-.colorWhite {
-  color: white;
-}
-
-.partialHit {
-  background-color: $parcialHit;
-}
-
-.fail {
-  background-color: $fail;
-}
