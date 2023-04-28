@@ -90,8 +90,6 @@ export class GameCenterComponent implements OnInit {
       this.writeInSelectedBox(letter);
       this.rewriteWord();
       this.correctSyntaxWord = this.isSyntaxCorrect();
-      console.log(this.splittedWord);
-      console.log(this.word);
       return;
     }
     if (this.word.length < 5) {
