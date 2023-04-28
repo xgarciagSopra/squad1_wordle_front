@@ -1,5 +1,5 @@
 export const firstKeyBoardRow = [
-  { letter: 'Q', hitStatus: 'DEFAULT' },
+  { letter: 'Q', hitStatus: 'HIT' },
   { letter: 'W', hitStatus: 'DEFAULT' },
   { letter: 'E', hitStatus: 'DEFAULT' },
   { letter: 'R', hitStatus: 'DEFAULT' },
