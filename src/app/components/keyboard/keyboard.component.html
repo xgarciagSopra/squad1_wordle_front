@@ -7,7 +7,7 @@
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
       >
-        <p>{{ key }}</p>
+        <p>{{ key.letter }}</p>
       </button>
     </div>
     <div class="row justify-content-between text-center">
@@ -17,7 +17,7 @@
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
       >
-        <p>{{ key }}</p>
+        <p>{{ key.letter }}</p>
       </button>
     </div>
     <div class="row justify-content-between text-center">
@@ -27,14 +27,14 @@
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
       >
-        <p>{{ key }}</p>
+        <p>{{ key.letter }}</p>
       </button>
       <button
         class="col-1 key"
         (click)="pressKeyValue(sendKey)"
         [disabled]="!this.disableKeys || this.correctSyntaxWord"
       >
-        <p>{{ sendKey }}</p>
+        <p>{{ sendKey.letter }}</p>
       </button>
     </div>
   </div>

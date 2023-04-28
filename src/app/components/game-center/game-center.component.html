@@ -4,7 +4,6 @@
   [firstRound]="firstRound"
   [borderResultStyles]="found"
   [selectedBox]="selectResultBox"
-  [positionOfWordList]="positionOfWordList"
   (selectResultBox)="selectedResultBox($event)"
 ></app-result-box>
 <app-keyboard
@@ -12,5 +11,4 @@
   [disableKeys]="isMaxLengthWord()"
   [roundFound]="roundFound"
   [correctSyntaxWord]="correctSyntaxWord"
-  [positionOfWordList]="positionOfWordList"
 ></app-keyboard>

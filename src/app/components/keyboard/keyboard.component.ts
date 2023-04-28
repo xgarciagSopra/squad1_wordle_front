@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { LetterStatus } from 'src/app/interfaces/letter-status.interface';
+import { Letter } from 'src/app/interfaces/letter-status.interface';
+import {
+  firstKeyBoardRow,
+  secondKeyBoardRow,
+  thirdKeyBoardRow,
+  sendKey,
+} from 'src/app/interfaces/keyboardRows';
 
 @Component({
   selector: 'app-keyboard',
@@ -7,27 +13,27 @@ import { LetterStatus } from 'src/app/interfaces/letter-status.interface';
   styleUrls: ['./keyboard.component.scss'],
 })
 export class KeyboardComponent {
-  @Output() pressedKeyValue = new EventEmitter<string>();
+  @Output() pressedKeyValue = new EventEmitter<Letter>();
   @Input() disableKeys = false;
   @Input() roundFound = false;
   @Input() correctSyntaxWord = false;
   @Input() keyBoxStyle = '';
-  @Input() positionOfWordList!: LetterStatus[];
+  @Input() positionOfWordList!: Letter[];
 
-  firstKeyBoardRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
-  secondKeyBoardRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'];
-  thirdKeyBoardRow = ['⌫', 'Z', 'X', 'C', 'V', 'B', 'N', 'M'];
-  sendKey = '➜';
+  firstKeyBoardRow = firstKeyBoardRow;
+  secondKeyBoardRow = secondKeyBoardRow;
+  thirdKeyBoardRow = thirdKeyBoardRow;
+  sendKey = sendKey;
 
-  pressKeyValue(letter: string) {
+  pressKeyValue(letter: Letter) {
     this.pressedKeyValue.emit(letter);
   }
 
-  newBoxStyles(key: string) {
+  newBoxStyles(key: Letter) {
     return {
-      'hit colorWhite': this.keyBoxStyle === 'hit',
-      'partialHit colorWhite': this.keyBoxStyle === 'partialHit',
-      'fail colorWhite': this.keyBoxStyle === 'fail',
+      'hit colorWhite': key.hitStatus === 'HIT',
+      'partialHit colorWhite': key.hitStatus === 'PARTIAL_HIT',
+      'fail colorWhite': key.hitStatus === 'FAIL',
     };
   }
 }
