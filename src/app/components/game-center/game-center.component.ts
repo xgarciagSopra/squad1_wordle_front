@@ -150,9 +150,20 @@ export class GameCenterComponent implements OnInit {
     this.selectResultBox = id;
   }
 
-  // resetStatusKeyboard() {
-  //   for (let letter = 0; letter < this.splittedWord.length; letter++) {
-  //     let index = this.fir.findIndex((object) => object.letter === letter);
-  //   }
-  // }
+  resetStatusKeyboard() {
+    for (let letter = 0; letter < this.splittedWord.length; letter++) {
+      if (this.firstRowIncludesLetter(this.splittedWord[letter])) {
+        let index = this.splittedWord.findIndex(
+          (object) => object.letter === firstKeyBoardRow[letter].letter
+        );
+        console.log(firstKeyBoardRow[index].hitStatus);
+        console.log(this.splittedWord[letter].hitStatus);
+        // firstKeyBoardRow[index].hitStatus = this.splittedWord[letter].hitStatus;
+      }
+    }
+  }
+
+  firstRowIncludesLetter(letter: Letter) {
+    return firstKeyBoardRow.some((object: Letter) => object.letter === letter);
+  }
 }
