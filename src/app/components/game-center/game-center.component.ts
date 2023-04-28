@@ -119,6 +119,7 @@ export class GameCenterComponent implements OnInit {
           return;
         }
         this.splittedWord = response.positionOfWordResponseList;
+        this.resetStatusKeyboard();
       },
       error: () => {
         this.dangerToast();
