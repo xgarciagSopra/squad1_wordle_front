@@ -43,6 +43,9 @@ describe('#4 Word validation', () => {
     });
 
     it('Check letters correct', () => {
+        cy.typeWord(keys.queso)
+        cy.checkResultBoxText(keys.queso)
+
         
     });
     

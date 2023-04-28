@@ -1,0 +1,47 @@
+{
+
+    "wordExists":true,
+    "positionOfWordResponseList":[
+    
+    {
+    
+    "letter":"a",
+    
+    "hitStatus":"HIT"
+    
+   },
+    
+    {
+    
+     "letter":"b",
+    
+     "hitStatus":"PARTIAL_HIT"
+    
+    },
+    
+    {
+     "letter":"a",
+    
+     "hitStatus":"FAIL"
+    
+    },
+    
+    {
+    
+     "letter":"c",
+    
+     "hitStatus":"FAIL"
+    
+    },
+    
+    {
+    
+     "letter":"a",
+    
+     "hitStatus":"FAIL"
+    
+    }
+    
+    ]
+    
+    }

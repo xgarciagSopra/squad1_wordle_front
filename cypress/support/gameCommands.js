@@ -52,3 +52,7 @@ Cypress.Commands.add('checkNewGameStartCorrect', () => {
 Cypress.Commands.add('interceptWord',(word) => {
     cy.intercept('GET',(api.newGame +'/'+ id + api.wordValidation + word)).as('interceptWord')
 })
+
+Cypress.Commands.add('interceptLettersStatus',() => {
+    cy.intercept('GET',(api.newGame +'/'+ id + api.wordValidation + word),{fixture:"wordValidation"}).as('interceptWord')
+})
