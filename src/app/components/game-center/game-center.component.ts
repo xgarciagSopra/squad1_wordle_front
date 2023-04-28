@@ -103,11 +103,12 @@ export class GameCenterComponent implements OnInit {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
         this.found = !!response.wordExists;
-        this.splittedWord = response.positionOfWordResponseList;
-        console.log(this.splittedWord);
         if (!this.found) {
           this.dangerToast();
+          return;
         }
+        this.splittedWord = response.positionOfWordResponseList;
+        console.log(this.splittedWord);
       },
       error: () => {
         this.dangerToast();
