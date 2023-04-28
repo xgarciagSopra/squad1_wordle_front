@@ -119,7 +119,6 @@ export class GameCenterComponent implements OnInit {
           return;
         }
         this.splittedWord = response.positionOfWordResponseList;
-        console.log(this.splittedWord);
       },
       error: () => {
         this.dangerToast();

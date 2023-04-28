@@ -18,25 +18,3 @@ body {
 }
 
 $customGreyDisabledButton: rgb(226, 226, 226);
-
-.hit {
-  background-color: $hit !important;
-  p {
-    color: white !important;
-  }
-}
-
-.partialHit {
-  background-color: $parcialHit !important;
-  p {
-    color: white !important;
-  }
-}
-
-.fail {
-  background-color: $fail !important;
-  p {
-    color: white !important;
-  }
-}
-
