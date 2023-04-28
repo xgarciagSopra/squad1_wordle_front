@@ -13,3 +13,19 @@
     line-height: 99px;
   }
 }
+
+.hit {
+  background-color: $hit;
+}
+
+.baseSquare {
+  color: white;
+}
+
+.partialHit {
+  background-color: $parcialHit;
+}
+
+.fail {
+  background-color: $fail;
+}
