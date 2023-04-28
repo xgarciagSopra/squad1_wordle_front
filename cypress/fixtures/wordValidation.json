@@ -1,47 +1,25 @@
 {
-
-    "wordExists":true,
-    "positionOfWordResponseList":[
-    
-    {
-    
-    "letter":"a",
-    
-    "hitStatus":"HIT"
-    
-   },
-    
-    {
-    
-     "letter":"b",
-    
-     "hitStatus":"PARTIAL_HIT"
-    
-    },
-    
-    {
-     "letter":"a",
-    
-     "hitStatus":"FAIL"
-    
-    },
-    
-    {
-    
-     "letter":"c",
-    
-     "hitStatus":"FAIL"
-    
-    },
-    
-    {
-    
-     "letter":"a",
-    
-     "hitStatus":"FAIL"
-    
-    }
-    
+    "wordExists": true,
+    "positionOfWordResponseList": [
+        {
+            "letter": "Q",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "U",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "E",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "S",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "O",
+            "hitStatus": "HIT"
+        }
     ]
-    
-    }
+}

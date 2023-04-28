@@ -7,7 +7,7 @@ describe('#4 Word validation', () => {
     beforeEach(() => {
         cy.newGameSuccessful()
         cy.visitUrl(urls.localhost)
-        cy.wait('@gameSuccessful')
+        cy.waitGame()
     });
   
     it('Check 5 letters boxes', () => {
@@ -43,9 +43,11 @@ describe('#4 Word validation', () => {
     });
 
     it('Check letters correct', () => {
+        cy.interceptWord(keys.queso)
         cy.typeWord(keys.queso)
         cy.checkResultBoxText(keys.queso)
-
+        cy.sendForm()
+        cy.wait('@interceptWord')
         
     });
     

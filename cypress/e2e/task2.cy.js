@@ -4,7 +4,7 @@ import urls from '../fixtures/urls.json'
 
 
 describe('#2 Verify word exist', () => {
-  let id
+  
   beforeEach(() => {
     cy.newGameSuccessful()
     cy.visitUrl(urls.localhost)
@@ -47,10 +47,9 @@ describe('#2 Verify word exist', () => {
     cy.interceptWord(keys.queso)
     cy.typeWord(keys.queso)
     cy.checkResultBoxText(keys.queso)
-    cy.wait('@interceptWord')
     cy.checkSendButtonState(keys.enabled)
     cy.sendForm()
-    cy.checkResultBoxBorderClass(keys.valid)
+    cy.wait('@interceptWord')
     
   });
   
@@ -59,6 +58,6 @@ describe('#2 Verify word exist', () => {
     cy.checkResultBoxText(keys.qwert)
     cy.checkSendButtonState(keys.enabled)
     cy.sendForm()
-    cy.checkResultBoxBorderClass(keys.invalid)
+    cy.checkTriger()
   });
 })

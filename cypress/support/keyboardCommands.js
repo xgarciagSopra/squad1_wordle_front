@@ -57,3 +57,7 @@ Cypress.Commands.add('deleteWord', (word) => {
         cy.deleteLetter()
     });
 })
+
+Cypress.Commands.add('checkTriger',() => {
+    cy.get('.ng-trigger').should('be.visible')
+})

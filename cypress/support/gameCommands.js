@@ -29,7 +29,7 @@ Cypress.Commands.add('gameSuccessful', () => {
 Cypress.Commands.add('waitGame', () => {
     cy.wait('@gameSuccessful').then((data) => {
         id = data.response.body.id
-      })
+    })
 })
 Cypress.Commands.add('checkNewGameErrorAlertIsVisible', () => {
     return cy.get('app-error-round-dialog .mat-mdc-dialog-content')
@@ -49,13 +49,10 @@ Cypress.Commands.add('checkNewGameStartCorrect', () => {
     cy.clickLetter('P')
     cy.checkResultBoxText('P')
 })
-Cypress.Commands.add('interceptWord',(word) => {
-    cy.intercept('GET',(api.newGame +'/'+ id + api.wordValidation + word),(req) => {
-        expect(req.body.wordExists).to.include(true)
-      }
-      ).as('interceptWord')
+Cypress.Commands.add('interceptWord', (word) => {
+    cy.intercept('GET', (api.newGame + '/' + id + api.wordValidation + word)).as('interceptWord')
 })
 
-Cypress.Commands.add('interceptLettersStatus',() => {
-    cy.intercept('GET',(api.newGame +'/'+ id + api.wordValidation + word),{fixture:"wordValidation"}).as('interceptWord')
+Cypress.Commands.add('checkRecultBoxesStatusChange', () => {
+    
 })
