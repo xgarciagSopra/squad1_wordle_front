@@ -13,7 +13,7 @@ export class ResultBoxComponent {
   @Input() keyBoxStyle = '';
   @Input() firstRound = false;
   @Input() selectedBox!: number;
-  @Input() positionOfWordList: any[] = [];
+  @Input() positionOfWordList!: LetterStatus[];
   @Output() selectResultBox = new EventEmitter<number>();
 
   selectedResultBox(boxIndex: number) {
@@ -21,16 +21,17 @@ export class ResultBoxComponent {
   }
 
   newBoxStyles(letter: string, index: number) {
-    let indexLetter = this.positionOfWordList.indexOf(
-      (object: LetterStatus) => object.letter === letter
+    let indexLetter = this.positionOfWordList.findIndex(
+      (letterStatus: LetterStatus) => letterStatus.letter === letter
     );
+    console.log(indexLetter);
     return {
       'hit colorWhite':
-        this.positionOfWordList[indexLetter].hitStatus === 'hit',
+        this.positionOfWordList[indexLetter].hitStatus === 'HIT',
       'partialHit colorWhite':
-        this.positionOfWordList[indexLetter].hitStatus === 'partialHit',
+        this.positionOfWordList[indexLetter].hitStatus === 'PARTIAL_HIT',
       'fail colorWhite':
-        this.positionOfWordList[indexLetter].hitStatus === 'fail',
+        this.positionOfWordList[indexLetter].hitStatus === 'FAIL',
       'border-primary': this.selectedBox === index,
     };
   }

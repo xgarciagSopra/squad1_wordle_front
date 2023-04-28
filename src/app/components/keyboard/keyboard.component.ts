@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LetterStatus } from 'src/app/interfaces/letter-status.interface';
 
 @Component({
   selector: 'app-keyboard',
@@ -11,7 +12,7 @@ export class KeyboardComponent {
   @Input() roundFound = false;
   @Input() correctSyntaxWord = false;
   @Input() keyBoxStyle = '';
-  @Input() positionOfWordList: any[] = [];
+  @Input() positionOfWordList!: LetterStatus[];
 
   firstKeyBoardRow = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
   secondKeyBoardRow = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Ñ'];

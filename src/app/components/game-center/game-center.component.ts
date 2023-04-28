@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
+import { LetterStatus } from 'src/app/interfaces/letter-status.interface';
 
 @Component({
   selector: 'app-game-center',
@@ -40,7 +41,13 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
-  positionOfWordList: any[] = [];
+  positionOfWordList: LetterStatus[] = [
+    { letter: '', hitStatus: '' },
+    { letter: '', hitStatus: '' },
+    { letter: '', hitStatus: '' },
+    { letter: '', hitStatus: '' },
+    { letter: '', hitStatus: '' },
+  ];
 
   writeWord(letter: string) {
     this.letterPressed(letter);
