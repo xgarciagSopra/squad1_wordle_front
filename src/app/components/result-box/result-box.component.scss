@@ -12,5 +12,22 @@
     font-size: 32px;
     line-height: 99px;
   }
+  &.hit {
+    background-color: $hit;
+    p {
+      color: white;
+    }
+  }
+  &.partialHit {
+    background-color: $parcialHit;
+    p {
+      color: white;
+    }
+  }
+  &.fail {
+    background-color: $fail;
+    p {
+      color: white;
+    }
+  }
 }
-

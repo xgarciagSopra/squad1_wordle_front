@@ -4,6 +4,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 import { Letter } from 'src/app/interfaces/letter-status.interface';
+import {
+  firstKeyBoardRow,
+  secondKeyBoardRow,
+  thirdKeyBoardRow,
+  sendKey,
+} from 'src/app/interfaces/keyboardRows';
 
 @Component({
   selector: 'app-game-center',
@@ -16,6 +22,11 @@ export class GameCenterComponent implements OnInit {
     private guessWord: GuessWordService,
     private toastr: ToastrService
   ) {}
+
+  firstKeyBoardRow = firstKeyBoardRow;
+  secondKeyBoardRow = secondKeyBoardRow;
+  thirdKeyBoardRow = thirdKeyBoardRow;
+  sendKey = sendKey;
 
   ngOnInit() {
     this.guessWord.newRound().subscribe({
@@ -51,6 +62,11 @@ export class GameCenterComponent implements OnInit {
   }
 
   deleteLetter() {
+    if (this.selectResultBox) {
+      this.splittedWord[this.selectResultBox - 1].letter = ' ';
+      this.rewriteWord();
+      return;
+    }
     this.word = this.word.substring(0, this.word.length - 1);
     this.fillSplitWord();
   }
@@ -65,8 +81,8 @@ export class GameCenterComponent implements OnInit {
 
   rewriteWord() {
     this.word = '';
-    this.splittedWord.forEach((key) => {
-      this.word += key.letter;
+    this.splittedWord.forEach((letter) => {
+      this.word += letter.letter;
     });
   }
 
@@ -108,6 +124,7 @@ export class GameCenterComponent implements OnInit {
           return;
         }
         this.splittedWord = response.positionOfWordResponseList;
+        this.resetStatusKeyboard();
       },
       error: () => {
         this.dangerToast();
@@ -137,5 +154,33 @@ export class GameCenterComponent implements OnInit {
 
   selectedResultBox(id: number) {
     this.selectResultBox = id;
+  }
+
+  resetStatusKeyboard() {
+    this.splittedWord.forEach((letter, index) => {
+      if (this.rowIncludesLetter(this.splittedWord[index], firstKeyBoardRow)) {
+        this.changeDataRow(index, firstKeyBoardRow);
+        return;
+      }
+      if (this.rowIncludesLetter(this.splittedWord[index], secondKeyBoardRow)) {
+        this.changeDataRow(index, secondKeyBoardRow);
+        return;
+      }
+      if (this.rowIncludesLetter(this.splittedWord[index], thirdKeyBoardRow)) {
+        this.changeDataRow(index, thirdKeyBoardRow);
+        return;
+      }
+    });
+  }
+
+  changeDataRow(indexLetter: number, row: Letter[]) {
+    let index = row.findIndex(
+      (object) => object.letter === this.splittedWord[indexLetter].letter
+    );
+    row[index].hitStatus = this.splittedWord[indexLetter].hitStatus;
+  }
+
+  rowIncludesLetter(letter: Letter, array: Letter[]) {
+    return array.some((object: Letter) => object.letter === letter.letter);
   }
 }
