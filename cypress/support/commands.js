@@ -1,5 +1,3 @@
-import urls from '../fixtures/urls.json'
-
-Cypress.Commands.add('visitUrl', () => {
-    cy.visit(urls.localhost)
+Cypress.Commands.add('visitUrl', (label) => {
+    cy.visit(label)
 })
