@@ -1,12 +1,12 @@
 /// <reference types="cypress" />
 import keys from '../fixtures/keyboard.json'
-import urls from '../fixtures/urls.json'
+
 
 
 describe('#4 Word validation', () => {
     beforeEach(() => {
         cy.newGameSuccessful()
-        cy.visitUrl(urls.localhost)
+        cy.visitUrl()
         cy.waitGame()
     });
   
