@@ -8,11 +8,11 @@ describe('#3 New game', () => {
     });
   
     it('Game start correctly', () => {
-        cy.newGameSuccessful()
+        cy.forceNewGameSuccessful()
         cy.checkNewGameStartCorrect()
     });
     it('Game start error', () => {
-        cy.newGameFaild()
+        cy.forceNewGameFaild()
         cy.checkNewGameErrorAlertIsVisible()
     });
   

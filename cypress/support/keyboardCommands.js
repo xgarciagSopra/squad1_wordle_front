@@ -33,6 +33,12 @@ Cypress.Commands.add('clickLeter',(leter) => {
 Cypress.Commands.add('checkSendButtonState',(state) => {
     cy.get(':nth-child(3) > :nth-child(9)').should(state)
 })
+Cypress.Commands.add('checkSendButtonsEnabled',() => {
+    cy.checkSendButtonState("be.enabled")
+})
+Cypress.Commands.add('checkSendButtonIsDisabled',() => {
+    cy.checkSendButtonState("be.disabled")
+})
 
 Cypress.Commands.add('sendForm',() => {
     cy.getLeter(keys.send).click()

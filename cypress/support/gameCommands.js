@@ -2,20 +2,20 @@
 import api from '../fixtures/api.json'
 import messages from '../fixtures/gameMenssages.json'
 
-Cypress.Commands.add('newGameFaild', () => {
-    cy.intercept('POST',api.newGame,
+Cypress.Commands.add('forceNewGameFaild', () => {
+    return cy.intercept('POST',api.newGame,
     {
         "wordExists":false
     }
-    ).as('gameFail')
+    )
     
 })
-Cypress.Commands.add('newGameSuccessful', () => {
-    cy.intercept('POST',api.newGame,
+Cypress.Commands.add('forceNewGameSuccessful', () => {
+    return cy.intercept('POST',api.newGame,
     {
         "wordExists":true
     }
-    ).as('gameSuccessful')
+    )
     
 })
 

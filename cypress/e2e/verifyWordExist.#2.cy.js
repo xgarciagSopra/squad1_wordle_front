@@ -20,7 +20,7 @@ describe('#2 Verify word exist', () => {
 
   it('Check keyboard', () => {
     cy.checkKeyboard(keys.keyboard)
-    cy.checkSendButtonState("be.disabled")
+    cy.checkSendButtonIsDisabled()
   });
 
   it('Check type in word input', () => {
@@ -31,21 +31,21 @@ describe('#2 Verify word exist', () => {
   it('Check a valid word length', () => {
     cy.typeWord(word.queso)
     cy.checkResultBoxText(word.queso)
-    cy.checkSendButtonState("be.enabled")
+    cy.checkSendButtonsEnabled()
     cy.sendForm()
   });
 
   it('Check a invalid word length', () => {
     cy.typeWord(word.hello)
     cy.checkResultBoxText(word.hello)
-    cy.checkSendButtonState("be.disabled")
+    cy.checkSendButtonIsDisabled()
     cy.sendForm()
   });
 
   it('Check a invalid word length', () => {
     cy.typeWord(word.quesos)
     cy.checkResultBoxText(word.quesos)
-    cy.checkSendButtonState("be.disabled")
+    cy.checkSendButtonIsDisabled()
     cy.sendForm()
   });
 
@@ -54,7 +54,7 @@ describe('#2 Verify word exist', () => {
     cy.typeWord(word.queso)
     cy.checkResultBoxText(word.queso)
     
-    cy.checkSendButtonState("be.enabled")
+    cy.checkSendButtonsEnabled()
     cy.checkResultBoxBorderColor(keys.valid)
     cy.sendForm()
   });
@@ -62,7 +62,7 @@ describe('#2 Verify word exist', () => {
   it('Check invalid word ', () => {
     cy.typeWord(word.qwert)
     cy.checkResultBoxText(word.qwert)
-    cy.checkSendButtonState("be.enabled")
+    cy.checkSendButtonsEnabled()
     cy.checkResultBoxBorderColor(keys.invalid)
     cy.sendForm()
   });
