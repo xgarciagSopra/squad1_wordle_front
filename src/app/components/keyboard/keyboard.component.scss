@@ -28,7 +28,7 @@
       color: white;
     }
   }
-  &:disabled{
+  &:disabled {
     margin: 5px 0;
     width: 9%;
     height: 50px;
@@ -36,14 +36,31 @@
     border-radius: 10px;
     outline: none;
     border: 0;
-    
-    p{
-        font-size: 15px;
-        line-height: 50px;
-        font-weight: bold;
-        text-decoration: none;
-        color: $customLightGreyHover;
+
+    p {
+      font-size: 15px;
+      line-height: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      color: $customLightGreyHover;
+    }
+  }
+  &.hit {
+    background-color: $hit;
+    p {
+      color: white;
+    }
+  }
+  &.partialHit {
+    background-color: $parcialHit;
+    p {
+      color: white;
+    }
+  }
+  &.fail {
+    background-color: $fail;
+    p {
+      color: white;
     }
   }
 }
-

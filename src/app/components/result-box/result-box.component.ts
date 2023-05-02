@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Letter } from 'src/app/interfaces/letter-status.interface';
 
 @Component({
   selector: 'app-result-box',
@@ -7,7 +8,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ResultBoxComponent {
   @Input() word = '';
-  @Input() splitWord: string[] = [];
+  @Input() splitWord: Letter[] = [];
   @Input() borderResultStyles!: boolean;
   @Input() keyBoxStyle = '';
   @Input() firstRound = false;
@@ -18,11 +19,11 @@ export class ResultBoxComponent {
     this.selectResultBox.emit(boxIndex);
   }
 
-  newBoxStyles(letter: string, index: number) {
+  newBoxStyles(letter: Letter, index: number) {
     return {
-      'hit colorWhite': this.keyBoxStyle === 'hit',
-      'parcialHit colorWhite': this.keyBoxStyle === 'parcialHit',
-      'fail colorWhite': this.keyBoxStyle === 'fail',
+      hit: letter.hitStatus === 'HIT',
+      partialHit: letter.hitStatus === 'PARTIAL_HIT',
+      fail: letter.hitStatus === 'FAIL',
       'border-primary': this.selectedBox === index,
     };
   }
