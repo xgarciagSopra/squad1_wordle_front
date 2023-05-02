@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './win-round-dialog.component.html',
   styleUrls: ['./win-round-dialog.component.scss'],
 })
-export class WinRoundDialogComponent {}
+export class WinRoundDialogComponent {
+  reloadWindow() {
+    window.location.reload();
+  }
+}

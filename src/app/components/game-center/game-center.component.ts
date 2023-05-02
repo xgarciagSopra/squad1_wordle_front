@@ -10,6 +10,7 @@ import {
   thirdKeyBoardRow,
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
+import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
 
 @Component({
   selector: 'app-game-center',
@@ -38,7 +39,7 @@ export class GameCenterComponent implements OnInit {
         }
       },
       error: () => {
-        this.openDialog();
+        this.openErrorDialog();
       },
     });
     this.fillSplitWord();
@@ -52,6 +53,7 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
+  isWin = false;
 
   writeWord(letter: Letter) {
     this.letterPressed(letter);
@@ -118,7 +120,12 @@ export class GameCenterComponent implements OnInit {
   sendWord(word: string) {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
+        this.isWin = !!response.roundWin;
         this.found = !!response.wordExists;
+        if (this.isWin) {
+          this.openWinDialog();
+          return;
+        }
         if (!this.found) {
           this.dangerToast();
           return;
@@ -133,8 +140,14 @@ export class GameCenterComponent implements OnInit {
     });
   }
 
-  openDialog() {
+  openErrorDialog() {
     this.dialog.open(ErrorRoundDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+  }
+
+  openWinDialog() {
+    this.dialog.open(WinRoundDialogComponent, {
       panelClass: 'custom-dialog-container',
     });
   }
