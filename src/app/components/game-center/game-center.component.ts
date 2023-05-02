@@ -153,20 +153,28 @@ export class GameCenterComponent implements OnInit {
 
   resetStatusKeyboard() {
     for (let letter = 0; letter < this.splittedWord.length; letter++) {
-      if (this.firstRowIncludesLetter(this.splittedWord[letter])) {
-        let index = this.splittedWord.findIndex(
-          (object) => object.letter === firstKeyBoardRow[letter].letter
-        );
-        console.log(firstKeyBoardRow[index].hitStatus);
-        console.log(this.splittedWord[letter].hitStatus);
-        // index.hitStatus=this.hitStatus
-        this.firstKeyBoardRow[0].hitStatus = 'HIT';
-        // this.firstKeyBoardRow[index].hitStatus = this.splittedWord[letter].hitStatus;
+      if (this.rowIncludesLetter(this.splittedWord[letter], firstKeyBoardRow)) {
+        this.changeDataRow(letter, firstKeyBoardRow);
+      }
+      if (
+        this.rowIncludesLetter(this.splittedWord[letter], secondKeyBoardRow)
+      ) {
+        this.changeDataRow(letter, secondKeyBoardRow);
+      }
+      if (this.rowIncludesLetter(this.splittedWord[letter], thirdKeyBoardRow)) {
+        this.changeDataRow(letter, thirdKeyBoardRow);
       }
     }
   }
 
-  firstRowIncludesLetter(letter: Letter) {
-    return firstKeyBoardRow.some((object: Letter) => object.letter === letter);
+  changeDataRow(indexLetter: number, row: Letter[]) {
+    let index = row.findIndex(
+      (object) => object.letter === this.splittedWord[indexLetter].letter
+    );
+    row[index].hitStatus = this.splittedWord[indexLetter].hitStatus;
+  }
+
+  rowIncludesLetter(letter: Letter, array: Letter[]) {
+    return array.some((object: Letter) => object.letter === letter.letter);
   }
 }
