@@ -1,10 +1,10 @@
 /// <reference types="cypress" />
-import urls from '../fixtures/urls.json'
+
 
 
 describe('#3 New game', () => {
     beforeEach(() => {
-      cy.visitUrl(urls.localhost)
+      cy.visitUrl()
     });
   
     it('Game start correctly', () => {

@@ -1,3 +1,3 @@
-Cypress.Commands.add('visitUrl', (label) => {
-    cy.visit(label)
+Cypress.Commands.add('visitUrl', () => {
+    cy.visit(urls.localhost)
 })

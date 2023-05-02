@@ -1,12 +1,11 @@
 /// <reference types="cypress" />
 import keys from '../fixtures/keyboard.json'
-import urls from '../fixtures/urls.json'
 
 
 describe('#2 Verify word exist', () => {
 
   beforeEach(() => {
-    cy.visitUrl(urls.localhost)
+    cy.visitUrl()
     cy.acceptNewGameErrorAlert()
   })
 
