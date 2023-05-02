@@ -1,6 +1,6 @@
 import { Letter } from './letter-status.interface';
 
-export interface CheckedWord {
+export interface CheckedWordResponse {
   wordExists: boolean;
   positionOfWordResponseList: Letter[];
   roundWind: boolean;
