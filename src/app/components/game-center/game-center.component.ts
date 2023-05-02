@@ -34,7 +34,6 @@ export class GameCenterComponent implements OnInit {
       next: (response: any) => {
         if (response?.id) {
           this.roundFound = true;
-          console.log(response.id);
           this.idRound = response.id;
         }
       },
@@ -53,7 +52,7 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
-  isWin = false;
+  nextRound = false;
 
   writeWord(letter: Letter) {
     this.letterPressed(letter);
@@ -120,18 +119,19 @@ export class GameCenterComponent implements OnInit {
   sendWord(word: string) {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
-        this.isWin = !!response.roundWin;
+        this.nextRound = !!response.roundWin;
         this.found = !!response.wordExists;
-        if (this.isWin) {
-          this.openWinDialog();
-          return;
-        }
         if (!this.found) {
           this.dangerToast();
           return;
         }
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
+        if (this.nextRound) {
+          console.log(this.nextRound);
+          this.openWinDialog();
+          return;
+        }
       },
       error: () => {
         this.dangerToast();
