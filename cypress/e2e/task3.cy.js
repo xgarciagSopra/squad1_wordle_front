@@ -2,6 +2,7 @@
 
 
 
+
 describe('#3 New game', () => {
     it('Game start correctly', () => {
         cy.newGameSuccessful()
