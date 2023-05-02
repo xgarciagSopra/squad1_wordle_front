@@ -157,19 +157,20 @@ export class GameCenterComponent implements OnInit {
   }
 
   resetStatusKeyboard() {
-    for (let letter = 0; letter < this.splittedWord.length; letter++) {
-      if (this.rowIncludesLetter(this.splittedWord[letter], firstKeyBoardRow)) {
-        this.changeDataRow(letter, firstKeyBoardRow);
+    this.splittedWord.forEach((letter, index) => {
+      if (this.rowIncludesLetter(this.splittedWord[index], firstKeyBoardRow)) {
+        this.changeDataRow(index, firstKeyBoardRow);
+        return;
       }
-      if (
-        this.rowIncludesLetter(this.splittedWord[letter], secondKeyBoardRow)
-      ) {
-        this.changeDataRow(letter, secondKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], secondKeyBoardRow)) {
+        this.changeDataRow(index, secondKeyBoardRow);
+        return;
       }
-      if (this.rowIncludesLetter(this.splittedWord[letter], thirdKeyBoardRow)) {
-        this.changeDataRow(letter, thirdKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], thirdKeyBoardRow)) {
+        this.changeDataRow(index, thirdKeyBoardRow);
+        return;
       }
-    }
+    });
   }
 
   changeDataRow(indexLetter: number, row: Letter[]) {
