@@ -159,7 +159,9 @@ export class GameCenterComponent implements OnInit {
         );
         console.log(firstKeyBoardRow[index].hitStatus);
         console.log(this.splittedWord[letter].hitStatus);
-        // firstKeyBoardRow[index].hitStatus = this.splittedWord[letter].hitStatus;
+        // index.hitStatus=this.hitStatus
+        this.firstKeyBoardRow[0].hitStatus = 'HIT';
+        // this.firstKeyBoardRow[index].hitStatus = this.splittedWord[letter].hitStatus;
       }
     }
   }
