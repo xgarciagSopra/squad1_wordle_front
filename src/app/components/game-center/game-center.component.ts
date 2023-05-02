@@ -128,7 +128,6 @@ export class GameCenterComponent implements OnInit {
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
         if (this.nextRound) {
-          console.log(this.nextRound);
           this.openWinDialog();
           return;
         }
