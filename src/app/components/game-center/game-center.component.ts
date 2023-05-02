@@ -62,6 +62,11 @@ export class GameCenterComponent implements OnInit {
   }
 
   deleteLetter() {
+    if (this.selectResultBox) {
+      this.splittedWord[this.selectResultBox - 1].letter = ' ';
+      this.rewriteWord();
+      return;
+    }
     this.word = this.word.substring(0, this.word.length - 1);
     this.fillSplitWord();
   }
