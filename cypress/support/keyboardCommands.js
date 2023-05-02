@@ -44,8 +44,6 @@ Cypress.Commands.add('typeWord',(word) => {
     });
 })
 
-
-
 Cypress.Commands.add('deleteLetter', () => {
     cy.getLetter(keys.borrar).click()
 })

@@ -13,7 +13,7 @@ Cypress.Commands.add('checkResultBoxIsVisible',() => {
 Cypress.Commands.add('checkResultBoxText',(word) => {
     cy.getResultBoxText().should('have.text',word).should('be.visible')
 })
-Cypress.Commands.add('checkResultBoxBorderClass',(clas) => {
+Cypress.Commands.add('checkResultBoxClass',(clas) => {
     cy.getResultBox().should('have.class',clas)
 })
 
@@ -23,4 +23,10 @@ Cypress.Commands.add('checkFiveResultBoxes',() => {
 
 Cypress.Commands.add('clickResultBox',(box) => {
     cy.get(':nth-child(' + box + ') > .result-box').click()
+})
+Cypress.Commands.add('checkResultBoxColor',(color) => {
+    cy.getResultBox().should('not.have.css','background-color',color)
+})
+Cypress.Commands.add('checkRecultBoxesStatusChange', () => {
+    cy.checkResultBoxColor('rgb(211, 211, 211)')
 })

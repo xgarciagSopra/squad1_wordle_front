@@ -42,13 +42,13 @@ describe('#4 Word validation', () => {
         cy.checkResultBoxText(keys.queso.substring(1))
     });
 
-    it('Check letters correct', () => {
+    it('Check letters status change', () => {
         cy.interceptWord(keys.queso)
         cy.typeWord(keys.queso)
         cy.checkResultBoxText(keys.queso)
         cy.sendForm()
         cy.wait('@interceptWord')
-        
+        cy.checkRecultBoxesStatusChange()
     });
     
   });

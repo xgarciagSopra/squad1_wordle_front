@@ -53,6 +53,3 @@ Cypress.Commands.add('interceptWord', (word) => {
     cy.intercept('GET', (api.newGame + '/' + id + api.wordValidation + word)).as('interceptWord')
 })
 
-Cypress.Commands.add('checkRecultBoxesStatusChange', () => {
-    
-})
