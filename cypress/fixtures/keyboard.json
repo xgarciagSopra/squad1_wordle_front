@@ -1,15 +1,5 @@
 {
-    "header": "BIENVENIDO A:ADIVINA LA PALABRA",
-    "enviar": "➜",
-    "queso": "QUESO",
-    "quesos": "QUESOS",
-    "hola": "HOLA",
-    "qwert": "QWERT",
-    "teclado": "QWERTYUIOPASDFGHJKLÑZXCVBNM⌫➜",
-    "borrar": "⌫",
-    "enabled": "be.enabled",
-    "disabled": "be.disabled",
-    "valid": "rgb(0, 255, 0)",
-    "invalid": "rgb(255, 0, 0)"
-    
+    "send": "➜",
+    "keyboard": "QWERTYUIOPASDFGHJKLÑZXCVBNM⌫➜",
+    "delete": "⌫"
 }

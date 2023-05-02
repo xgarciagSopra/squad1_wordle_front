@@ -8,7 +8,7 @@ Cypress.Commands.add('newGameFaild', () => {
         "wordExists":false
     }
     ).as('gameFail')
-    cy.wait('@gameFail')
+    
 })
 Cypress.Commands.add('newGameSuccessful', () => {
     cy.intercept('POST',api.newGame,
@@ -16,7 +16,7 @@ Cypress.Commands.add('newGameSuccessful', () => {
         "wordExists":true
     }
     ).as('gameSuccessful')
-    cy.wait('@gameSuccessful')
+    
 })
 
 Cypress.Commands.add('checkNewGameErrorAlertIsVisible', () => {

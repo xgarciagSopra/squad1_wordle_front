@@ -35,7 +35,7 @@ Cypress.Commands.add('checkSendButtonState',(state) => {
 })
 
 Cypress.Commands.add('sendForm',() => {
-    cy.getLeter(keys.enviar).click()
+    cy.getLeter(keys.send).click()
 })
 
 Cypress.Commands.add('typeWord',(word) => {

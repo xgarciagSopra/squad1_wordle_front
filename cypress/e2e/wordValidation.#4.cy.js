@@ -4,7 +4,7 @@
 
 describe('#4 Word validation', () => {
     beforeEach(() => {
-      cy.visitUrl()
+      cy.goToLandingPage()
     });
   
     it('Check 5 letters boxes', () => {

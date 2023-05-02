@@ -4,7 +4,7 @@
 
 describe('#3 New game', () => {
     beforeEach(() => {
-      cy.visitUrl()
+      cy.goToLandingPage()
     });
   
     it('Game start correctly', () => {
