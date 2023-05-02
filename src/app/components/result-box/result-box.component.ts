@@ -21,9 +21,9 @@ export class ResultBoxComponent {
 
   newBoxStyles(letter: Letter, index: number) {
     return {
-      'hit colorWhite': letter.hitStatus === 'HIT',
-      'partialHit colorWhite': letter.hitStatus === 'PARTIAL_HIT',
-      'fail colorWhite': letter.hitStatus === 'FAIL',
+      hit: letter.hitStatus === 'HIT',
+      partialHit: letter.hitStatus === 'PARTIAL_HIT',
+      fail: letter.hitStatus === 'FAIL',
       'border-primary': this.selectedBox === index,
     };
   }
