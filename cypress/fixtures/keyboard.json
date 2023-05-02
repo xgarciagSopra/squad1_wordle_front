@@ -11,5 +11,6 @@
     "enabled": "be.enabled",
     "disabled": "be.disabled",
     "valid": "border-success",
-    "invalid": "border-danger"
+    "invalid": "border-danger",
+    "uncheckletter": "rgb(211, 211, 211)"
 }

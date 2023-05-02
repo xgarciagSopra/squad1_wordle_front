@@ -49,6 +49,7 @@ describe('#4 Word validation', () => {
         cy.sendForm()
         cy.wait('@interceptWord')
         cy.checkRecultBoxesStatusChange()
+        cy.checkKeyBoardStatus(keys.queso)
     });
     
   });

@@ -1,3 +1,4 @@
+import keys from '../fixtures/keyboard.json'
 
 
 Cypress.Commands.add('getResultBoxText',() => {
@@ -28,5 +29,5 @@ Cypress.Commands.add('checkResultBoxColor',(color) => {
     cy.getResultBox().should('not.have.css','background-color',color)
 })
 Cypress.Commands.add('checkRecultBoxesStatusChange', () => {
-    cy.checkResultBoxColor('rgb(211, 211, 211)')
+    cy.checkResultBoxColor(keys.uncheckletter)
 })

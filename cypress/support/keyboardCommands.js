@@ -59,3 +59,11 @@ Cypress.Commands.add('deleteWord', (word) => {
 Cypress.Commands.add('checkTriger',() => {
     cy.get('.ng-trigger').should('be.visible')
 })
+
+Cypress.Commands.add('checkKeyBoardStatus',(word) => {
+    let letters = word.split('')
+
+    letters.forEach(letter => {
+        cy.getLetter(letter).should('not.have.css','background-color',keys.uncheckletter)
+    });
+})
