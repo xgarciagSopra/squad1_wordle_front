@@ -1,11 +1,9 @@
 @import "../../../styles.scss";
 
 .result-box {
-  margin-top: 100px;
   border-radius: 10px;
   background-color: $customLightGrey;
-
-  height: 100px;
+  min-height: 100px;
   p {
     color: $customGreyBorder;
     font-weight: bold;
@@ -30,4 +28,8 @@
       color: white;
     }
   }
+}
+
+.w-40 {
+  width: 40%;
 }
