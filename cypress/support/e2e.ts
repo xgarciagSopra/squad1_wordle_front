@@ -14,8 +14,10 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './pageCommands'
 import './keyboardCommands'
+import './gameCommands'
+import './resultBoxCommands'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
