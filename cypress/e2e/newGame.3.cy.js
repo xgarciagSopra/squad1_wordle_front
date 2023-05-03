@@ -2,9 +2,9 @@
 
 describe('#3 New game', () => {
     it('Game start correctly', () => {
-        cy.newGameSuccessful()
+        cy.forceNewGameSuccessful()
         cy.goToLandingPage()
-        cy.wait('@gameSuccessful')
+        cy.wait('@forceGameSuccessful')
         cy.checkNewGameStartCorrect()
     });
     it('Game start error', () => {

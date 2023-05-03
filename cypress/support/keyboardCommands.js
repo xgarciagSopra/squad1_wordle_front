@@ -77,9 +77,7 @@ Cypress.Commands.add('deleteWord', (word) => {
     });
 })
 
-Cypress.Commands.add('checkTriger',() => {
-    cy.get('.ng-trigger').should('be.visible')
-})
+
 Cypress.Commands.add('getResultBox',() => {
     return cy.get('.result-box')
 })

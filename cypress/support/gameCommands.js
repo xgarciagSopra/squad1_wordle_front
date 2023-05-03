@@ -3,7 +3,6 @@ import api from '../fixtures/api.json'
 import messages from '../fixtures/gameMenssages.json'
 
 
-let id
 
 Cypress.Commands.add('forceNewGameFaild', () => {
     cy.intercept('POST', api.newGame,
@@ -13,22 +12,13 @@ Cypress.Commands.add('forceNewGameFaild', () => {
     ).as('forceGameFail')
 
 })
-Cypress.Commands.add('newGameSuccessful', () => {
-    cy.intercept('POST', api.newGame).as('gameSuccessful')
-})
 Cypress.Commands.add('forceNewGameSuccessful', () => {
-    cy.intercept('POST', api.newGame,
-        {
-            statusCode: 200,
-            body: {
-                "id": 20
-            }
-        }
-    ).as('forceGameSuccessful')
+    cy.intercept('POST', api.newGame).as('forceGameSuccessful')
 })
-Cypress.Commands.add('waitGame', () => {
-    cy.wait('@gameSuccessful').then((data) => {
-        id = data.response.body.id
+
+Cypress.Commands.add('getGameLoaded', () => {
+    cy.wait('@forceGameSuccessful').then((data) => {
+        return data.response.body.id
     })
 })
 Cypress.Commands.add('checkNewGameErrorAlertIsVisible', () => {
@@ -49,7 +39,7 @@ Cypress.Commands.add('checkNewGameStartCorrect', () => {
     cy.clickLetter('P')
     cy.checkResultBoxText('P')
 })
-Cypress.Commands.add('interceptWord', (word) => {
+Cypress.Commands.add('interceptWord', (word, id) => {
     cy.intercept('GET', (api.newGame + '/' + id + api.wordValidation + word)).as('interceptWord')
 })
 
