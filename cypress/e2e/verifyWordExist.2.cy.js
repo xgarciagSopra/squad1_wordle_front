@@ -22,7 +22,6 @@ describe('#2 Verify word exist', () => {
   it('Check keyboard', () => {
     cy.checkKeyboard(keys.keyboard)
     cy.checkSendButtonIsDisabled()
-    cy.sendForm()
   });
 
   it('Check type in word input', () => {
@@ -34,15 +33,12 @@ describe('#2 Verify word exist', () => {
     cy.typeWord(word.queso)
     cy.checkResultBoxText(word.queso)
     cy.checkSendButtonsEnabled()
-    cy.sendForm()
-    
   });
 
   it('Check a invalid word length', () => {
     cy.typeWord(word.hello)
     cy.checkResultBoxText(word.hello)
     cy.checkSendButtonIsDisabled()
-    cy.sendForm()
   });
 
   it('Check correct validation word ', () => {
