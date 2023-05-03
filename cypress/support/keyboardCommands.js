@@ -39,7 +39,7 @@ Cypress.Commands.add('checkSendButtonIsDisabled',() => {
 })
 
 Cypress.Commands.add('sendForm',() => {
-    cy.getLetter(keys.enviar).click()
+    cy.getLetter(keys.send).click()
 })
 
 Cypress.Commands.add('typeWord',(word) => {
@@ -51,7 +51,7 @@ Cypress.Commands.add('typeWord',(word) => {
 })
 
 Cypress.Commands.add('deleteLetter', () => {
-    cy.getLetter(keys.borrar).click()
+    cy.getLetter(keys.delete).click()
 })
 
 Cypress.Commands.add('deleteWord', (word) => {

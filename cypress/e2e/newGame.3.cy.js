@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 
-
-
-
 describe('#3 New game', () => {
     it('Game start correctly', () => {
         cy.newGameSuccessful()
@@ -11,7 +8,7 @@ describe('#3 New game', () => {
         cy.checkNewGameStartCorrect()
     });
     it('Game start error', () => {
-        cy.newGameFaild()
+        cy.forceNewGameFaild()
         cy.goToLandingPage()
         cy.wait('@forceGameFail')
         cy.checkNewGameErrorAlertIsVisible()
