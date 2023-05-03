@@ -2,11 +2,10 @@
 import keys from '../fixtures/keyboard.json'
 
 
-
 describe('#4 Word validation', () => {
     beforeEach(() => {
         cy.newGameSuccessful()
-        cy.visitUrl()
+        cy.goToLandingPage()
         cy.waitGame()
     });
   

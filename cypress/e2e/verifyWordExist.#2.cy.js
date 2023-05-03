@@ -1,13 +1,11 @@
 /// <reference types="cypress" />
 import keys from '../fixtures/keyboard.json'
 
-
-
 describe('#2 Verify word exist', () => {
   
   beforeEach(() => {
     cy.newGameSuccessful()
-    cy.visitUrl()
+    cy.goToLandingPage()
     cy.waitGame()
   })
 

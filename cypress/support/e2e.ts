@@ -14,7 +14,7 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './pageCommands'
 import './keyboardCommands'
 import './gameCommands'
 import './resultBoxCommands'

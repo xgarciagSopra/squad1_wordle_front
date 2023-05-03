@@ -1,22 +1,22 @@
 /// <reference types="cypress" />
 import api from '../fixtures/api.json'
 import messages from '../fixtures/gameMenssages.json'
-import game from '../fixtures/newGameSuccessful.json'
+
 
 let id
 
-Cypress.Commands.add('newGameFaild', () => {
+Cypress.Commands.add('forceNewGameFaild', () => {
     cy.intercept('POST', api.newGame,
         {
             statusCode: 404,
         }
-    ).as('gameFail')
+    ).as('forceGameFail')
 
 })
 Cypress.Commands.add('newGameSuccessful', () => {
     cy.intercept('POST', api.newGame).as('gameSuccessful')
 })
-Cypress.Commands.add('gameSuccessful', () => {
+Cypress.Commands.add('forceNewGameSuccessful', () => {
     cy.intercept('POST', api.newGame,
         {
             statusCode: 200,
@@ -24,7 +24,7 @@ Cypress.Commands.add('gameSuccessful', () => {
                 "id": 20
             }
         }
-    ).as('gameSuccessful')
+    ).as('forceGameSuccessful')
 })
 Cypress.Commands.add('waitGame', () => {
     cy.wait('@gameSuccessful').then((data) => {
