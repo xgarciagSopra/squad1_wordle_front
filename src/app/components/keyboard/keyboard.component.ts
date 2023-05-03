@@ -19,6 +19,7 @@ export class KeyboardComponent {
   @Input() correctSyntaxWord = false;
   @Input() keyBoxStyle = '';
   @Input() positionOfWordList!: Letter[];
+  @Input() nextRound!: boolean;
 
   firstKeyBoardRow = firstKeyBoardRow;
   secondKeyBoardRow = secondKeyBoardRow;

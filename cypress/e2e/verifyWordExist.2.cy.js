@@ -3,8 +3,6 @@ import keys from '../fixtures/keyboard.json'
 import header from '../fixtures/gameHeader.json'
 import word from '../fixtures/words.json'
 
-
-
 describe('#2 Verify word exist', () => {
   
   beforeEach(() => {

@@ -10,6 +10,7 @@ import {
   thirdKeyBoardRow,
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
+import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
 
 @Component({
   selector: 'app-game-center',
@@ -33,12 +34,11 @@ export class GameCenterComponent implements OnInit {
       next: (response: any) => {
         if (response?.id) {
           this.roundFound = true;
-          console.log(response.id);
           this.idRound = response.id;
         }
       },
       error: () => {
-        this.openDialog();
+        this.openErrorDialog();
       },
     });
     this.fillSplitWord();
@@ -52,6 +52,7 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
+  nextRound = false;
 
   writeWord(letter: Letter) {
     this.letterPressed(letter);
@@ -62,6 +63,11 @@ export class GameCenterComponent implements OnInit {
   }
 
   deleteLetter() {
+    if (this.selectResultBox) {
+      this.splittedWord[this.selectResultBox - 1].letter = ' ';
+      this.rewriteWord();
+      return;
+    }
     this.word = this.word.substring(0, this.word.length - 1);
     this.fillSplitWord();
   }
@@ -113,6 +119,7 @@ export class GameCenterComponent implements OnInit {
   sendWord(word: string) {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
+        this.nextRound = !!response.roundWin;
         this.found = !!response.wordExists;
         if (!this.found) {
           this.dangerToast();
@@ -120,6 +127,10 @@ export class GameCenterComponent implements OnInit {
         }
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
+        if (this.nextRound) {
+          this.openWinDialog();
+          return;
+        }
       },
       error: () => {
         this.dangerToast();
@@ -128,8 +139,14 @@ export class GameCenterComponent implements OnInit {
     });
   }
 
-  openDialog() {
+  openErrorDialog() {
     this.dialog.open(ErrorRoundDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+  }
+
+  openWinDialog() {
+    this.dialog.open(WinRoundDialogComponent, {
       panelClass: 'custom-dialog-container',
     });
   }
@@ -152,19 +169,20 @@ export class GameCenterComponent implements OnInit {
   }
 
   resetStatusKeyboard() {
-    for (let letter = 0; letter < this.splittedWord.length; letter++) {
-      if (this.rowIncludesLetter(this.splittedWord[letter], firstKeyBoardRow)) {
-        this.changeDataRow(letter, firstKeyBoardRow);
+    this.splittedWord.forEach((letter, index) => {
+      if (this.rowIncludesLetter(this.splittedWord[index], firstKeyBoardRow)) {
+        this.changeDataRow(index, firstKeyBoardRow);
+        return;
       }
-      if (
-        this.rowIncludesLetter(this.splittedWord[letter], secondKeyBoardRow)
-      ) {
-        this.changeDataRow(letter, secondKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], secondKeyBoardRow)) {
+        this.changeDataRow(index, secondKeyBoardRow);
+        return;
       }
-      if (this.rowIncludesLetter(this.splittedWord[letter], thirdKeyBoardRow)) {
-        this.changeDataRow(letter, thirdKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], thirdKeyBoardRow)) {
+        this.changeDataRow(index, thirdKeyBoardRow);
+        return;
       }
-    }
+    });
   }
 
   changeDataRow(indexLetter: number, row: Letter[]) {
