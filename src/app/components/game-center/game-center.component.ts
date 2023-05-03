@@ -112,7 +112,7 @@ export class GameCenterComponent implements OnInit {
       this.correctSyntaxWord = this.isSyntaxCorrect();
       this.selectResultBox = this.selectResultBox + 1;
       if (this.selectResultBox > 5) {
-        this.selectResultBox = 1;
+        this.selectResultBox = 5;
       }
       return;
     }
