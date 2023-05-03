@@ -8,7 +8,10 @@
     color: $customGreyBorder;
     font-weight: bold;
     font-size: 32px;
-    line-height: 99px;
+    line-height: 100px;
+    min-height: 100px;
+    min-width: 100px;
+    margin: 0;
   }
   &.hit {
     background-color: $hit;
