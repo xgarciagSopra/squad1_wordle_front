@@ -4,14 +4,14 @@ import header from '../fixtures/gameHeader.json'
 import word from '../fixtures/words.json'
 
 
-let idGame
+
 
 describe('#2 Verify word exist', () => {
   
   beforeEach(() => {
     cy.forceNewGameSuccessful()
     cy.goToLandingPage()
-    idGame = cy.getGameLoaded()
+    cy.getGameLoaded()
   })
 
   it('Check web structure', () => {

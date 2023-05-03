@@ -2,13 +2,13 @@
 import keys from '../fixtures/keyboard.json'
 import word from '../fixtures/words.json'
 
-let idGame
+
 
 describe('#4 Word validation', () => {
     beforeEach(() => {
-        cy.newGameSuccessful()
+        cy.forceNewGameSuccessful()
         cy.goToLandingPage()
-        idGame = cy.getGameLoaded()
+        cy.getGameLoaded()
     });
   
     it('Check 5 letters boxes', () => {
@@ -46,11 +46,9 @@ describe('#4 Word validation', () => {
     });
 
     it('Check letters status change', () => {
-        cy.interceptWord(word.queso,idGame)
         cy.typeWord(word.queso)
         cy.checkResultBoxText(word.queso)
         cy.sendForm()
-        cy.wait('@interceptWord')
         cy.checkRecultBoxesStatusChange()
         cy.checkKeyBoardStatus(word.queso)
     });

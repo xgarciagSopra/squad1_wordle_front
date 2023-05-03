@@ -1,5 +1,4 @@
 import keys from '../fixtures/keyboard.json'
-import word from '../fixtures/words.json'
 
 Cypress.Commands.add('getResultBoxText',() => {
     return cy.get('app-result-box')
