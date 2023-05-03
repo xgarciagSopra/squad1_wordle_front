@@ -24,10 +24,10 @@ export class GameCenterComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  firstKeyBoardRow = firstKeyBoardRow;
-  secondKeyBoardRow = secondKeyBoardRow;
-  thirdKeyBoardRow = thirdKeyBoardRow;
-  sendKey = sendKey;
+  firstKey = [...firstKeyBoardRow];
+  secondKey = [...secondKeyBoardRow];
+  thirdKey = [...thirdKeyBoardRow];
+  send = { ...sendKey };
 
   ngOnInit() {
     this.guessWord.newRound().subscribe({
@@ -171,16 +171,16 @@ export class GameCenterComponent implements OnInit {
 
   resetStatusKeyboard() {
     this.splittedWord.forEach((letter, index) => {
-      if (this.rowIncludesLetter(this.splittedWord[index], firstKeyBoardRow)) {
-        this.changeDataRow(index, firstKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], this.firstKey)) {
+        this.changeDataRow(index, this.firstKey);
         return;
       }
-      if (this.rowIncludesLetter(this.splittedWord[index], secondKeyBoardRow)) {
-        this.changeDataRow(index, secondKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], this.secondKey)) {
+        this.changeDataRow(index, this.secondKey);
         return;
       }
-      if (this.rowIncludesLetter(this.splittedWord[index], thirdKeyBoardRow)) {
-        this.changeDataRow(index, thirdKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], this.thirdKey)) {
+        this.changeDataRow(index, this.thirdKey);
         return;
       }
     });

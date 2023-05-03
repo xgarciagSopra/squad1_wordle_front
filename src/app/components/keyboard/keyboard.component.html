@@ -1,9 +1,9 @@
 <div class="keyboard">
   <div class="container w-50">
-    <div class="row">
+    <div class="row" *ngIf="firstKeyboardRow">
       <button
         class="col key"
-        *ngFor="let key of firstKeyBoardRow"
+        *ngFor="let key of firstKeyboardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
         [disabled]="!this.roundFound || !this.nextRound"
@@ -11,10 +11,10 @@
         <p>{{ key.letter }}</p>
       </button>
     </div>
-    <div class="row text-center">
+    <div class="row text-center" *ngIf="secondKeyboardRow">
       <button
         class="col key"
-        *ngFor="let key of secondKeyBoardRow"
+        *ngFor="let key of secondKeyboardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
         [disabled]="!this.roundFound || !this.nextRound"
@@ -22,10 +22,10 @@
         <p>{{ key.letter }}</p>
       </button>
     </div>
-    <div class="row text-center">
+    <div class="row text-center" *ngIf="thirdKeyboardRow">
       <button
         class="col key"
-        *ngFor="let key of thirdKeyBoardRow"
+        *ngFor="let key of thirdKeyboardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
         [disabled]="!this.roundFound || !this.nextRound"
