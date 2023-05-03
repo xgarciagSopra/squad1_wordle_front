@@ -1,4 +1,4 @@
-export let firstKeyBoardRow = [
+export const firstKeyBoardRow = [
   { letter: 'Q', hitStatus: 'DEFAULT' },
   { letter: 'W', hitStatus: 'DEFAULT' },
   { letter: 'E', hitStatus: 'DEFAULT' },
@@ -11,7 +11,7 @@ export let firstKeyBoardRow = [
   { letter: 'P', hitStatus: 'DEFAULT' },
 ];
 
-export let secondKeyBoardRow = [
+export const secondKeyBoardRow = [
   { letter: 'A', hitStatus: 'DEFAULT' },
   { letter: 'S', hitStatus: 'DEFAULT' },
   { letter: 'D', hitStatus: 'DEFAULT' },
@@ -24,7 +24,7 @@ export let secondKeyBoardRow = [
   { letter: 'Ñ', hitStatus: 'DEFAULT' },
 ];
 
-export let thirdKeyBoardRow = [
+export const thirdKeyBoardRow = [
   { letter: '⌫', hitStatus: 'DEFAULT' },
   { letter: 'Z', hitStatus: 'DEFAULT' },
   { letter: 'X', hitStatus: 'DEFAULT' },
@@ -35,6 +35,6 @@ export let thirdKeyBoardRow = [
   { letter: 'M', hitStatus: 'DEFAULT' },
 ];
 
-export let sendKey = { letter: '➜', hitStatus: 'DEFAULT' };
+export const sendKey = { letter: '➜', hitStatus: 'DEFAULT' };
 
 //TODO: Cambiar las variables a contantes y hacer copia de objetos para modificacion
