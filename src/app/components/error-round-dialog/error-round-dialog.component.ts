@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './error-round-dialog.component.html',
   styleUrls: ['./error-round-dialog.component.scss'],
 })
-export class ErrorRoundDialogComponent {}
+export class ErrorRoundDialogComponent {
+  reload() {
+    window.location.reload();
+  }
+}

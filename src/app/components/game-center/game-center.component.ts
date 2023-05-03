@@ -189,6 +189,16 @@ export class GameCenterComponent implements OnInit {
     let index = row.findIndex(
       (object) => object.letter === this.splittedWord[indexLetter].letter
     );
+    if (row[index].hitStatus === 'HIT') {
+      return;
+    }
+    if (
+      row[index].hitStatus === 'PARTIAL_HIT' &&
+      this.splittedWord[indexLetter].hitStatus !== 'FAIL'
+    ) {
+      row[index].hitStatus = this.splittedWord[indexLetter].hitStatus;
+      return;
+    }
     row[index].hitStatus = this.splittedWord[indexLetter].hitStatus;
   }
 

@@ -5,7 +5,13 @@
     inténtelo de nuevo.
   </div>
   <div mat-dialog-actions class="justify-content-end me-3 mb-3">
-    <button mat-button mat-dialog-close cdkFocusInitial class="btn btn-success">
+    <button
+      (click)="reload()"
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      class="btn btn-success"
+    >
       Ok
     </button>
   </div>
