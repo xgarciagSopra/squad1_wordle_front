@@ -32,21 +32,18 @@ describe('#2 Verify word exist', () => {
     cy.typeWord(word.queso)
     cy.checkResultBoxText(word.queso)
     cy.checkSendButtonsEnabled()
-    cy.sendForm()
   });
 
   it('Check a invalid word length', () => {
     cy.typeWord(word.hello)
     cy.checkResultBoxText(word.hello)
     cy.checkSendButtonIsDisabled()
-    cy.sendForm()
   });
 
   it('Check a invalid word length', () => {
     cy.typeWord(word.quesos)
     cy.checkResultBoxText(word.quesos)
     cy.checkSendButtonIsDisabled()
-    cy.sendForm()
   });
 
   it('Check correct validation word ', () => {
@@ -56,7 +53,6 @@ describe('#2 Verify word exist', () => {
     
     cy.checkSendButtonsEnabled()
     cy.checkResultBoxBorderColor(keys.valid)
-    cy.sendForm()
   });
   
   it('Check invalid word ', () => {
@@ -64,6 +60,5 @@ describe('#2 Verify word exist', () => {
     cy.checkResultBoxText(word.qwert)
     cy.checkSendButtonsEnabled()
     cy.checkResultBoxBorderColor(keys.invalid)
-    cy.sendForm()
   });
 })
