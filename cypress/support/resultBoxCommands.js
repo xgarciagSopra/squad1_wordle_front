@@ -1,5 +1,5 @@
 import keys from '../fixtures/keyboard.json'
-
+import word from '../fixtures/words.json'
 
 Cypress.Commands.add('getResultBoxText',() => {
     return cy.get('app-result-box')
@@ -22,8 +22,14 @@ Cypress.Commands.add('checkFiveResultBoxes',() => {
     cy.getResultBox().should('have.length',5)
 })
 
+Cypress.Commands.add('getOneResultBox',(box) => {
+    return cy.get(':nth-child(' + box + ') > .result-box')
+})
+Cypress.Commands.add('checkResultBoxLetter',(box,letter) => {
+    cy.getOneResultBox(box).should('have.text',letter)
+})
 Cypress.Commands.add('clickResultBox',(box) => {
-    cy.get(':nth-child(' + box + ') > .result-box').click()
+    cy.getOneResultBox(box).click()
 })
 Cypress.Commands.add('checkResultBoxColor',(color) => {
     cy.getResultBox().should('not.have.css','background-color',color)

@@ -31,6 +31,7 @@ describe('#4 Word validation', () => {
         cy.checkResultBoxText(word.queso)
         cy.clickResultBox(3)
         cy.deleteLetter()
+        cy.checkResultBoxLetter(3,word.space)
         cy.checkResultBoxText(word.quso)
     });
 
@@ -39,7 +40,8 @@ describe('#4 Word validation', () => {
         cy.checkResultBoxText(word.queso)
         cy.clickResultBox(1)
         cy.deleteLetter()
-        cy.checkResultBoxText(word.queso.substring(1))
+        cy.checkResultBoxLetter(1,word.space)
+        cy.checkResultBoxText(word.ueso)
     });
 
     it('Check letters status change', () => {
