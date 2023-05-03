@@ -69,7 +69,7 @@ export class GameCenterComponent implements OnInit {
       this.rewriteWord();
       this.selectResultBox = this.selectResultBox - 1;
       if (this.selectResultBox < 1) {
-        this.selectResultBox = 1;
+        this.selectResultBox = 5;
       }
       return;
     }
@@ -86,10 +86,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   rewriteWord() {
-    this.word = '';
-    this.splittedWord.forEach((letter) => {
-      this.word += letter.letter;
-    });
+    this.word = this.splittedWord.join('');
   }
 
   isSyntaxCorrect(): boolean {
