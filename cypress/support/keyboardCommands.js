@@ -5,14 +5,15 @@ import api from '../fixtures/api.json'
 Cypress.Commands.add('getHeader',() => {
     return cy.get('app-header .header')
 })
+
 Cypress.Commands.add('checkHeaderText',(text) => {
     cy.getHeader().should('have.text',text).should('be.visible')
 })
 
-
 Cypress.Commands.add('getHeader',() => {
     return cy.get('app-header .header')
 })
+
 Cypress.Commands.add('checkHeaderText',(text) => {
     cy.getHeader().should('have.text',text).should('be.visible')
 })
@@ -40,15 +41,19 @@ Cypress.Commands.add('clickLetter',(letter) => {
 Cypress.Commands.add('checkSendButtonState',(state) => {
     cy.get(':nth-child(3) > :nth-child(9)').should(state)
 })
+
 Cypress.Commands.add('checkSendButtonsEnabled',() => {
     cy.checkSendButtonState("be.enabled")
 })
+
 Cypress.Commands.add('checkSendButtonIsDisabled',() => {
     cy.checkSendButtonState("be.disabled")
 })
+
 Cypress.Commands.add('checkSendButtonsEnabled',() => {
     cy.checkSendButtonState("be.enabled")
 })
+
 Cypress.Commands.add('checkSendButtonIsDisabled',() => {
     cy.checkSendButtonState("be.disabled")
 })
@@ -77,10 +82,10 @@ Cypress.Commands.add('deleteWord', (word) => {
     });
 })
 
-
 Cypress.Commands.add('getResultBox',() => {
     return cy.get('.result-box')
 })
+
 Cypress.Commands.add('checkResultBoxIsVisible',() => {
     cy.getResultBox().should('be.visible')
 })
@@ -92,6 +97,7 @@ Cypress.Commands.add('checkKeyBoardStatus',(word) => {
         cy.getLetter(letter).should('not.have.css','background-color',keys.uncheckletter)
     });
 })
+
 Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
     cy.getResultBox().should('have.css','border-color',color)
 })

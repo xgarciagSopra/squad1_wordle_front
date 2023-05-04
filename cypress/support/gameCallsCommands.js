@@ -10,10 +10,11 @@ Cypress.Commands.add('forceNewGameFaild', () => {
     ).as('forceGameFail')
 
 })
+
 Cypress.Commands.add('forceNewGameSuccessful', () => {
     cy.intercept('POST', api.newGame).as('forceGameSuccessful')
 })
-let id
-Cypress.Commands.add('getGameLoaded', () => {
+
+Cypress.Commands.add('waitUntilGameLoaded', () => {
     cy.wait('@forceGameSuccessful')
 })
