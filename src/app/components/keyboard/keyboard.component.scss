@@ -5,16 +5,18 @@
 }
 
 .key {
-  margin: 5px 0;
-  width: 9%;
-  height: 50px;
+  margin: 5px 5px;
   background-color: $customLightGrey;
   border-radius: 10px;
   outline: none;
   border: 0;
+  min-height: 62px;
+  min-width: 62px;
 
   p {
-    font-size: 15px;
+    margin: auto;
+    font-size: 20px;
+    min-height: 50px;
     line-height: 50px;
     font-weight: bold;
     text-decoration: none;
@@ -29,16 +31,16 @@
     }
   }
   &:disabled {
-    margin: 5px 0;
-    width: 9%;
-    height: 50px;
+    margin: 5px 5px;
     background-color: $customGreyDisabledButton;
     border-radius: 10px;
     outline: none;
     border: 0;
 
     p {
-      font-size: 15px;
+      margin: auto;
+      font-size: 20px;
+      min-height: 50px;
       line-height: 50px;
       font-weight: bold;
       text-decoration: none;
