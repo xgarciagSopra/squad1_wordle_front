@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./game-over-dialog.component.scss'],
 })
 export class GameOverDialogComponent {
+  secretWord = '';
+
   reloadWindow() {
     window.location.reload();
   }
