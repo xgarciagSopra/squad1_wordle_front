@@ -36,5 +36,3 @@ export const thirdKeyBoardRow = [
 ];
 
 export const sendKey = { letter: '➜', hitStatus: 'DEFAULT' };
-
-//TODO: Cambiar las variables a contantes y hacer copia de objetos para modificacion
