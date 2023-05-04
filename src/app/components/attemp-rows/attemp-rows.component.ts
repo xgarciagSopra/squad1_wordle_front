@@ -8,7 +8,7 @@ import { Letter } from 'src/app/interfaces/letter-status.interface';
   styleUrls: ['./attemp-rows.component.scss'],
 })
 export class AttempRowsComponent {
-  @Input() attempsRows!: Attempt[];
+  @Input() attempsRows: Attempt[] = [];
 
   newBoxStyles(letter: Letter) {
     return {
