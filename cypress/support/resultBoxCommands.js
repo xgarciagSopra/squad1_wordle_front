@@ -17,8 +17,8 @@ Cypress.Commands.add('checkResultBoxText',(word) => {
     cy.getResultBoxText().should('have.text',word).should('be.visible')
 })
 
-Cypress.Commands.add('checkResultBoxClass',(clas) => {
-    cy.getResultBox().should('have.class',clas)
+Cypress.Commands.add('checkResultBoxClass',(styleClass) => {
+    cy.getResultBox().should('have.class',styleClass)
 })
 
 Cypress.Commands.add('checkFiveResultBoxes',() => {
