@@ -11,6 +11,12 @@ import {
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
 import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
+import { Attempt } from 'src/app/interfaces/attempt.interface';
+
+const deleteKey = '⌫';
+const sendKeySimbol = '➜';
+const MaxResultBox = 5;
+const MinResultBox = 1;
 
 @Component({
   selector: 'app-game-center',
@@ -18,16 +24,27 @@ import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.co
   styleUrls: ['./game-center.component.scss'],
 })
 export class GameCenterComponent implements OnInit {
+  firstKeyBoardRow = firstKeyBoardRow;
+  secondKeyBoardRow = secondKeyBoardRow;
+  thirdKeyBoardRow = thirdKeyBoardRow;
+  sendKeyRow = sendKey;
+  idRound!: number;
+  word = '';
+  splittedWord: Letter[] = [];
+  found!: boolean;
+  firstRound = false;
+  roundFound = false;
+  selectResultBox!: number;
+  correctSyntaxWord = this.isSyntaxCorrect();
+  nextRound = false;
+  resultBoxRow: Attempt[] = [];
+  round = 0;
+
   constructor(
     private dialog: MatDialog,
     private guessWord: GuessWordService,
     private toastr: ToastrService
   ) {}
-
-  firstKeyBoardRow = firstKeyBoardRow;
-  secondKeyBoardRow = secondKeyBoardRow;
-  thirdKeyBoardRow = thirdKeyBoardRow;
-  sendKey = sendKey;
 
   ngOnInit() {
     this.guessWord.newRound().subscribe({
@@ -44,16 +61,6 @@ export class GameCenterComponent implements OnInit {
     this.fillSplitWord();
   }
 
-  idRound!: number;
-  word = '';
-  splittedWord: Letter[] = [];
-  found!: boolean;
-  firstRound = false;
-  roundFound = false;
-  selectResultBox!: number;
-  correctSyntaxWord = this.isSyntaxCorrect();
-  nextRound = false;
-
   writeWord(letter: Letter) {
     this.letterPressed(letter);
   }
@@ -63,19 +70,25 @@ export class GameCenterComponent implements OnInit {
   }
 
   deleteLetter() {
-    const MaxResultBox = 5;
-    const MinResultBox = 1;
     if (this.selectResultBox) {
       this.splittedWord[this.selectResultBox - 1].letter = ' ';
       this.rewriteWord();
       this.selectResultBox =
         this.selectResultBox === MinResultBox
-          ? MaxResultBox
+          ? MinResultBox
           : --this.selectResultBox;
       return;
     }
     this.word = this.word.substring(0, this.word.length - 1);
     this.fillSplitWord();
+  }
+
+  nextIntent() {
+    let intent = { round: this.round, letters: this.splittedWord };
+    this.resultBoxRow.push(intent);
+    this.word = '';
+    this.fillSplitWord();
+    this.round++;
   }
 
   isMaxLengthWord(): boolean {
@@ -98,16 +111,12 @@ export class GameCenterComponent implements OnInit {
   }
 
   letterPressed(key: Letter) {
-    const deleteKey = '⌫';
-    const sendKey = '➜';
-    const MaxResultBox = 5;
-    const MinResultBox = 1;
     if (key.letter === deleteKey) {
       this.deleteLetter();
       this.correctSyntaxWord = this.isSyntaxCorrect();
       return;
     }
-    if (key.letter === sendKey) {
+    if (key.letter === sendKeySimbol) {
       this.found = false;
       this.firstRound = true;
       this.sendWord(this.word);
@@ -119,7 +128,7 @@ export class GameCenterComponent implements OnInit {
       this.correctSyntaxWord = this.isSyntaxCorrect();
       this.selectResultBox =
         this.selectResultBox === MaxResultBox
-          ? MinResultBox
+          ? MaxResultBox
           : ++this.selectResultBox;
       return;
     }
@@ -140,6 +149,8 @@ export class GameCenterComponent implements OnInit {
         }
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
+        this.nextIntent();
+        console.log(this.resultBoxRow);
         if (this.nextRound) {
           this.openWinDialog();
           return;
