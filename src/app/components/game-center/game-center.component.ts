@@ -40,7 +40,7 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
-  nextRound = false;
+  isWin = false;
   resultBoxRow: Attempt[] = [];
   round = 0;
 
@@ -88,11 +88,15 @@ export class GameCenterComponent implements OnInit {
   }
 
   nextIntent() {
-    let intent = { round: this.round, letters: this.splittedWord };
-    this.resultBoxRow.push(intent);
-    this.word = '';
-    this.fillSplitWord();
-    this.round++;
+    if (!this.isWin) {
+      if (this.resultBoxRow.length < 4) {
+        let intent = { round: this.round, letters: this.splittedWord };
+        this.resultBoxRow.push(intent);
+        this.word = '';
+        this.fillSplitWord();
+      }
+      this.round++;
+    }
   }
 
   isMaxLengthWord(): boolean {
@@ -145,7 +149,7 @@ export class GameCenterComponent implements OnInit {
   sendWord(word: string) {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
-        this.nextRound = !!response.roundWin;
+        this.isWin = !!response.roundWin;
         this.found = !!response.wordExists;
         if (!this.found) {
           this.dangerToast();
@@ -155,7 +159,7 @@ export class GameCenterComponent implements OnInit {
         this.resetStatusKeyboard();
         this.nextIntent();
         console.log(this.resultBoxRow);
-        if (this.nextRound) {
+        if (this.isWin) {
           this.openWinDialog();
           return;
         }

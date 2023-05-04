@@ -11,6 +11,7 @@
   (pressedKeyValue)="writeWord($event)"
   [disableKeys]="isMaxLengthWord()"
   [roundFound]="roundFound"
-  [nextRound]="!nextRound"
+  [nextRound]="!isWin"
+  [round]="round"
   [correctSyntaxWord]="correctSyntaxWord"
 ></app-keyboard>

@@ -20,6 +20,7 @@ export class KeyboardComponent {
   @Input() keyBoxStyle = '';
   @Input() positionOfWordList!: Letter[];
   @Input() nextRound!: boolean;
+  @Input() round!: number;
 
   firstKeyBoardRow = firstKeyBoardRow;
   secondKeyBoardRow = secondKeyBoardRow;
