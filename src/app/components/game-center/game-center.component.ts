@@ -42,7 +42,6 @@ export class GameCenterComponent implements OnInit {
       },
     });
     this.fillSplitWord();
-    console.log(this.splittedWord);
   }
 
   idRound!: number;
