@@ -1,5 +1,14 @@
 
 import keys from '../fixtures/keyboard.json'
+import api from '../fixtures/api.json'
+
+
+Cypress.Commands.add('getHeader',() => {
+    return cy.get('app-header .header')
+})
+Cypress.Commands.add('checkHeaderText',(text) => {
+    cy.getHeader().should('have.text',text).should('be.visible')
+})
 
 Cypress.Commands.add('getLeter', (leter) => {
     return cy.get('app-keyboard > .keyboard button').contains(leter)
@@ -24,9 +33,15 @@ Cypress.Commands.add('clickLeter',(leter) => {
 Cypress.Commands.add('checkSendButtonState',(state) => {
     cy.get(':nth-child(3) > :nth-child(9)').should(state)
 })
+Cypress.Commands.add('checkSendButtonsEnabled',() => {
+    cy.checkSendButtonState("be.enabled")
+})
+Cypress.Commands.add('checkSendButtonIsDisabled',() => {
+    cy.checkSendButtonState("be.disabled")
+})
 
 Cypress.Commands.add('sendForm',() => {
-    cy.getLeter(keys.enviar).click()
+    cy.getLeter(keys.send).click()
 })
 
 Cypress.Commands.add('typeWord',(word) => {
@@ -40,7 +55,20 @@ Cypress.Commands.add('typeWord',(word) => {
 Cypress.Commands.add('getResultBoxText',() => {
     return cy.get('#box')
 })
+Cypress.Commands.add('getResultBox',() => {
+    return cy.get('.result-box')
+})
+Cypress.Commands.add('checkResultBoxIsVisible',() => {
+    cy.getResultBox().should('be.visible')
+})
 
 Cypress.Commands.add('checkResultBoxText',(word) => {
     cy.getResultBoxText().should('have.text',word).should('be.visible')
+})
+Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
+    cy.getResultBox().should('have.css','border-color',color)
+})
+
+Cypress.Commands.add('interceptWord',(word) => {
+    return cy.intercept('GET',(api.wordValidation + word))
 })

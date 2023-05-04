@@ -3,14 +3,14 @@
 .result-box {
   border-radius: 10px;
   background-color: $customLightGrey;
-  min-height: 100px;
+  min-height: 90px;
   p {
     color: $customGreyBorder;
     font-weight: bold;
     font-size: 32px;
-    line-height: 100px;
-    min-height: 100px;
-    min-width: 100px;
+    line-height: 90px;
+    min-height: 90px;
+    min-width: 90px;
     margin: 0;
   }
   &.hit {
