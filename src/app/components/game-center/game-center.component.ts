@@ -88,7 +88,7 @@ export class GameCenterComponent implements OnInit {
   }
 
   nextIntent() {
-    if (!this.isWin) {
+    if (this.isWin) {
       return;
     }
     if (this.resultBoxRow.length < 4) {
