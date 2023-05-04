@@ -89,12 +89,13 @@ export class GameCenterComponent implements OnInit {
 
   nextIntent() {
     if (!this.isWin) {
-      if (this.resultBoxRow.length < 4) {
-        let intent = { round: this.round, letters: this.splittedWord };
-        this.resultBoxRow.push(intent);
-        this.word = '';
-        this.fillSplitWord();
-      }
+      return;
+    }
+    if (this.resultBoxRow.length < 4) {
+      let intent = { round: this.round, letters: this.splittedWord };
+      this.resultBoxRow.push(intent);
+      this.word = '';
+      this.fillSplitWord();
       this.round++;
     }
   }
@@ -158,7 +159,6 @@ export class GameCenterComponent implements OnInit {
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
         this.nextIntent();
-        console.log(this.resultBoxRow);
         if (this.isWin) {
           this.openWinDialog();
           return;
