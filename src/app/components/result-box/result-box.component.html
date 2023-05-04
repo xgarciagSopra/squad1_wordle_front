@@ -1,6 +1,6 @@
-<div class="container w-50">
-  <div class="row justify-content-between">
-    <div class="col-2" *ngFor="let letter of splitWord; let index = index">
+<div class="container w-40">
+  <div class="row">
+    <div class="col" *ngFor="let letter of splitWord; let index = index">
       <div
         class="result-box border border-3"
         [ngClass]="newBoxStyles(letter, index + 1)"

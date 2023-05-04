@@ -12,22 +12,40 @@ import {
 } from 'src/app/interfaces/keyboardRows';
 import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
 
+const deleteKey = '⌫';
+const sendKeySimbol = '➜';
+const MaxResultBox = 5;
+const MinResultBox = 1;
+const default_value = 'DEFAULT';
+const hit = 'HIT';
+const partialHit = 'PARTIAL_HIT';
+const fail = 'FAIL';
+
 @Component({
   selector: 'app-game-center',
   templateUrl: './game-center.component.html',
   styleUrls: ['./game-center.component.scss'],
 })
 export class GameCenterComponent implements OnInit {
+  firstKeyBoardRow = firstKeyBoardRow;
+  secondKeyBoardRow = secondKeyBoardRow;
+  thirdKeyBoardRow = thirdKeyBoardRow;
+  sendKeyRow = sendKey;
+  idRound!: number;
+  word = '';
+  splittedWord: Letter[] = [];
+  found!: boolean;
+  firstRound = false;
+  roundFound = false;
+  selectResultBox!: number;
+  correctSyntaxWord = this.isSyntaxCorrect();
+  nextRound = false;
+
   constructor(
     private dialog: MatDialog,
     private guessWord: GuessWordService,
     private toastr: ToastrService
   ) {}
-
-  firstKeyBoardRow = firstKeyBoardRow;
-  secondKeyBoardRow = secondKeyBoardRow;
-  thirdKeyBoardRow = thirdKeyBoardRow;
-  sendKey = sendKey;
 
   ngOnInit() {
     this.guessWord.newRound().subscribe({
@@ -44,16 +62,6 @@ export class GameCenterComponent implements OnInit {
     this.fillSplitWord();
   }
 
-  idRound!: number;
-  word = '';
-  splittedWord: Letter[] = [];
-  found!: boolean;
-  firstRound = false;
-  roundFound = false;
-  selectResultBox!: number;
-  correctSyntaxWord = this.isSyntaxCorrect();
-  nextRound = false;
-
   writeWord(letter: Letter) {
     this.letterPressed(letter);
   }
@@ -66,6 +74,10 @@ export class GameCenterComponent implements OnInit {
     if (this.selectResultBox) {
       this.splittedWord[this.selectResultBox - 1].letter = ' ';
       this.rewriteWord();
+      this.selectResultBox =
+        this.selectResultBox === MinResultBox
+          ? MinResultBox
+          : --this.selectResultBox;
       return;
     }
     this.word = this.word.substring(0, this.word.length - 1);
@@ -76,29 +88,28 @@ export class GameCenterComponent implements OnInit {
     return this.word.length === 5;
   }
 
-  writeInSelectedBox(letter: Letter) {
-    this.splittedWord[this.selectResultBox - 1].letter = letter.letter;
+  writeInSelectedBox(key: Letter) {
+    this.splittedWord[this.selectResultBox - 1].letter = key.letter;
   }
 
   rewriteWord() {
-    this.word = '';
-    this.splittedWord.forEach((letter) => {
-      this.word += letter.letter;
-    });
+    let separacion = this.splittedWord.map((key) => key.letter);
+    this.word = separacion.join('');
   }
 
   isSyntaxCorrect(): boolean {
-    return this.splittedWord.some((key: Letter) => key.letter === ' ');
+    return this.splittedWord.some(
+      (key: Letter) => key.letter === ' ' || key.letter === ''
+    );
   }
 
   letterPressed(key: Letter) {
-    const deleteKey = '⌫';
-    const sendKey = '➜';
     if (key.letter === deleteKey) {
       this.deleteLetter();
+      this.correctSyntaxWord = this.isSyntaxCorrect();
       return;
     }
-    if (key.letter === sendKey) {
+    if (key.letter === sendKeySimbol) {
       this.found = false;
       this.firstRound = true;
       this.sendWord(this.word);
@@ -108,6 +119,10 @@ export class GameCenterComponent implements OnInit {
       this.writeInSelectedBox(key);
       this.rewriteWord();
       this.correctSyntaxWord = this.isSyntaxCorrect();
+      this.selectResultBox =
+        this.selectResultBox === MaxResultBox
+          ? MaxResultBox
+          : ++this.selectResultBox;
       return;
     }
     if (this.word.length < 5) {
@@ -157,7 +172,7 @@ export class GameCenterComponent implements OnInit {
     for (let letter = 0; letter < 5; letter++) {
       fillArray[letter] = {
         letter: this.word.charAt(letter) ?? ' ',
-        hitStatus: 'DEFAULT',
+        hitStatus: default_value,
       };
     }
 
@@ -189,6 +204,16 @@ export class GameCenterComponent implements OnInit {
     let index = row.findIndex(
       (object) => object.letter === this.splittedWord[indexLetter].letter
     );
+    if (row[index].hitStatus === hit) {
+      return;
+    }
+    if (
+      row[index].hitStatus === partialHit &&
+      this.splittedWord[indexLetter].hitStatus !== fail
+    ) {
+      row[index].hitStatus = this.splittedWord[indexLetter].hitStatus;
+      return;
+    }
     row[index].hitStatus = this.splittedWord[indexLetter].hitStatus;
   }
 

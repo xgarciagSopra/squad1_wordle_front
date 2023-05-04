@@ -1,16 +1,17 @@
 @import "../../../styles.scss";
 
 .result-box {
-  margin-top: 100px;
   border-radius: 10px;
   background-color: $customLightGrey;
-
-  height: 100px;
+  min-height: 90px;
   p {
     color: $customGreyBorder;
     font-weight: bold;
     font-size: 32px;
-    line-height: 99px;
+    line-height: 90px;
+    min-height: 90px;
+    min-width: 90px;
+    margin: 0;
   }
   &.hit {
     background-color: $hit;
@@ -30,4 +31,8 @@
       color: white;
     }
   }
+}
+
+.w-40 {
+  width: 40%;
 }
