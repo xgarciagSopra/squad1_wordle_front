@@ -3,7 +3,7 @@
     <div class="row">
       <button
         class="col key"
-        *ngFor="let key of firstKeyBoardRow"
+        *ngFor="let key of firstKeyboardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
         [disabled]="!this.roundFound || !this.nextRound"
@@ -14,7 +14,7 @@
     <div class="row text-center">
       <button
         class="col key"
-        *ngFor="let key of secondKeyBoardRow"
+        *ngFor="let key of secondKeyboardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
         [disabled]="!this.roundFound || !this.nextRound"
@@ -25,7 +25,7 @@
     <div class="row text-center">
       <button
         class="col key"
-        *ngFor="let key of thirdKeyBoardRow"
+        *ngFor="let key of thirdKeyboardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
         [disabled]="!this.roundFound || !this.nextRound"

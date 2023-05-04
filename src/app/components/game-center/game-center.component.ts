@@ -27,10 +27,10 @@ const fail = 'FAIL';
   styleUrls: ['./game-center.component.scss'],
 })
 export class GameCenterComponent implements OnInit {
-  firstKeyBoardRow = firstKeyBoardRow;
-  secondKeyBoardRow = secondKeyBoardRow;
-  thirdKeyBoardRow = thirdKeyBoardRow;
-  sendKeyRow = sendKey;
+  firstKey = [...firstKeyBoardRow];
+  secondKey = [...secondKeyBoardRow];
+  thirdKey = [...thirdKeyBoardRow];
+  send = { ...sendKey };
   idRound!: number;
   word = '';
   splittedWord: Letter[] = [];
@@ -185,16 +185,16 @@ export class GameCenterComponent implements OnInit {
 
   resetStatusKeyboard() {
     this.splittedWord.forEach((letter, index) => {
-      if (this.rowIncludesLetter(this.splittedWord[index], firstKeyBoardRow)) {
-        this.changeDataRow(index, firstKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], this.firstKey)) {
+        this.changeDataRow(index, this.firstKey);
         return;
       }
-      if (this.rowIncludesLetter(this.splittedWord[index], secondKeyBoardRow)) {
-        this.changeDataRow(index, secondKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], this.secondKey)) {
+        this.changeDataRow(index, this.secondKey);
         return;
       }
-      if (this.rowIncludesLetter(this.splittedWord[index], thirdKeyBoardRow)) {
-        this.changeDataRow(index, thirdKeyBoardRow);
+      if (this.rowIncludesLetter(this.splittedWord[index], this.thirdKey)) {
+        this.changeDataRow(index, this.thirdKey);
         return;
       }
     });

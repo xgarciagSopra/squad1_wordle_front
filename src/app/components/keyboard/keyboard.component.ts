@@ -1,11 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Letter } from 'src/app/interfaces/letter-status.interface';
-import {
-  firstKeyBoardRow,
-  secondKeyBoardRow,
-  thirdKeyBoardRow,
-  sendKey,
-} from 'src/app/interfaces/keyboardRows';
 
 @Component({
   selector: 'app-keyboard',
@@ -20,11 +14,10 @@ export class KeyboardComponent {
   @Input() keyBoxStyle = '';
   @Input() positionOfWordList!: Letter[];
   @Input() nextRound!: boolean;
-
-  firstKeyBoardRow = firstKeyBoardRow;
-  secondKeyBoardRow = secondKeyBoardRow;
-  thirdKeyBoardRow = thirdKeyBoardRow;
-  sendKey = sendKey;
+  @Input() firstKeyboardRow!: Letter[];
+  @Input() secondKeyboardRow!: Letter[];
+  @Input() thirdKeyboardRow!: Letter[];
+  @Input() sendKey!: Letter;
 
   pressKeyValue(letter: Letter) {
     this.pressedKeyValue.emit(letter);
