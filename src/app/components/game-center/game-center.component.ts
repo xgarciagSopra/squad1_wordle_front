@@ -17,6 +17,10 @@ const deleteKey = '⌫';
 const sendKeySimbol = '➜';
 const MaxResultBox = 5;
 const MinResultBox = 1;
+const default_value = 'DEFAULT';
+const hit = 'HIT';
+const partialHit = 'PARTIAL_HIT';
+const fail = 'FAIL';
 
 @Component({
   selector: 'app-game-center',
@@ -176,7 +180,6 @@ export class GameCenterComponent implements OnInit {
   }
 
   fillSplitWord() {
-    const default_value = 'DEFAULT';
     let fillArray: Letter[] = [];
 
     for (let letter = 0; letter < 5; letter++) {
@@ -211,9 +214,6 @@ export class GameCenterComponent implements OnInit {
   }
 
   changeDataRow(indexLetter: number, row: Letter[]) {
-    const hit = 'HIT';
-    const partialHit = 'PARTIAL_HIT';
-    const fail = 'FAIL';
     let index = row.findIndex(
       (object) => object.letter === this.splittedWord[indexLetter].letter
     );
