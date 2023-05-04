@@ -96,8 +96,8 @@ export class GameCenterComponent implements OnInit {
       this.resultBoxRow.push(intent);
       this.word = '';
       this.fillSplitWord();
-      this.round++;
     }
+    this.round++;
   }
 
   isMaxLengthWord(): boolean {
