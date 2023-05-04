@@ -1,6 +1,6 @@
 <div class="keyboard">
   <div class="container w-50">
-    <div class="row" *ngIf="firstKeyboardRow">
+    <div class="row">
       <button
         class="col key"
         *ngFor="let key of firstKeyboardRow"
@@ -11,7 +11,7 @@
         <p>{{ key.letter }}</p>
       </button>
     </div>
-    <div class="row text-center" *ngIf="secondKeyboardRow">
+    <div class="row text-center">
       <button
         class="col key"
         *ngFor="let key of secondKeyboardRow"
@@ -22,7 +22,7 @@
         <p>{{ key.letter }}</p>
       </button>
     </div>
-    <div class="row text-center" *ngIf="thirdKeyboardRow">
+    <div class="row text-center">
       <button
         class="col key"
         *ngFor="let key of thirdKeyboardRow"
