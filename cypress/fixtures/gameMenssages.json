@@ -1,3 +1,4 @@
 {
-    "newGameError": "Ha habido un fallo al generar la partida, por favor recargue la pagina e inténtelo de nuevo"
+    "newGameError": "Ha habido un fallo al generar la partida, por favor recargue la pagina e inténtelo de nuevo",
+    "win":"Enhorabuena has acertado la palabra, pero... ¿podrás con la siguiente?"
 }
