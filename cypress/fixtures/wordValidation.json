@@ -21,5 +21,6 @@
             "letter": "O",
             "hitStatus": "HIT"
         }
-    ]
+    ],
+    "roundWin":true
 }
