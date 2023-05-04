@@ -64,13 +64,15 @@ export class GameCenterComponent implements OnInit {
   }
 
   deleteLetter() {
+    const MaxResultBox = 5;
+    const MinResultBox = 1;
     if (this.selectResultBox) {
       this.splittedWord[this.selectResultBox - 1].letter = ' ';
       this.rewriteWord();
-      this.selectResultBox = this.selectResultBox - 1;
-      if (this.selectResultBox < 1) {
-        this.selectResultBox = 5;
-      }
+      this.selectResultBox =
+        this.selectResultBox === MinResultBox
+          ? MaxResultBox
+          : --this.selectResultBox;
       return;
     }
     this.word = this.word.substring(0, this.word.length - 1);
@@ -81,23 +83,29 @@ export class GameCenterComponent implements OnInit {
     return this.word.length === 5;
   }
 
-  writeInSelectedBox(letter: Letter) {
-    this.splittedWord[this.selectResultBox - 1].letter = letter.letter;
+  writeInSelectedBox(key: Letter) {
+    this.splittedWord[this.selectResultBox - 1].letter = key.letter;
   }
 
   rewriteWord() {
-    this.word = this.splittedWord.join('');
+    let separacion = this.splittedWord.map((key) => key.letter);
+    this.word = separacion.join('');
   }
 
   isSyntaxCorrect(): boolean {
-    return this.splittedWord.some((key: Letter) => key.letter === ' ');
+    return this.splittedWord.some(
+      (key: Letter) => key.letter === ' ' || key.letter === ''
+    );
   }
 
   letterPressed(key: Letter) {
     const deleteKey = '⌫';
     const sendKey = '➜';
+    const MaxResultBox = 5;
+    const MinResultBox = 1;
     if (key.letter === deleteKey) {
       this.deleteLetter();
+      this.correctSyntaxWord = this.isSyntaxCorrect();
       return;
     }
     if (key.letter === sendKey) {
@@ -110,10 +118,10 @@ export class GameCenterComponent implements OnInit {
       this.writeInSelectedBox(key);
       this.rewriteWord();
       this.correctSyntaxWord = this.isSyntaxCorrect();
-      this.selectResultBox = this.selectResultBox + 1;
-      if (this.selectResultBox > 5) {
-        this.selectResultBox = 5;
-      }
+      this.selectResultBox =
+        this.selectResultBox === MaxResultBox
+          ? MinResultBox
+          : ++this.selectResultBox;
       return;
     }
     if (this.word.length < 5) {
@@ -158,12 +166,13 @@ export class GameCenterComponent implements OnInit {
   }
 
   fillSplitWord() {
+    const default_value = 'DEFAULT';
     let fillArray: Letter[] = [];
 
     for (let letter = 0; letter < 5; letter++) {
       fillArray[letter] = {
         letter: this.word.charAt(letter) ?? ' ',
-        hitStatus: 'DEFAULT',
+        hitStatus: default_value,
       };
     }
 
@@ -192,15 +201,18 @@ export class GameCenterComponent implements OnInit {
   }
 
   changeDataRow(indexLetter: number, row: Letter[]) {
+    const hit = 'HIT';
+    const partialHit = 'PARTIAL_HIT';
+    const fail = 'FAIL';
     let index = row.findIndex(
       (object) => object.letter === this.splittedWord[indexLetter].letter
     );
-    if (row[index].hitStatus === 'HIT') {
+    if (row[index].hitStatus === hit) {
       return;
     }
     if (
-      row[index].hitStatus === 'PARTIAL_HIT' &&
-      this.splittedWord[indexLetter].hitStatus !== 'FAIL'
+      row[index].hitStatus === partialHit &&
+      this.splittedWord[indexLetter].hitStatus !== fail
     ) {
       row[index].hitStatus = this.splittedWord[indexLetter].hitStatus;
       return;

@@ -6,7 +6,6 @@
         *ngFor="let key of firstKeyBoardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
-        [disabled]="!this.roundFound || !this.nextRound"
       >
         <p>{{ key.letter }}</p>
       </button>
@@ -17,7 +16,6 @@
         *ngFor="let key of secondKeyBoardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
-        [disabled]="!this.roundFound || !this.nextRound"
       >
         <p>{{ key.letter }}</p>
       </button>
@@ -28,7 +26,6 @@
         *ngFor="let key of thirdKeyBoardRow"
         (click)="pressKeyValue(key)"
         [ngClass]="newBoxStyles(key)"
-        [disabled]="!this.roundFound || !this.nextRound"
       >
         <p>{{ key.letter }}</p>
       </button>
@@ -44,3 +41,5 @@
     </div>
   </div>
 </div>
+
+<!-- [disabled]="!this.roundFound || !this.nextRound" -->
