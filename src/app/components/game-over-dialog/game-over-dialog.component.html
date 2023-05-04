@@ -1,0 +1,16 @@
+<div>
+  <h1 mat-dialog-title>GAME OVER</h1>
+  <div mat-dialog-content>Has perdido una partida más looser, espabila!!!</div>
+  <div mat-dialog-content>La palabra era:</div>
+  <div mat-dialog-actions class="justify-content-center mb-3">
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      class="btn btn-success"
+      (click)="reloadWindow()"
+    >
+      Volver a jugar
+    </button>
+  </div>
+</div>
