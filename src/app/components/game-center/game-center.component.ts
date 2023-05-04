@@ -92,6 +92,11 @@ export class GameCenterComponent implements OnInit {
     if (this.isWin) {
       return;
     }
+    if (!this.isWin && this.round === 4) {
+      this.openGameOverDialog();
+      this.round++;
+      return;
+    }
     if (this.resultBoxRow.length < 4) {
       let intent = { round: this.round, letters: this.splittedWord };
       this.resultBoxRow.push(intent);
