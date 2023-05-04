@@ -1,0 +1,9 @@
+<div class="container w-40 my-3">
+  <div class="row my-3" *ngFor="let attempRow of attempsRows">
+    <div class="col" *ngFor="let key of attempRow.letters">
+      <div class="result-box border border-3" [ngClass]="newBoxStyles(key)">
+        <p class="text-center">{{ key.letter }}</p>
+      </div>
+    </div>
+  </div>
+</div>

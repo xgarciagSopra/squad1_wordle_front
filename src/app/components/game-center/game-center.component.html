@@ -1,3 +1,4 @@
+<app-attemp-rows [attempsRows]="resultBoxRow"></app-attemp-rows>
 <app-result-box
   [word]="word"
   [splitWord]="splittedWord"
@@ -10,7 +11,8 @@
   (pressedKeyValue)="writeWord($event)"
   [disableKeys]="isMaxLengthWord()"
   [roundFound]="roundFound"
-  [nextRound]="!nextRound"
+  [nextRound]="!isWin"
+  [round]="round"
   [correctSyntaxWord]="correctSyntaxWord"
   [firstKeyboardRow]="firstKey"
   [secondKeyboardRow]="secondKey"

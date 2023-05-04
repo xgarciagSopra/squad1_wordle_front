@@ -18,6 +18,7 @@ export class KeyboardComponent {
   @Input() secondKeyboardRow!: Letter[];
   @Input() thirdKeyboardRow!: Letter[];
   @Input() sendKey!: Letter;
+  @Input() round!: number;
 
   pressKeyValue(letter: Letter) {
     this.pressedKeyValue.emit(letter);
