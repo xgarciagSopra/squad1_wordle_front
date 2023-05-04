@@ -11,6 +11,7 @@ import {
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
 import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
+import { GameOverDialogComponent } from '../game-over-dialog/game-over-dialog.component';
 
 const deleteKey = '⌫';
 const sendKeySimbol = '➜';
@@ -162,6 +163,12 @@ export class GameCenterComponent implements OnInit {
 
   openWinDialog() {
     this.dialog.open(WinRoundDialogComponent, {
+      panelClass: 'custom-dialog-container',
+    });
+  }
+
+  openGameOverDialog() {
+    this.dialog.open(GameOverDialogComponent, {
       panelClass: 'custom-dialog-container',
     });
   }

@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from './components/error-round-dialog/error-round-dialog.component';
 import { WinRoundDialogComponent } from './components//win-round-dialog/win-round-dialog.component';
+import { GameOverDialogComponent } from './components/game-over-dialog/game-over-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { WinRoundDialogComponent } from './components//win-round-dialog/win-roun
     HeaderComponent,
     FooterComponent,
     WinRoundDialogComponent,
+    GameOverDialogComponent,
   ],
   imports: [
     BrowserModule,
