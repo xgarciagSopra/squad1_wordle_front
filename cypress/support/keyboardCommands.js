@@ -46,12 +46,6 @@ Cypress.Commands.add('checkSendButtonsEnabled',() => {
 Cypress.Commands.add('checkSendButtonIsDisabled',() => {
     cy.checkSendButtonState("be.disabled")
 })
-Cypress.Commands.add('checkSendButtonsEnabled',() => {
-    cy.checkSendButtonState("be.enabled")
-})
-Cypress.Commands.add('checkSendButtonIsDisabled',() => {
-    cy.checkSendButtonState("be.disabled")
-})
 
 Cypress.Commands.add('sendForm',() => {
     cy.getLetter(keys.send).click()
@@ -100,4 +94,24 @@ Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
 
 Cypress.Commands.add('interceptWord',(word) => {
     return cy.intercept('GET',(api.wordValidation + word))
+})
+
+Cypress.Commands.add('checkKeyboardRowDisabled', (letters) => {
+    let col = 1
+    letters.forEach(letter => {
+        cy.get('.keyboard > .container > :nth-child(1) > :nth-child(' + col + ')').should('have.text',letter).should('be.disabled')
+        if(col <= letters.length){
+            col++
+        }
+    });
+})
+Cypress.Commands.add('checkKeyboardDisabled', () => {
+    let row1 = keys['row-1'].split('')
+    let row2 = keys['row-1'].split('')
+    let row3 = keys['row-1'].split('')
+
+    cy.checkKeyboardRowDisabled(row1)
+    cy.checkKeyboardRowDisabled(row2)
+    cy.checkKeyboardRowDisabled(row3)
+    
 })

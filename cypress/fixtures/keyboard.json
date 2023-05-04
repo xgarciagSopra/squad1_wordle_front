@@ -1,5 +1,8 @@
 {
     "send": "➜",
     "keyboard": "QWERTYUIOPASDFGHJKLÑZXCVBNM⌫➜",
+    "row-1" :"QWERTYUIOP",
+    "row-2" :"ASDFGHJKLÑ",
+    "row-3" :"⌫ZXCVBNM➜",
     "delete": "⌫"
 }

@@ -23,8 +23,7 @@ describe('#5 End Game', () => {
         cy.checkResultBoxText(word.queso)
         cy.sendForm()
         cy.wait('@interceptWordAndWin')
-        cy.getWinGameAlert()
-        cy.checkWinGameAlert()
+       cy.checkKeyboardDisabled()
         
-    });
+        });
 });
