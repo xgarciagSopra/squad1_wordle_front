@@ -14,11 +14,11 @@ export class KeyboardComponent {
   @Input() keyBoxStyle = '';
   @Input() positionOfWordList!: Letter[];
   @Input() nextRound!: boolean;
+  @Input() round!: number;
   @Input() firstKeyboardRow!: Letter[];
   @Input() secondKeyboardRow!: Letter[];
   @Input() thirdKeyboardRow!: Letter[];
   @Input() sendKey!: Letter;
-  @Input() round!: number;
 
   pressKeyValue(letter: Letter) {
     this.pressedKeyValue.emit(letter);
@@ -30,5 +30,18 @@ export class KeyboardComponent {
       partialHit: key.hitStatus === 'PARTIAL_HIT',
       fail: key.hitStatus === 'FAIL',
     };
+  }
+
+  disableKeyboardRow() {
+    return !this.roundFound || !this.nextRound || this.round === 5;
+  }
+
+  disableSendKey() {
+    return (
+      !this.disableKeys ||
+      this.correctSyntaxWord ||
+      !this.nextRound ||
+      this.round === 5
+    );
   }
 }

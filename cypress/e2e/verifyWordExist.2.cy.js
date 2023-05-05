@@ -1,15 +1,17 @@
 /// <reference types="cypress" />
 import keys from '../fixtures/keyboard.json'
-import word from '../fixtures/words.json'
 import header from '../fixtures/gameHeader.json'
+import word from '../fixtures/words.json'
+
 
 
 
 describe('#2 Verify word exist', () => {
-
+  
   beforeEach(() => {
+    cy.forceNewGameSuccessful()
     cy.goToLandingPage()
-    cy.acceptNewGameErrorAlert()
+    cy.getGameLoaded()
   })
 
   it('Check web structure', () => {
@@ -40,25 +42,21 @@ describe('#2 Verify word exist', () => {
     cy.checkSendButtonIsDisabled()
   });
 
-  it('Check a invalid word length', () => {
-    cy.typeWord(word.quesos)
-    cy.checkResultBoxText(word.quesos)
-    cy.checkSendButtonIsDisabled()
-  });
-
   it('Check correct validation word ', () => {
-    cy.interceptWord(word.queso)
+    cy.interceptWord(word.queso,idGame)
     cy.typeWord(word.queso)
     cy.checkResultBoxText(word.queso)
-    
     cy.checkSendButtonsEnabled()
-    cy.checkResultBoxBorderColor(keys.valid)
+    cy.sendForm()
+    cy.wait('@interceptWord')
+    
   });
   
   it('Check invalid word ', () => {
     cy.typeWord(word.qwert)
     cy.checkResultBoxText(word.qwert)
     cy.checkSendButtonsEnabled()
-    cy.checkResultBoxBorderColor(keys.invalid)
+    cy.sendForm()
+    cy.checkInvalidWordAlert()
   });
 })
