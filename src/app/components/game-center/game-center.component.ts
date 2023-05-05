@@ -11,6 +11,7 @@ import {
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
 import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
+import { Attempt } from 'src/app/interfaces/attempt.interface';
 
 const deleteKey = '⌫';
 const sendKeySimbol = '➜';
@@ -39,7 +40,9 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
-  nextRound = false;
+  isWin = false;
+  resultBoxRow: Attempt[] = [];
+  round = 0;
 
   constructor(
     private dialog: MatDialog,
@@ -82,6 +85,19 @@ export class GameCenterComponent implements OnInit {
     }
     this.word = this.word.substring(0, this.word.length - 1);
     this.fillSplitWord();
+  }
+
+  nextIntent() {
+    if (this.isWin) {
+      return;
+    }
+    if (this.resultBoxRow.length < 4) {
+      let intent = { round: this.round, letters: this.splittedWord };
+      this.resultBoxRow.push(intent);
+      this.word = '';
+      this.fillSplitWord();
+    }
+    this.round++;
   }
 
   isMaxLengthWord(): boolean {
@@ -134,7 +150,7 @@ export class GameCenterComponent implements OnInit {
   sendWord(word: string) {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
-        this.nextRound = !!response.roundWin;
+        this.isWin = !!response.roundWin;
         this.found = !!response.wordExists;
         if (!this.found) {
           this.dangerToast();
@@ -142,7 +158,8 @@ export class GameCenterComponent implements OnInit {
         }
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
-        if (this.nextRound) {
+        this.nextIntent();
+        if (this.isWin) {
           this.openWinDialog();
           return;
         }
