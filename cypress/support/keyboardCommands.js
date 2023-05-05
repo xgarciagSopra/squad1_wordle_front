@@ -18,12 +18,12 @@ Cypress.Commands.add('checkHeaderText',(text) => {
     cy.getHeader().should('have.text',text).should('be.visible')
 })
 
-Cypress.Commands.add('getLettter', (lettter) => {
-    return cy.get('app-keyboard > .keyboard button').contains(lettter)
+Cypress.Commands.add('getLetter', (letter) => {
+    return cy.get('app-keyboard > .keyboard button').contains(letter)
 })
 
-Cypress.Commands.add('checkLeter',(leter) => {
-    cy.getLeter(leter).should('have.text',leter).should('be.visible')
+Cypress.Commands.add('checkLetter',(letter) => {
+    cy.getLetter(letter).should('have.text',letter).should('be.visible')
 })
 
 Cypress.Commands.add('checkKeyboard',(keyboard) => {
@@ -55,10 +55,10 @@ Cypress.Commands.add('sendForm',() => {
 })
 
 Cypress.Commands.add('typeWord',(word) => {
-    let leters = word.split('')
+    let letters = word.split('')
 
-    leters.forEach(leter => {
-        cy.clickLeter(leter)
+    letters.forEach(letter => {
+        cy.clickLetter(letter)
     });
 })
 

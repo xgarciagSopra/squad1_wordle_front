@@ -12,7 +12,14 @@ Cypress.Commands.add('forceNewGameFaild', () => {
 })
 
 Cypress.Commands.add('forceNewGameSuccessful', () => {
-    cy.intercept('POST', api.newGame).as('forceGameSuccessful')
+    return cy.intercept('POST', api.newGame,
+    {
+        statusCode: 200,
+        body: {
+            "id": 20
+        }
+    }
+    )
 })
 
 Cypress.Commands.add('waitUntilGameLoaded', () => {
