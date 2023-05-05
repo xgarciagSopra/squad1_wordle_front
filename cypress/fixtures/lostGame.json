@@ -1,0 +1,28 @@
+{
+    "wordExists": true,
+    "positionOfWordResponseList": [
+        {
+            "letter": "Q",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "U",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "E",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "S",
+            "hitStatus": "HIT"
+        },
+        {
+            "letter": "O",
+            "hitStatus": "HIT"
+        }
+    ],
+    "roundIntentNumber":5,
+    "roundWin":false,
+    "secretWord":"queso"
+}

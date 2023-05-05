@@ -1,0 +1,26 @@
+{
+    "wordExists": true,
+    "positionOfWordResponseList": [
+        {
+            "letter": "Q",
+            "hitStatus": "FAIL"
+        },
+        {
+            "letter": "U",
+            "hitStatus": "PARTIAL_HIT"
+        },
+        {
+            "letter": "E",
+            "hitStatus": "FAIL"
+        },
+        {
+            "letter": "S",
+            "hitStatus": "FAIL"
+        },
+        {
+            "letter": "O",
+            "hitStatus": "FAIL"
+        }
+    ],
+    "roundWin": false
+}

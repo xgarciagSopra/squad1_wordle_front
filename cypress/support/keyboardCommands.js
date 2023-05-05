@@ -38,6 +38,18 @@ Cypress.Commands.add('clickLetter',(letter) => {
     cy.getLetter(letter).click()
 })
 
+Cypress.Commands.add('deleteLetter', () => {
+    cy.getLetter(keys.delete).click()
+})
+
+Cypress.Commands.add('deleteWord', (word) => {
+    let letters = word.split('')
+
+    letters.forEach(letter => {
+        cy.deleteLetter()
+    });
+})
+
 Cypress.Commands.add('checkSendButtonState',(state) => {
     cy.get(':nth-child(3) > :nth-child(9)').should(state)
 })
