@@ -3,11 +3,12 @@ import keys from '../fixtures/keyboard.json'
 import word from '../fixtures/words.json'
 
 
+
 describe('#4 Word validation', () => {
     beforeEach(() => {
-        cy.newGameSuccessful()
+        cy.forceNewGameSuccessful()
         cy.goToLandingPage()
-        cy.waitGame()
+        cy.getGameLoaded()
     });
   
     it('Check 5 letters boxes', () => {
@@ -45,11 +46,9 @@ describe('#4 Word validation', () => {
     });
 
     it('Check letters status change', () => {
-        cy.interceptWord(word.queso)
         cy.typeWord(word.queso)
         cy.checkResultBoxText(word.queso)
         cy.sendForm()
-        cy.wait('@interceptWord')
         cy.checkRecultBoxesStatusChange()
         cy.checkKeyBoardStatus(word.queso)
     });

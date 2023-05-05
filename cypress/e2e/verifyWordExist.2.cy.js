@@ -3,12 +3,13 @@ import keys from '../fixtures/keyboard.json'
 import header from '../fixtures/gameHeader.json'
 import word from '../fixtures/words.json'
 
+
 describe('#2 Verify word exist', () => {
   
   beforeEach(() => {
-    cy.newGameSuccessful()
+    cy.forceNewGameSuccessful()
     cy.goToLandingPage()
-    cy.waitGame()
+    cy.getGameLoaded()
   })
 
   it('Check web structure', () => {
@@ -40,7 +41,7 @@ describe('#2 Verify word exist', () => {
   });
 
   it('Check correct validation word ', () => {
-    cy.interceptWord(word.queso)
+    cy.interceptWord(word.queso,idGame)
     cy.typeWord(word.queso)
     cy.checkResultBoxText(word.queso)
     cy.checkSendButtonsEnabled()
@@ -54,6 +55,6 @@ describe('#2 Verify word exist', () => {
     cy.checkResultBoxText(word.qwert)
     cy.checkSendButtonsEnabled()
     cy.sendForm()
-    cy.checkTriger()
+    cy.checkInvalidWordAlert()
   });
 })
