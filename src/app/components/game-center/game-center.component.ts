@@ -11,6 +11,7 @@ import {
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
 import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
+import { GameOverDialogComponent } from '../game-over-dialog/game-over-dialog.component';
 import { Attempt } from 'src/app/interfaces/attempt.interface';
 
 const deleteKey = '⌫';
@@ -43,6 +44,7 @@ export class GameCenterComponent implements OnInit {
   isWin = false;
   resultBoxRow: Attempt[] = [];
   round = 0;
+  secretWord = '';
 
   constructor(
     private dialog: MatDialog,
@@ -89,6 +91,11 @@ export class GameCenterComponent implements OnInit {
 
   nextIntent() {
     if (this.isWin) {
+      return;
+    }
+    if (!this.isWin && this.round === 4) {
+      this.openGameOverDialog();
+      this.round++;
       return;
     }
     if (this.resultBoxRow.length < 4) {
@@ -156,6 +163,9 @@ export class GameCenterComponent implements OnInit {
           this.dangerToast();
           return;
         }
+        if (response.roundIntentNumber === 5) {
+          this.secretWord = response.secretWord;
+        }
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
         this.nextIntent();
@@ -180,6 +190,13 @@ export class GameCenterComponent implements OnInit {
   openWinDialog() {
     this.dialog.open(WinRoundDialogComponent, {
       panelClass: 'custom-dialog-container',
+    });
+  }
+
+  openGameOverDialog() {
+    this.dialog.open(GameOverDialogComponent, {
+      panelClass: 'custom-dialog-container',
+      data: this.secretWord,
     });
   }
 

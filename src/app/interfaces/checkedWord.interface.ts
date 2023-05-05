@@ -4,4 +4,6 @@ export interface CheckedWordResponse {
   wordExists: boolean;
   positionOfWordResponseList: Letter[];
   roundWind: boolean;
+  roundIntentNumber: number;
+  secretWord?: string;
 }
