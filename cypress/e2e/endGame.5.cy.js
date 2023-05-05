@@ -15,7 +15,7 @@ describe('#5 End Game', () => {
         cy.checkResultBoxText(word.queso)
         cy.sendForm()
         cy.wait('@interceptWordAndWin')
-        cy.checkKeyboardDisabled()
+        cy.checkWinGameAlert()
     });
     it('Block all page actions', () => {
         cy.interceptWordAndWin(word.queso).as('interceptWordAndWin')
@@ -23,7 +23,7 @@ describe('#5 End Game', () => {
         cy.checkResultBoxText(word.queso)
         cy.sendForm()
         cy.wait('@interceptWordAndWin')
-       cy.checkKeyboardDisabled()
+        cy.checkKeyboardDisabled()
         
         });
 });

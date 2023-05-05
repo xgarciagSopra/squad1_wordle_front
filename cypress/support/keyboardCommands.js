@@ -90,23 +90,22 @@ Cypress.Commands.add('interceptWord',(word) => {
     return cy.intercept('GET',(api.wordValidation + word))
 })
 
-Cypress.Commands.add('checkKeyboardRowDisabled', (letters) => {
-    let col = 1
+Cypress.Commands.add('checkKeyboardRowDisabled', (letters,row) => {
+    let keyboardColumn = 1
     letters.forEach(letter => {
-        cy.get('.keyboard > .container > :nth-child(1) > :nth-child(' + col + ')').should('have.text',letter).should('be.disabled')
-        if(col <= letters.length){
-            col++
+        cy.get('.keyboard > .container > :nth-child(' + row + ') > :nth-child(' + keyboardColumn + ')').should('have.text',letter).should('be.disabled')
+        if(keyboardColumn <= letters.length){
+            keyboardColumn++
         }
     });
 })
 
 Cypress.Commands.add('checkKeyboardDisabled', () => {
     let row1 = keys['row-1'].split('')
-    let row2 = keys['row-1'].split('')
-    let row3 = keys['row-1'].split('')
+    let row2 = keys['row-2'].split('')
+    let row3 = keys['row-3'].split('')
 
-    cy.checkKeyboardRowDisabled(row1)
-    cy.checkKeyboardRowDisabled(row2)
-    cy.checkKeyboardRowDisabled(row3)
-    
+    cy.checkKeyboardRowDisabled(row1,1)
+    cy.checkKeyboardRowDisabled(row2,2)
+    cy.checkKeyboardRowDisabled(row3,3)
 })
