@@ -27,4 +27,8 @@ Cypress.Commands.add('checkWinGameAlert', () => {
     cy.get('app-win-round-dialog').should('be.visible')
 })
 
+Cypress.Commands.add('checkLostGameAlert', () => {
+    cy.get('app-game-over-dialog').should('be.visible')
+})
+
 

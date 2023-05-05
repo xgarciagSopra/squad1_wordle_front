@@ -7,9 +7,9 @@ import word from '../fixtures/words.json'
 describe('#2 Verify word exist', () => {
   
   beforeEach(() => {
-    cy.forceNewGameSuccessful()
+    cy.forceNewGameSuccessful().as('forceGameSuccessful')
     cy.goToLandingPage()
-    cy.getGameLoaded()
+    cy.waitUntilGameLoaded()
   })
 
   it('Check web structure', () => {

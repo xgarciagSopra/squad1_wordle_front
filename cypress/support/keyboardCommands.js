@@ -38,6 +38,18 @@ Cypress.Commands.add('clickLetter',(letter) => {
     cy.getLetter(letter).click()
 })
 
+Cypress.Commands.add('deleteLetter', () => {
+    cy.getLetter(keys.delete).click()
+})
+
+Cypress.Commands.add('deleteWord', (word) => {
+    let letters = word.split('')
+
+    letters.forEach(letter => {
+        cy.deleteLetter()
+    });
+})
+
 Cypress.Commands.add('checkSendButtonState',(state) => {
     cy.get(':nth-child(3) > :nth-child(9)').should(state)
 })
@@ -62,14 +74,17 @@ Cypress.Commands.add('typeWord',(word) => {
     });
 })
 
+//delete this
 Cypress.Commands.add('getResultBoxText',() => {
     return cy.get('#box')
 })
 
+//delete this
 Cypress.Commands.add('getResultBox',() => {
     return cy.get('.result-box')
 })
 
+//delete this
 Cypress.Commands.add('checkResultBoxIsVisible',() => {
     cy.getResultBox().should('be.visible')
 })
@@ -82,6 +97,7 @@ Cypress.Commands.add('checkKeyBoardStatus',(word) => {
     });
 })
 
+//delete this
 Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
     cy.getResultBox().should('have.css','border-color',color)
 })
@@ -108,4 +124,11 @@ Cypress.Commands.add('checkKeyboardDisabled', () => {
     cy.checkKeyboardRowDisabled(row1,1)
     cy.checkKeyboardRowDisabled(row2,2)
     cy.checkKeyboardRowDisabled(row3,3)
+})
+
+Cypress.Commands.add('checkLimit5Attemps', (word,attemps) => {
+    for (let attemp = 0; attemp < attemps; attemp++) {
+        cy.typeWord(word)
+        cy.sendForm()
+    }
 })
