@@ -62,14 +62,17 @@ Cypress.Commands.add('typeWord',(word) => {
     });
 })
 
+//delete this
 Cypress.Commands.add('getResultBoxText',() => {
     return cy.get('#box')
 })
 
+//delete this
 Cypress.Commands.add('getResultBox',() => {
     return cy.get('.result-box')
 })
 
+//delete this
 Cypress.Commands.add('checkResultBoxIsVisible',() => {
     cy.getResultBox().should('be.visible')
 })
@@ -82,6 +85,7 @@ Cypress.Commands.add('checkKeyBoardStatus',(word) => {
     });
 })
 
+//delete this
 Cypress.Commands.add('checkResultBoxBorderColor',(color) => {
     cy.getResultBox().should('have.css','border-color',color)
 })
