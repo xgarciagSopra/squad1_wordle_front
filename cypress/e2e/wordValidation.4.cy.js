@@ -8,7 +8,7 @@ describe('#4 Word validation', () => {
     beforeEach(() => {
         cy.forceNewGameSuccessful().as('forceGameSuccessful')
         cy.goToLandingPage()
-        cy.wait('@forceGameSuccessful')
+        cy.waitUntilGameLoaded()
     });
   
     it('Check 5 letters boxes', () => {
