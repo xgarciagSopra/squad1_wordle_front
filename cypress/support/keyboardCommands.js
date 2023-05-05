@@ -50,14 +50,6 @@ Cypress.Commands.add('checkSendButtonIsDisabled',() => {
     cy.checkSendButtonState("be.disabled")
 })
 
-Cypress.Commands.add('checkSendButtonsEnabled',() => {
-    cy.checkSendButtonState("be.enabled")
-})
-
-Cypress.Commands.add('checkSendButtonIsDisabled',() => {
-    cy.checkSendButtonState("be.disabled")
-})
-
 Cypress.Commands.add('sendForm',() => {
     cy.getLetter(keys.send).click()
 })
@@ -107,6 +99,7 @@ Cypress.Commands.add('checkKeyboardRowDisabled', (letters) => {
         }
     });
 })
+
 Cypress.Commands.add('checkKeyboardDisabled', () => {
     let row1 = keys['row-1'].split('')
     let row2 = keys['row-1'].split('')
