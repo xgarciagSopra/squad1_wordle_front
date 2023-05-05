@@ -23,4 +23,8 @@ Cypress.Commands.add('checkNewGameStartCorrect', () => {
     cy.checkResultBoxText('P')
 })
 
+Cypress.Commands.add('checkWinGameAlert', () => {
+    cy.get('app-win-round-dialog').should('be.visible')
+})
+
 

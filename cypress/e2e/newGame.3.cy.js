@@ -7,6 +7,7 @@ describe('#3 New game', () => {
         cy.wait('@forceGameSuccessful')
         cy.checkNewGameStartCorrect()
     });
+    
     it('Game start error', () => {
         cy.forceNewGameFaild()
         cy.goToLandingPage()

@@ -17,6 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from './components/error-round-dialog/error-round-dialog.component';
 import { WinRoundDialogComponent } from './components//win-round-dialog/win-round-dialog.component';
 import { LoginComponent } from './components/login/login.component';
+import { GameOverDialogComponent } from './components/game-over-dialog/game-over-dialog.component';
+import { AttempRowsComponent } from './components/attemp-rows/attemp-rows.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { LoginComponent } from './components/login/login.component';
     FooterComponent,
     WinRoundDialogComponent,
     LoginComponent,
+    GameOverDialogComponent,
+    AttempRowsComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,8 @@ import {
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
 import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
+import { GameOverDialogComponent } from '../game-over-dialog/game-over-dialog.component';
+import { Attempt } from 'src/app/interfaces/attempt.interface';
 
 const deleteKey = '⌫';
 const sendKeySimbol = '➜';
@@ -39,7 +41,10 @@ export class GameCenterComponent implements OnInit {
   roundFound = false;
   selectResultBox!: number;
   correctSyntaxWord = this.isSyntaxCorrect();
-  nextRound = false;
+  isWin = false;
+  resultBoxRow: Attempt[] = [];
+  round = 0;
+  secretWord = '';
 
   constructor(
     private dialog: MatDialog,
@@ -82,6 +87,24 @@ export class GameCenterComponent implements OnInit {
     }
     this.word = this.word.substring(0, this.word.length - 1);
     this.fillSplitWord();
+  }
+
+  nextIntent() {
+    if (this.isWin) {
+      return;
+    }
+    if (!this.isWin && this.round === 4) {
+      this.openGameOverDialog();
+      this.round++;
+      return;
+    }
+    if (this.resultBoxRow.length < 4) {
+      let intent = { round: this.round, letters: this.splittedWord };
+      this.resultBoxRow.push(intent);
+      this.word = '';
+      this.fillSplitWord();
+    }
+    this.round++;
   }
 
   isMaxLengthWord(): boolean {
@@ -134,15 +157,19 @@ export class GameCenterComponent implements OnInit {
   sendWord(word: string) {
     return this.guessWord.checkWord(word, this.idRound).subscribe({
       next: (response: any) => {
-        this.nextRound = !!response.roundWin;
+        this.isWin = !!response.roundWin;
         this.found = !!response.wordExists;
         if (!this.found) {
           this.dangerToast();
           return;
         }
+        if (response.roundIntentNumber === 5) {
+          this.secretWord = response.secretWord;
+        }
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
-        if (this.nextRound) {
+        this.nextIntent();
+        if (this.isWin) {
           this.openWinDialog();
           return;
         }
@@ -163,6 +190,13 @@ export class GameCenterComponent implements OnInit {
   openWinDialog() {
     this.dialog.open(WinRoundDialogComponent, {
       panelClass: 'custom-dialog-container',
+    });
+  }
+
+  openGameOverDialog() {
+    this.dialog.open(GameOverDialogComponent, {
+      panelClass: 'custom-dialog-container',
+      data: this.secretWord,
     });
   }
 
