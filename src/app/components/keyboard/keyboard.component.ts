@@ -31,4 +31,17 @@ export class KeyboardComponent {
       fail: key.hitStatus === 'FAIL',
     };
   }
+
+  disableKeyboardRow() {
+    return !this.roundFound || !this.nextRound || this.round === 5;
+  }
+
+  disableSendKey() {
+    return (
+      !this.disableKeys ||
+      this.correctSyntaxWord ||
+      !this.nextRound ||
+      this.round === 5
+    );
+  }
 }
