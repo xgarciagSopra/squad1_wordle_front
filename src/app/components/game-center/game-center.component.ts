@@ -44,6 +44,7 @@ export class GameCenterComponent implements OnInit {
   isWin = false;
   resultBoxRow: Attempt[] = [];
   round = 0;
+  secretWord = '';
 
   constructor(
     private dialog: MatDialog,
@@ -162,6 +163,9 @@ export class GameCenterComponent implements OnInit {
           this.dangerToast();
           return;
         }
+        if (response.roundIntentNumber === 5) {
+          this.secretWord = response.secretWord;
+        }
         this.splittedWord = response.positionOfWordResponseList;
         this.resetStatusKeyboard();
         this.nextIntent();
@@ -192,6 +196,7 @@ export class GameCenterComponent implements OnInit {
   openGameOverDialog() {
     this.dialog.open(GameOverDialogComponent, {
       panelClass: 'custom-dialog-container',
+      data: this.secretWord,
     });
   }
 

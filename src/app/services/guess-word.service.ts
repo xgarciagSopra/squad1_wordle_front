@@ -9,7 +9,7 @@ import { CheckedWordResponse } from '../interfaces/checkedWord.interface';
 export class GuessWordService {
   constructor(private http: HttpClient) {}
 
-  baseURL = 'http://10.102.30.142:8080';
+  baseURL = 'http://192.168.31.180:8080';
 
   checkWord(word: string, idRound: number): Observable<CheckedWordResponse> {
     return this.http.get<CheckedWordResponse>(

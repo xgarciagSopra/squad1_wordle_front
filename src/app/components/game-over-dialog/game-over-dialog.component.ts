@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-game-over-dialog',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
 })
 export class GameOverDialogComponent {
   secretWord = '';
-
+  constructor(@Inject(MAT_DIALOG_DATA) public valor: string) {
+    this.secretWord = valor;
+  }
   reloadWindow() {
     window.location.reload();
   }
