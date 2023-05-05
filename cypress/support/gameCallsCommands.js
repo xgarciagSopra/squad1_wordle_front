@@ -46,3 +46,11 @@ Cypress.Commands.add('interceptWordFail', (word) => {
     )
 })
 
+Cypress.Commands.add('interceptWordAndLost', (word) => {
+    return cy.intercept('GET', (api.newGame + '/20' + api.wordValidation + word),
+    {
+        fixture: 'lostGame.json'
+    }
+    )
+})
+

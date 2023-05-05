@@ -19,20 +19,14 @@ describe('#6 Limit game to 5 attempts', () => {
 
     it('Check create a new row if word fail', () => {
         cy.interceptWordFail(word.queso)
-        cy.typeWord(word.queso)
-        cy.sendForm()
-        cy.typeWord(word.queso)
-        cy.sendForm()
-        cy.typeWord(word.queso)
-        cy.sendForm()
-        cy.typeWord(word.queso)
-        cy.sendForm()
-        cy.typeWord(word.queso)
-        cy.sendForm()
+        cy.checkLimit5Attemps(word.queso,4)
         cy.checkAttempRows()
     });
 
     it('Check lost game', () => {
-        
+        cy.interceptWordFail(word.queso)
+        cy.checkLimit5Attemps(word.queso,5)
+        cy.checkLostGameAlert()
+        cy.checkKeyboardDisabled()
     });
 });

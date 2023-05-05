@@ -125,3 +125,10 @@ Cypress.Commands.add('checkKeyboardDisabled', () => {
     cy.checkKeyboardRowDisabled(row2,2)
     cy.checkKeyboardRowDisabled(row3,3)
 })
+
+Cypress.Commands.add('checkLimit5Attemps', (word,attemps) => {
+    for (let attemp = 0; attemp < attemps; attemp++) {
+        cy.typeWord(word)
+        cy.sendForm()
+    }
+})

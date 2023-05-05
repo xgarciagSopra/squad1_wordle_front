@@ -3,26 +3,26 @@
     "positionOfWordResponseList": [
         {
             "letter": "Q",
-            "hitStatus": "HIT"
+            "hitStatus": "FAIL"
         },
         {
             "letter": "U",
-            "hitStatus": "HIT"
+            "hitStatus": "FAIL"
         },
         {
             "letter": "E",
-            "hitStatus": "HIT"
+            "hitStatus": "FAIL"
         },
         {
             "letter": "S",
-            "hitStatus": "HIT"
+            "hitStatus": "FAIL"
         },
         {
             "letter": "O",
-            "hitStatus": "HIT"
+            "hitStatus": "FAIL"
         }
     ],
     "roundIntentNumber":5,
     "roundWin":false,
-    "secretWord":"queso"
+    "secretWord":"abala"
 }
