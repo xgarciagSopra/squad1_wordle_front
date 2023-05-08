@@ -7,50 +7,66 @@
         <input
           type="text"
           matInput
-          [(ngModel)]="userFormControl"
+          [formControl]="userFormControl"
           [errorStateMatcher]="matcher"
           placeholder="Ex. JoseManuel23"
         />
         <mat-hint>Usuario valido</mat-hint>
         <mat-error
           *ngIf="
-            userFormControl.hasError('userMinChar') &&
-            userFormControl.hasError('patternLegit') &&
+            userFormControl.hasError('minlength') &&
+            userFormControl.hasError('pattern') &&
             !userFormControl.hasError('required')
           "
         >
           Por favor inserta un usuario válido.
         </mat-error>
         <mat-error *ngIf="userFormControl.hasError('required')">
-          Email is <strong>required</strong>
+          Usuario <strong> requerido</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormControl.hasError('minlength')">
+          Contraseña es demasiado <strong>corta</strong>
         </mat-error>
       </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <mat-label>Contraseña</mat-label>
         <input
           type="password"
           matInput
-          [(ngModel)]="passwordFormControl"
+          [formControl]="passwordFormControl"
           [errorStateMatcher]="matcher"
           placeholder="Contraseña entre 4 y 12 carácteres"
         />
         <mat-hint>Contraseña válida</mat-hint>
         <mat-error
           *ngIf="
-            passwordFormControl.hasError('userMinChar') &&
-            passwordFormControl.hasError('userMaxChar') &&
+            passwordFormControl.hasError('minlength') &&
+            passwordFormControl.hasError('maxlength') &&
             !passwordFormControl.hasError('required')
           "
         >
           Por favor inserta una contraseña válida.
         </mat-error>
         <mat-error *ngIf="passwordFormControl.hasError('required')">
-          Contraseña es<strong>requerida</strong>
+          Contraseña es <strong>requerida</strong>
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('minlength')">
+          Contraseña es demasiado <strong>corta</strong>
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('maxlength')">
+          Contraseña es demasiado <strong>larga</strong>
         </mat-error>
       </mat-form-field>
-      <button type="submit" class="btn btn-primary btn-block mx-auto mt-4">
-        Ingresar
-      </button>
+      <div class="center-button">
+        <button
+          type="submit"
+          class="btn btn-success m-3 w-25"
+          [disabled]="disableSend()"
+        >
+          ➜
+        </button>
+      </div>
     </form>
   </div>
 </div>

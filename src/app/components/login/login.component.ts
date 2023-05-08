@@ -22,6 +22,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
+const pattern = '^[a-zA-Z0-9]*$';
+
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -31,7 +33,7 @@ export class LoginComponent {
   userFormControl = new FormControl('', [
     Validators.required,
     Validators.minLength(4),
-    Validators.pattern('[A-Za-z0-9]'),
+    Validators.pattern(pattern),
   ]);
   passwordFormControl = new FormControl('', [
     Validators.required,
@@ -40,7 +42,23 @@ export class LoginComponent {
   ]);
 
   matcher = new MyErrorStateMatcher();
+
   encodeDataBase64(data: string) {
     return fromByteArray(new TextEncoder().encode(data));
+  }
+
+  disableSend() {
+    return (
+      !this.userFormControl.value ||
+      this.userFormControl.value.trim().length === 0 ||
+      !this.passwordFormControl.value ||
+      this.passwordFormControl.value.trim().length === 0 ||
+      this.passwordFormControl.hasError('required') ||
+      this.passwordFormControl.hasError('minlength') ||
+      this.passwordFormControl.hasError('maxlenght') ||
+      this.userFormControl.hasError('required') ||
+      this.userFormControl.hasError('minlength') ||
+      this.userFormControl.hasError('pattern')
+    );
   }
 }
