@@ -25,7 +25,10 @@
           Usuario <strong> requerido</strong>
         </mat-error>
         <mat-error *ngIf="userFormControl.hasError('minlength')">
-          Contraseña es demasiado <strong>corta</strong>
+          Usuario demasido <strong>corto</strong>
+        </mat-error>
+        <mat-error *ngIf="userFormControl.hasError('pattern')">
+          El usuario no permite <strong>caracteres especiales</strong>
         </mat-error>
       </mat-form-field>
 
