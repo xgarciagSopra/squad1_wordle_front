@@ -1,7 +1,7 @@
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorRoundDialogComponent } from '../error-round-dialog/error-round-dialog.component';
+import { ErrorRoundDialogComponent } from './error-round-dialog/error-round-dialog.component';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 import { Letter } from 'src/app/interfaces/letter-status.interface';
 import {
@@ -10,8 +10,8 @@ import {
   thirdKeyBoardRow,
   sendKey,
 } from 'src/app/interfaces/keyboardRows';
-import { WinRoundDialogComponent } from '../win-round-dialog/win-round-dialog.component';
-import { GameOverDialogComponent } from '../game-over-dialog/game-over-dialog.component';
+import { WinRoundDialogComponent } from './win-round-dialog/win-round-dialog.component';
+import { GameOverDialogComponent } from './game-over-dialog/game-over-dialog.component';
 import { Attempt } from 'src/app/interfaces/attempt.interface';
 
 const deleteKey = '⌫';
