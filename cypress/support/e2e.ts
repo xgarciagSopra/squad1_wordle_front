@@ -19,6 +19,7 @@ import './keyboardCommands'
 import './gameCommands'
 import './resultBoxCommands'
 import './gameCallsCommands'
+import './loginCommands'
 
 
 // Alternatively you can use CommonJS syntax:
