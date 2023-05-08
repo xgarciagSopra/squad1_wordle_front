@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { fromByteArray } from 'base64-js';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -39,4 +40,7 @@ export class LoginComponent {
   ]);
 
   matcher = new MyErrorStateMatcher();
+  encodeDataBase64(data: string) {
+    return fromByteArray(new TextEncoder().encode(data));
+  }
 }

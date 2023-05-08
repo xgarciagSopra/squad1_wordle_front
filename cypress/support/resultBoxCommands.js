@@ -60,3 +60,7 @@ Cypress.Commands.add('checkResultBoxColor',(color) => {
 Cypress.Commands.add('checkRecultBoxesStatusChange', () => {
     cy.checkResultBoxColor(keys.uncheckletter)
 })
+
+Cypress.Commands.add('checkAttempRows',() => {
+    cy.get('app-attemp-rows :nth-child(4)').should('be.visible')
+})

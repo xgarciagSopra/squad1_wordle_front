@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CheckedWordResponse } from '../interfaces/checkedWord.interface';
+import { host, port } from '../interfaces/variables';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { CheckedWordResponse } from '../interfaces/checkedWord.interface';
 export class GuessWordService {
   constructor(private http: HttpClient) {}
 
-  baseURL = 'http://192.168.31.180:8080';
+  baseURL = 'http://' + host + ':' + port;
 
   checkWord(word: string, idRound: number): Observable<CheckedWordResponse> {
     return this.http.get<CheckedWordResponse>(

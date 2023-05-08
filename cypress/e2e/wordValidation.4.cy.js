@@ -6,9 +6,9 @@ import word from '../fixtures/words.json'
 
 describe('#4 Word validation', () => {
     beforeEach(() => {
-        cy.forceNewGameSuccessful()
+        cy.forceNewGameSuccessful().as('forceGameSuccessful')
         cy.goToLandingPage()
-        cy.getGameLoaded()
+        cy.waitUntilGameLoaded()
     });
   
     it('Check 5 letters boxes', () => {
