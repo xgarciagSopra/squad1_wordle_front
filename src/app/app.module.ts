@@ -19,6 +19,8 @@ import { WinRoundDialogComponent } from './components//win-round-dialog/win-roun
 import { LoginComponent } from './components/login/login.component';
 import { GameOverDialogComponent } from './components/game-over-dialog/game-over-dialog.component';
 import { AttempRowsComponent } from './components/attemp-rows/attemp-rows.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AttempRowsComponent } from './components/attemp-rows/attemp-rows.compon
     BrowserAnimationsModule,
     MatDialogModule,
     HttpClientModule,
+    MatInputModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
