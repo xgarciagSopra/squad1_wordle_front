@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { fromByteArray } from 'base64-js';
-import { MyErrorStateMatcher } from 'src/app/helpers/errorStateMatcher';
+import { ErrorMatcher } from 'src/app/helpers/errorStateMatcher';
 
 const alphaNumeric = '^[a-zA-Z0-9]*$';
 
@@ -24,7 +24,7 @@ export class LoginComponent {
     ]),
   });
 
-  matcher = new MyErrorStateMatcher();
+  matcher = new ErrorMatcher();
 
   encodeDataBase64(data: string) {
     return fromByteArray(new TextEncoder().encode(data));
