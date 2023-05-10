@@ -5,7 +5,6 @@ import { GameCenterComponent } from './components/game-center/game-center.compon
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'game-center', component: GameCenterComponent },
 ];

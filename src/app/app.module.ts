@@ -17,6 +17,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ErrorRoundDialogComponent } from './components/game-center/error-round-dialog/error-round-dialog.component';
 import { WinRoundDialogComponent } from './components/game-center/win-round-dialog/win-round-dialog.component';
 import { LoginComponent } from './components/login/login.component';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GameOverDialogComponent } from './components/game-center/game-over-dialog/game-over-dialog.component';
 import { AttempRowsComponent } from './components/game-center/attemp-rows/attemp-rows.component';
 
@@ -43,6 +45,9 @@ import { AttempRowsComponent } from './components/game-center/attemp-rows/attemp
     BrowserAnimationsModule,
     MatDialogModule,
     HttpClientModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
