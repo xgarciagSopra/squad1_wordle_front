@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   FormControl,
+  FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
@@ -15,14 +16,13 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   ): boolean {
     const isSubmitted = form && form.submitted;
     return !!(
-      control &&
-      control.invalid &&
+      control?.invalid &&
       (control.dirty || control.touched || isSubmitted)
     );
   }
 }
 
-const pattern = '^[a-zA-Z0-9]*$';
+const validCharacters = '^[a-zA-Z0-9]*$';
 
 @Component({
   selector: 'login',
@@ -30,16 +30,18 @@ const pattern = '^[a-zA-Z0-9]*$';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  userFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(4),
-    Validators.pattern(pattern),
-  ]);
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-    Validators.minLength(4),
-    Validators.maxLength(12),
-  ]);
+  form = new FormGroup({
+    user: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.pattern(validCharacters),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(12),
+    ]),
+  });
 
   matcher = new MyErrorStateMatcher();
 
@@ -47,18 +49,32 @@ export class LoginComponent {
     return fromByteArray(new TextEncoder().encode(data));
   }
 
+  showUserError(): boolean {
+    return !!this.form.controls.user.errors;
+  }
+
+  showPasswordError(): boolean {
+    return !!this.form.controls.password.errors;
+  }
+
+  getUserError() {
+    let user = this.form.controls.user;
+    if (user.errors!['required']) return 'Usuario requerido';
+    if (user.errors!['minlength']) return 'Usuario demasiado corto';
+    if (user.errors!['pattern'])
+      return 'El usuario no permite caracteres especiales';
+    else return 'Por favor inserta un usuario válido';
+  }
+
+  getPasswordError() {
+    let password = this.form.controls.password;
+    if (password.errors!['required']) return 'Contraseña requerida';
+    if (password.errors!['minlength']) return 'Contraseña demasiado corta';
+    if (password.errors!['maxlength']) return 'Contraseña demasiado larga';
+    else return 'Por favor inserta una ontraseña válida';
+  }
+
   disableSend() {
-    return (
-      !this.userFormControl.value ||
-      this.userFormControl.value.trim().length === 0 ||
-      !this.passwordFormControl.value ||
-      this.passwordFormControl.value.trim().length === 0 ||
-      this.passwordFormControl.hasError('required') ||
-      this.passwordFormControl.hasError('minlength') ||
-      this.passwordFormControl.hasError('maxlenght') ||
-      this.userFormControl.hasError('required') ||
-      this.userFormControl.hasError('minlength') ||
-      this.userFormControl.hasError('pattern')
-    );
+    return this.form.valid;
   }
 }
