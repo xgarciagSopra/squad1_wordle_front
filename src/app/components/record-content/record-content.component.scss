@@ -1,0 +1,48 @@
+.rContent{
+    border: 3px solid grey;
+    width: 800px;
+    height: 450px;
+    border-radius: 10px;
+    overflow-y: scroll;
+    margin: auto;
+    li{
+        list-style: none;
+    }
+
+    ul{
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
+
+
+.rContent::-webkit-scrollbar {
+    width: 7px;              /* width of the entire scrollbar */
+  }
+  
+  .rContent::-webkit-scrollbar-track {
+    background: none;        /* color of the tracking area */
+  }
+  
+  .rContent::-webkit-scrollbar-thumb {
+    background-color: gray;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
+  }
+
+.iCard{
+    width: 700px;
+    height: 70px;
+    margin: auto;
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding-top: 25px;
+}
+
+.green{
+    border: 3px solid green;
+}
+
+.red{
+    border: 3px solid red;
+}

@@ -18,9 +18,13 @@ import { ErrorRoundDialogComponent } from './components/error-round-dialog/error
 import { WinRoundDialogComponent } from './components//win-round-dialog/win-round-dialog.component';
 import { GameOverDialogComponent } from './components/game-over-dialog/game-over-dialog.component';
 import { AttempRowsComponent } from './components/attemp-rows/attemp-rows.component';
+import { RecordComponent } from './components/record/record.component';
+import { RecordContentComponent } from './components/record-content/record-content.component';
 
 @NgModule({
   declarations: [
+    RecordContentComponent,
+    RecordComponent,
     AppComponent,
     KeyboardComponent,
     ResultBoxComponent,
@@ -31,6 +35,8 @@ import { AttempRowsComponent } from './components/attemp-rows/attemp-rows.compon
     WinRoundDialogComponent,
     GameOverDialogComponent,
     AttempRowsComponent,
+    RecordComponent,
+    RecordContentComponent,
   ],
   imports: [
     BrowserModule,

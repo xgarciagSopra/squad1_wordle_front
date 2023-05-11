@@ -1,7 +1,20 @@
-<div class="container w-50 my-5">
-  <div class="header text-center">
-    <h1>
-      <u><b>ADIVINA LA PALABRA</b></u>
-    </h1>
+<div class="header text-center">
+    <nav class="navbar navbar-expand-lg navbar-light navigation ">
+      <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+        <ul class="navbar-nav custom justify-content-center custom">
+          <li *ngIf="checkRoute() == 'inicio'" class="nav-item active">
+            <a class="nav-link" href="userRecord">Historial</a>
+          </li>
+          <li *ngIf="checkRoute() == 'historial'" class="nav-item">
+            <a class="nav-link" href="">Jugar</a>
+          </li>
+          <li class="icon">
+            <p>Adivina La Palabra</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Mejores Partidas</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </div>
-</div>
