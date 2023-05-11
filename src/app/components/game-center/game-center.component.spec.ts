@@ -4,8 +4,8 @@ import { GameCenterComponent } from './game-center.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 import { ToastrService } from 'ngx-toastr';
-import { ResultBoxComponent } from '../result-box/result-box.component';
-import { KeyboardComponent } from '../keyboard/keyboard.component';
+import { ResultBoxComponent } from './result-box/result-box.component';
+import { KeyboardComponent } from './keyboard/keyboard.component';
 
 const guessWordService = jasmine.createSpyObj('GuessWordService', [
   'newRound',

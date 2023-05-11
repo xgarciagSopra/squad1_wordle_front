@@ -6,7 +6,7 @@ describe('#5 End Game', () => {
     beforeEach(() => {
         cy.forceNewGameSuccessful().as('forceGameSuccessful')
         cy.goToLandingPage()
-        cy.wait('@forceGameSuccessful')
+        cy.waitUntilGameLoaded()
     });
 
     it('Show win game alert', () => {

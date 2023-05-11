@@ -1,0 +1,44 @@
+<div class="container w-25">
+  <div class="row justify-content-center mt-5">
+    <h2 class="text-center mb-4">Bienvenido:</h2>
+    <form [formGroup]="form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Usuario</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="user"
+          [errorStateMatcher]="matcher"
+          placeholder="Ex. JoseManuel23"
+        />
+        <mat-hint>Usuario valido</mat-hint>
+        <mat-error *ngIf="showUserError()">
+          {{ getUserError() }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Contraseña</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="password"
+          [errorStateMatcher]="matcher"
+          placeholder="Contraseña entre 4 y 12 carácteres"
+        />
+        <mat-hint>Contraseña válida</mat-hint>
+        <mat-error *ngIf="showPasswordError()">
+          {{ getPasswordError() }}
+        </mat-error>
+      </mat-form-field>
+      <div class="center-button">
+        <button
+          type="submit"
+          class="btn btn-success m-3 w-25"
+          [disabled]="!form.valid"
+        >
+          ➜
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

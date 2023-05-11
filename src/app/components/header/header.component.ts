@@ -12,13 +12,20 @@ export class HeaderComponent {
 
 
   checkRoute(){
-    if (this.router.url === "/") {
-      return "inicio"
+    if (this.router.url === "/game") {
+      return "inicio";
+    }
+    if(this.router.url === "/userRecord"){
+      return "historial";
+    }
+    if(this.router.url === "/login") {
+      return "login";
     }
     else{
-      return "historial"
+      return "";
     }
-   
   }
-
+   
 }
+
+
