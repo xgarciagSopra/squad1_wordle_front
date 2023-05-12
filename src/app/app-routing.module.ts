@@ -8,8 +8,12 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'game-center', component: GameCenterComponent },
+<<<<<<< HEAD
   {path: 'user-record', component: RecordComponent},
 ];
+=======
+  {path: 'userRecord', component: RecordComponent},
+>>>>>>> 110b942e03dbb28e9e14556fcd67da42d921d92a
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
