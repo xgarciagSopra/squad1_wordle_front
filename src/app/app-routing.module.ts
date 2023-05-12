@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { GameCenterComponent } from './components/game-center/game-center.component';
+import { RecordComponent } from './components/record/record.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'game-center', component: GameCenterComponent },
+  {path: 'user-record', component: RecordComponent},
 ];
 
 @NgModule({

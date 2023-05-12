@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  HOME_ROUTE = "/game-center";
+  LOGIN_ROUTE = "/login";
+  RECORD_ROUTE = "/user-record"
+
+  constructor(public location: Location){}
+
+
 }
+   
+
+
+

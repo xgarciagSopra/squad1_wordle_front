@@ -14,6 +14,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
+import { RecordComponent } from './components/record/record.component';
+import { RecordContentComponent } from './components/record-content/record-content.component';
 import { ErrorRoundDialogComponent } from './components/game-center/error-round-dialog/error-round-dialog.component';
 import { WinRoundDialogComponent } from './components/game-center/win-round-dialog/win-round-dialog.component';
 import { LoginComponent } from './components/login/login.component';
@@ -24,6 +26,8 @@ import { AttempRowsComponent } from './components/game-center/attemp-rows/attemp
 
 @NgModule({
   declarations: [
+    RecordContentComponent,
+    RecordComponent,
     AppComponent,
     KeyboardComponent,
     ResultBoxComponent,
@@ -35,6 +39,8 @@ import { AttempRowsComponent } from './components/game-center/attemp-rows/attemp
     LoginComponent,
     GameOverDialogComponent,
     AttempRowsComponent,
+    RecordComponent,
+    RecordContentComponent,
   ],
   imports: [
     BrowserModule,

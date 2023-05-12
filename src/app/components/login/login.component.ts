@@ -19,7 +19,7 @@ export class LoginComponent {
     ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(4),
+      Validators.minLength(6),
       Validators.maxLength(12),
     ]),
   });
