@@ -2,16 +2,16 @@
     <nav class="navbar navbar-expand-lg navbar-light navigation ">
       <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
         <ul class="navbar-nav custom justify-content-center custom">
-          <li *ngIf="selectedRoute === 'inicio'" class="nav-item active">
+          <li *ngIf="location.path() === HOME_ROUTE" class="nav-item active">
             <a class="nav-link" href="user-record">Historial</a>
           </li>
-          <li *ngIf="selectedRoute === 'historial'" class="nav-item">
+          <li *ngIf="location.path() === RECORD_ROUTE" class="nav-item">
             <a class="nav-link" href="game-center">Jugar</a>
           </li>
           <li class="icon">
             <p>Adivina La Palabra</p>
           </li>
-          <li  *ngIf="selectedRoute !== 'login'" class="nav-item">
+          <li  *ngIf="location.path() !== LOGIN_ROUTE" class="nav-item">
             <a class="nav-link" href="">Mejores Partidas</a>
           </li>
         </ul>

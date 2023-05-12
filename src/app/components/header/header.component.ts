@@ -8,26 +8,15 @@ import { Location } from '@angular/common';
 })
 export class HeaderComponent {
 
-  selectedRoute: string = this.checkRoute();
+  HOME_ROUTE = "/game-center";
+  LOGIN_ROUTE = "/login";
+  RECORD_ROUTE = "/user-record"
 
-  constructor(private location: Location){}
+  constructor(public location: Location){}
 
 
-  checkRoute(): string{
-    if (this.location.path() === "/game-center") {
-      return "inicio";
-    }
-    if(this.location.path() === "/user-record"){
-      return "historial";
-    }
-    if(this.location.path() === "/login") {
-      return "login";
-    }
-    else{
-      return "login";
-    }
-  }
-   
 }
+   
+
 
 
