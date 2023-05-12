@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'game-center', component: GameCenterComponent },
   {path: 'userRecord', component: RecordComponent},
-];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
