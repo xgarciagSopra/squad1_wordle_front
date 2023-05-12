@@ -10,7 +10,7 @@ export class LoginService {
 
   baseURL = 'http://' + host + ':' + port;
 
-  sendDecodeDataBase64(email: string, password: string) {
+  sendFormInfo(email: string, password: string) {
     this.http.post<any>(this.baseURL + '/login', { email, password });
   }
 }

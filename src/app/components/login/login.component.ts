@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { fromByteArray } from 'base64-js';
+import { LoginService } from 'src/app/services/login/login.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -40,8 +41,24 @@ export class LoginComponent {
     Validators.minLength(4),
     Validators.maxLength(12),
   ]);
-
   matcher = new MyErrorStateMatcher();
+
+  constructor(private loginService: LoginService) {}
+
+  // sendDecodeFormData(email: string, password: string) {
+  //   this.loginService
+  //     .sendFormInfo(
+  //       this.encodeDataBase64(email),
+  //       this.encodeDataBase64(password)
+  //     )
+  //     .subscribe({
+  //       next: (response: any) => {
+  //         if (response.correctInfo) {
+  //         }
+  //       },
+  //       error: () => {},
+  //     });
+  // }
 
   encodeDataBase64(data: string) {
     return fromByteArray(new TextEncoder().encode(data));
