@@ -3,12 +3,14 @@
         <div class="rContent">
             <ul>
                 <li class="nd" *ngFor="let item of rounds">
-                    <div *ngIf="item.ganada == true" class="iCard green">
+                    <div *ngIf="item.ganada; else fail" class="iCard green">
                         Intentos: {{item.intentos}} Palabra: {{item.palabra}}
                     </div>
-                    <div *ngIf="item.ganada == false" class="iCard red">
-                        Intentos: {{item.intentos}} Palabra: {{item.palabra}}
-                    </div>
+                    <ng-template #fail>
+                       <div class="iCard red">
+                           Intentos: {{item.intentos}} Palabra: {{item.palabra}}
+                       </div>
+                    </ng-template>
                 </li>
             </ul>
         </div>

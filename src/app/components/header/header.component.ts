@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -8,21 +8,23 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router){}
+  selectedRoute: string = this.checkRoute();
+
+  constructor(private location: Location){}
 
 
-  checkRoute(){
-    if (this.router.url === "/game") {
+  checkRoute(): string{
+    if (this.location.path() === "/game-center") {
       return "inicio";
     }
-    if(this.router.url === "/userRecord"){
+    if(this.location.path() === "/user-record"){
       return "historial";
     }
-    if(this.router.url === "/login") {
+    if(this.location.path() === "/login") {
       return "login";
     }
     else{
-      return "";
+      return "login";
     }
   }
    

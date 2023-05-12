@@ -5,12 +5,10 @@ import { GameCenterComponent } from './components/game-center/game-center.compon
 import { RecordComponent } from './components/record/record.component';
 
 const routes: Routes = [
-  {path: 'game', component: GameCenterComponent},
-  {path: 'userRecord', component: RecordComponent},
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'game-center', component: GameCenterComponent },
-  {path: 'userRecord', component: RecordComponent},
+  {path: 'user-record', component: RecordComponent},
 ];
 
 @NgModule({

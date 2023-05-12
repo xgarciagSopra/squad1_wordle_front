@@ -17,16 +17,16 @@
 
 
 .rContent::-webkit-scrollbar {
-    width: 7px;              /* width of the entire scrollbar */
+    width: 7px;            
   }
   
   .rContent::-webkit-scrollbar-track {
-    background: none;        /* color of the tracking area */
+    background: none;        
   }
   
   .rContent::-webkit-scrollbar-thumb {
-    background-color: gray;    /* color of the scroll thumb */
-    border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
+    background-color: gray;    
+    border-radius: 20px;      
   }
 
 .iCard{
