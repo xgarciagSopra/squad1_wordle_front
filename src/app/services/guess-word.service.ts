@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { CheckedWordResponse } from '../interfaces/checkedWord.interface';
 import { host, port } from '../interfaces/variables';
+import { UserService } from './user/user.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class GuessWordService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   baseURL = 'http://' + host + ':' + port;
 
@@ -19,6 +21,6 @@ export class GuessWordService {
   }
 
   newRound() {
-    return this.http.post<number>(this.baseURL + '/rounds', {});
+    return this.http.post<number>(this.baseURL + '/rounds',{});
   }
 }
