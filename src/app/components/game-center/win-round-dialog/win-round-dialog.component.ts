@@ -10,6 +10,6 @@ export class WinRoundDialogComponent {
   constructor(private router:Router){}
 
   reloadWindow() {
-    this.router.navigate(['/login'])  
+    this.router.navigate(['/user-record'])  
   }
 }
