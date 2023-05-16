@@ -3,12 +3,16 @@
         <div class="rContent">
             <ul>
                 <li class="nd" *ngFor="let item of rounds">
-                    <div *ngIf="item.ganada; else fail" class="iCard green">
-                        Intentos: {{item.intentos}} Palabra: {{item.palabra}}
+                    <div *ngIf="item.roundWin; else fail" class="iCard green">
+                        <span class="info">Intentos: {{item.intentNumber}}</span> 
+                        <span class="info">Palabra: {{item.word}}</span>
+                        <span class="info">Fecha: {{item.dateTime | date: 'dd/MM/yyyy HH:mm'}}</span>
                     </div>
                     <ng-template #fail>
                        <div class="iCard red">
-                           Intentos: {{item.intentos}} Palabra: {{item.palabra}}
+                        <span class="info">Intentos: {{item.intentNumber}}</span> 
+                        <span class="info">Palabra: {{item.word}}</span>
+                        <span class="info">Fecha: {{item.dateTime | date: 'dd/MM/yyyy HH:mm'}}</span>
                        </div>
                     </ng-template>
                 </li>

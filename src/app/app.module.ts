@@ -8,7 +8,7 @@ import { ResultBoxComponent } from './components/game-center/result-box/result-b
 import { GameCenterComponent } from './components/game-center/game-center.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -23,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GameOverDialogComponent } from './components/game-center/game-over-dialog/game-over-dialog.component';
 import { AttempRowsComponent } from './components/game-center/attemp-rows/attemp-rows.component';
+import { UserInterceptorInterceptor } from './interceptor/user-interceptor.interceptor';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,10 @@ import { AttempRowsComponent } from './components/game-center/attemp-rows/attemp
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, useClass: UserInterceptorInterceptor, multi:true
+    },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

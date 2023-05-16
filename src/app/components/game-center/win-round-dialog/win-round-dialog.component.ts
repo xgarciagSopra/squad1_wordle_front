@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-win-round-dialog',
@@ -6,7 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./win-round-dialog.component.scss'],
 })
 export class WinRoundDialogComponent {
+  constructor(private router:Router){}
+
   reloadWindow() {
-    window.location.reload();
+    this.router.navigate(['/user-record'])  
   }
 }
