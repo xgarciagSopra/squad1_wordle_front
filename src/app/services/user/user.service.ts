@@ -19,4 +19,3 @@ export class UserService {
   }
 }
 
-export var uToken: string = "";

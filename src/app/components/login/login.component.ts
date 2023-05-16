@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { fromByteArray } from 'base64-js';
 import { ErrorMatcher } from 'src/app/helpers/errorStateMatcher';
+import { ULogin } from 'src/app/interfaces/u-login';
 import { LoginService } from 'src/app/services/login/login.service';
 import { UserService } from 'src/app/services/user/user.service'; 
 
@@ -28,31 +30,29 @@ export class LoginComponent {
 
   matcher = new ErrorMatcher();
 
-  constructor(private loginService: LoginService, private userService: UserService) {}
+  constructor(private loginService: LoginService, private userService: UserService, private router: Router) {}
 
   sendDecodeFormData() {
-    let uname: string = "";
-    let pass: string = "";
+    let uname = "";
+    let pass = "";
     if (this.form.controls['user'].value !== null) {
        uname = this.form.controls['user'].value;
     }
     if (this.form.controls['password'].value !== null) {
       pass = this.form.controls['password'].value;
     }
-    console.log(this.form.controls['user']);
     this.loginService
       .sendFormInfo(
         this.encodeDataBase64(uname),
         this.encodeDataBase64(pass)
       )
       .subscribe({
-        next: (response: any) => {
+        next: (response: ULogin) => {
           
           this.userService.setToken(response['token']);
-          window.location.href = "/game-center"
+          this.router.navigate(["/game-center"])
         },
         
-        error: () => {},
       });
   }
 

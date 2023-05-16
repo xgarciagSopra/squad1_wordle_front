@@ -23,4 +23,8 @@ export class GuessWordService {
   newRound() {
     return this.http.post<number>(this.baseURL + '/rounds',{});
   }
+
+  getRecord(): Observable<any>{
+    return this.http.get<any>(this.baseURL + '/rounds')
+  } 
 }
