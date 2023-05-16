@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Record } from 'src/app/interfaces/record';
 import { GuessWordService } from 'src/app/services/guess-word.service';
 
 @Component({
@@ -7,13 +8,13 @@ import { GuessWordService } from 'src/app/services/guess-word.service';
   styleUrls: ['./record-content.component.scss']
 })
 export class RecordContentComponent {
-    public rounds: Array<any> = [];
+    public rounds: Array<Record> = [];
     
     constructor(private guessService: GuessWordService){}
 
     ngOnInit(): void{
       this.guessService.getRecord().subscribe({
-        next: (response: any) => {
+        next: (response: Record[]) => {
           this.rounds = response;
         }
       })

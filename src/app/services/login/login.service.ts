@@ -14,6 +14,6 @@ export class LoginService {
   baseURL = 'http://' + host + ':' + port;
 
   sendFormInfo(name: string, password: string): Observable<ULogin>{
-    return this.http.post<any>(this.baseURL + '/login', { name, password });
+    return this.http.post<ULogin>(this.baseURL + '/login', { name, password });
   }
 }

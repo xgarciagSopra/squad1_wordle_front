@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CheckedWordResponse } from '../interfaces/checkedWord.interface';
 import { host, port } from '../interfaces/variables';
 import { UserService } from './user/user.service';
+import { Record } from '../interfaces/record';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class GuessWordService {
     return this.http.post<number>(this.baseURL + '/rounds',{});
   }
 
-  getRecord(): Observable<any>{
-    return this.http.get<any>(this.baseURL + '/rounds')
+  getRecord(): Observable<Record[]>{
+    return this.http.get<Record[]>(this.baseURL + '/rounds')
   } 
 }
